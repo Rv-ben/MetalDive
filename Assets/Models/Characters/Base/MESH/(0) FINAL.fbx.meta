@@ -1,0 +1,239 @@
+fileFormatVersion: 2
+guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd
+ModelImporter:
+  serializedVersion: 20101
+  internalIDToNameTable:
+  - first:
+      74: -203655887218126122
+    second: mixamo.com
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: (A)_Abdomenmat
+    second: {fileID: 2100000, guid: 11905e2e817a8ce43a6d353bc1cf663c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Backpackmat
+    second: {fileID: 2100000, guid: d62ef7d65dcbe314c998539677743037, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Buttonsmat
+    second: {fileID: 2100000, guid: c9992ba588cd8964681c4decdfbacceb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chest.001mat
+    second: {fileID: 2100000, guid: b37529ec4f005034cbe71a964a189ffd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chestmat
+    second: {fileID: 2100000, guid: 99b6cc814a66a06409723283936976a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Elbow_Guard_(L)mat
+    second: {fileID: 2100000, guid: 1d8ff9f49b466dd43a563382d3dac568, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Elbow_Guard_(R)mat
+    second: {fileID: 2100000, guid: 7bc3cd0277a9f884e86228e75c9993e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eye_(R)mat
+    second: {fileID: 2100000, guid: 37c43d44fb151024aa1c355ab88b1333, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Forearm_Guard_(L)mat
+    second: {fileID: 2100000, guid: d3731aa2810a461449f16a73b4f2b84b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Forearm_Guard_(R)mat
+    second: {fileID: 2100000, guid: 840f97e9beb96084292ff99246a55e63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Handsmat
+    second: {fileID: 2100000, guid: c68b84621d0ba7f4cae1792c673daff7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Headmat
+    second: {fileID: 2100000, guid: e94cf605d4b392e478f29b57cae7888b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Knee_Guard_(L)mat
+    second: {fileID: 2100000, guid: b296b44160d0ff249bcda23e9e544556, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leg_(L)mat
+    second: {fileID: 2100000, guid: 9ff68eca6c29fd04c890e2ce4dacaa85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leg_(R)mat
+    second: {fileID: 2100000, guid: 6b78f1adad0c80a4fbefbb3693fce962, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_HG_1855.002mat
+    second: {fileID: 2100000, guid: f547389bdd4cc914d9a13960b5bb95f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Neckmat
+    second: {fileID: 2100000, guid: 445bcbd28dfbfbc47b9235d5204f3a57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shoe_(L)mat
+    second: {fileID: 2100000, guid: fba8cda3019920342b616159a17f2fac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shoe_(R)mat
+    second: {fileID: 2100000, guid: 4ece340c0d8a1a4469e5883cb781fc3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shoe_Top_(L)mat
+    second: {fileID: 2100000, guid: 48e54e3332635a0439980a8cd6b633b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shoe_Top_(R)mat
+    second: {fileID: 2100000, guid: 5324a31f9e5f04f4185d413287c32673, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shoulder_(L)mat
+    second: {fileID: 2100000, guid: cf5ca7db9ce3ef443a13d1f3c7d4f110, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shoulder_(R)mat
+    second: {fileID: 2100000, guid: 55e3ad08ef0dcff449cf4309bf790ef5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Thigh_(L)mat
+    second: {fileID: 2100000, guid: 05e2609a4368842408ac25e69a2a1dc2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Thigh_(R)mat
+    second: {fileID: 2100000, guid: c24442594c9e18f4eabfbec5faff0653, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cf_m_body.001mat
+    second: {fileID: 2100000, guid: 0435f1e3e7f22ee4dacf1e99584d38e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_meka_2_g_(Instance).003mat
+    second: {fileID: 2100000, guid: 1c7cebe8398f2f747b7b60662972d6c0, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
