@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Walk Backwards
+    second: Unarmed Walk Backwards
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walk Backwards
+      name: Unarmed Walk Backwards
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0

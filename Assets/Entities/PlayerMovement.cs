@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         float velocityZ = Vector3.Dot(movement.normalized, transform.forward);
         // Animating using Dot Product of normalized movement and the right transform.
         float velocityX = Vector3.Dot(movement.normalized, transform.right);
-
+        // Changes the position of the Player Model and smoothly transitions between animations.
         _animator.SetFloat("VelocityZ", velocityZ, 0.1f, Time.deltaTime);
         _animator.SetFloat("VelocityX", velocityX, 0.1f, Time.deltaTime);
     }
