@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DungeonGenerator
 {
-    RoomNode rootNode;
     List<RoomNode> allSpaceNodes = new List<RoomNode>();
     private int dungeonWidth, dungeonLength;
 
@@ -14,8 +13,9 @@ public class DungeonGenerator
         this.dungeonWidth = dungeonWidth;
     }
 
-    internal object CalculateRooms(int maxIterations, int roomWidth, int roomLengthMin)
+    public List<Node> CalculateRooms(int maxIterations, int roomWidthMin, int roomLengthMin)
     {
-
+        BinarySpacePartitioner bsp = new BinarySpacePartitioner(dungeonWidth, dungeonLength);
+        allSpaceNodes = bsp.PrepareNodesCollection(maxIterations, roomWidthMin, roomLengthMin);
     }
 }
