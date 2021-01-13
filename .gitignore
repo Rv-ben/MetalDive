@@ -59,3 +59,7 @@ sysinfo.txt
 crashlytics-build.properties
 
 .collabignore
+
+
+/[Aa]ssets/Metal textures pack
+/[Aa]ssets/Metal textures pack.meta
