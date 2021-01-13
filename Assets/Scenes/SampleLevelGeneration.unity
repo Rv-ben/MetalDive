@@ -199,8 +199,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522180846}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.23018514, y: -0.5992338, z: 0.18532835, w: 0.74403435}
+  m_LocalPosition: {x: 94.51427, y: 15.943345, z: 35.544796}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -241,7 +241,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -291,8 +291,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417751229}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: -0.017926991, y: 0.7334748, z: -0.67920446, w: -0.019358963}
+  m_LocalPosition: {x: 46.55799, y: 186.49034, z: 77.44236}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -329,10 +329,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dunWidth: 100
   dunLength: 100
-  roomWidthMin: 25
-  roomLengthMin: 25
-  maxIterations: 1
+  roomWidthMin: 15
+  roomLengthMin: 15
+  maxIterations: 20
   corridorWidth: 5
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &2112860593
 Transform:
   m_ObjectHideFlags: 0
