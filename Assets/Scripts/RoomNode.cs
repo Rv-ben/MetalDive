@@ -10,11 +10,11 @@ public class RoomNode : Node
         this.topRightAreaCorner = topRightAreaCorner;
 
         this.bottomRightAreaCorner = new Vector2Int(topRightAreaCorner.x,bottomLeftAreaCorner.y);
-        this.topLeftAreaCorner = new Vector2Int(bottomLeftAreaCorner.x,topRightAreaCorner.y)
+        this.topLeftAreaCorner = new Vector2Int(bottomLeftAreaCorner.x, topRightAreaCorner.y);
 
         this.treeLayerIndex = index;
     }
 
     public int width { get => (int)(topRightAreaCorner.x - bottomLeftAreaCorner.x); }
-    public int length { get => (int)(toRightAreaCorner.y - bottomLeftAreaCorner.y); }
+    public int length { get => (int)(topRightAreaCorner.y - bottomLeftAreaCorner.y); }
 }

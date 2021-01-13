@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Line 
 {
-    Orientation orientation;
-    Vector2Int coordinates;
 
     public Line(Orientation orientation, Vector2Int coordinates)
     {
@@ -13,8 +12,8 @@ public class Line
         this.coordinates = coordinates;
     }
 
-    public Orientation Orientation { get => orientation; set => orientation = value; }
-    public Vector2Int Coordinates { get => coordinates; set => orientation = value; }
+    public Orientation orientation { get; set; }
+    public Vector2Int coordinates { get ; set ; }
 }
 
 public enum Orientation
