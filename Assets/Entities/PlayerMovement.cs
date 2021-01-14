@@ -4,72 +4,64 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Initialize the Input Handler.
-    private InputHandler _input;
-    [SerializeField] private float movementSpeed;
-    [SerializeField] private float rotateSpeed;
-    [SerializeField] private bool rotateTowardsMouse;
-    [SerializeField] Camera camera;
+    // Speed variable.  Adjustable in Editor thanks to SerializeField.
+    [SerializeField] float _speed = 5f;
+    // Ensures we only aim at the ground and not, like, walls.
+    [SerializeField] LayerMask _aimLayerMask;
+    // The animator component.
+    Animator _animator;
 
     /**
-     * Handles Input upon awakening.
+     * Handles Animation upon awakening.
      */
-    private void Awake() {
-        _input = GetComponent<InputHandler>();
-    }
+    private void Awake() => _animator = GetComponent<Animator>();
 
-    /**
-     * "Listens" for inputs for character movement.
-     */
     void Update()
     {
-        // TargetVector variable that constantly updates to determine where the Player wants the Actor to move.
-        var targetVector = new Vector3(_input.InputVector.x, 0, _input.InputVector.y);
-        // 
-        var movementVector = MoveTowardTarget(targetVector);
+        // Aim Function.
+        AimTowardMouse();
 
-        if (!rotateTowardsMouse) {
-            // Rotates the Character to the Target Vector.
-            RotateTowardVector(movementVector);
-        }
-        else
+        // Reads input.
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        // Makes sure that A and D go on the Horizontal and W and S go on the Vertical
+        Vector3 movement = new Vector3(horizontal, 0f, vertical);
+
+        // Moving
+        if (movement.magnitude > 0)
         {
-            RotateTowardsMouse();
+            // Normalizes movement to prevent strafing going too fast.
+            movement.Normalize();
+            // Adjust the speed according to framerate.
+            movement *= _speed * Time.deltaTime;
+            // Moves object according to worldspace.
+            transform.Translate(movement, Space.World);
         }
+
+        // Animating using Dot Product of normalized movement and the forward transform.
+        float velocityZ = Vector3.Dot(movement.normalized, transform.forward);
+        // Animating using Dot Product of normalized movement and the right transform.
+        float velocityX = Vector3.Dot(movement.normalized, transform.right);
+        // Changes the position of the Player Model and smoothly transitions between animations.
+        _animator.SetFloat("VelocityZ", velocityZ, 0.1f, Time.deltaTime);
+        _animator.SetFloat("VelocityX", velocityX, 0.1f, Time.deltaTime);
     }
 
-    /**
-     * Moves the Player Character towards a designated Vector.
-     */
-    private Vector3 MoveTowardTarget(Vector3 targetVector) {
-       // Calculates Player Character movement speed by taking into account frame time.
-        var speed = movementSpeed * Time.deltaTime;
-        // Makes sure that movement is dependent on the Y-Axis of the In-Game Camera.
-        targetVector = Quaternion.Euler(0, camera.gameObject.transform.eulerAngles.y, 0) * targetVector;
-
-        var targetPosition = transform.position + targetVector * speed;
-        // Translate the transform to have speed with direction.
-        transform.position = targetPosition;
-
-        return targetVector;
-    }
-
-    private void RotateTowardVector(Vector3 movementVector) {
-        if (movementVector.magnitude == 0) {
-            return;
-        }
-        var rotation = Quaternion.LookRotation(movementVector);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotateSpeed);
-    }
-
-    private void RotateTowardsMouse()
+    void AimTowardMouse()
     {
-        Ray ray = camera.ScreenPointToRay(_input.MousePosition);
-
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, maxDistance: 300f)) {
-            var target = hitInfo.point;
-            target.y = transform.position.y;
-            transform.LookAt(target);
+        // Create a Ray from the Mouse's position.
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // Use Physics to create a Raycast out of the ground, the max distance to shoot, infinity, and the ground layer.
+        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, _aimLayerMask))
+        {
+            // Calculates direction.
+            var _direction = hitInfo.point - transform.position;
+            // Prevents Tilting of the Character.
+            _direction.y = 0f;
+            _direction.Normalize();
+            // Consider the forward to be the direction of the mouse.
+            transform.forward = _direction;
         }
     }
 }

@@ -220,18 +220,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
   m_PrefabInstance: {fileID: 1233265890}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &890602986
-MonoBehaviour:
+--- !u!136 &890602986
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890602985}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89532d3c88f854a46a2ad22354c5763c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 0.023198616
+  m_Height: 0.1941735
+  m_Direction: 1
+  m_Center: {x: 0.0020954125, y: 0.08755187, z: 0}
 --- !u!54 &890602987
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -260,23 +262,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 694ac7cd821c88f40b95349e922a47ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
-  rotateSpeed: 15
-  rotateTowardsMouse: 1
-  camera: {fileID: 963194227}
---- !u!65 &890602989
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890602985}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.054067224, y: 0.18665333, z: 0.057457127}
-  m_Center: {x: 0.014264271, y: 0.08956321, z: -0.0026034815}
+  _speed: 0.5
+  _aimLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +357,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -380,6 +373,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -390,14 +387,6 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -415,6 +404,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: R31
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 75a630a038e49614092f0f4808b91dcd, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
 --- !u!1 &1709276806
@@ -429,7 +426,7 @@ GameObject:
   - component: {fileID: 1709276810}
   - component: {fileID: 1709276809}
   - component: {fileID: 1709276808}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
