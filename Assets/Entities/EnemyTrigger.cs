@@ -8,7 +8,7 @@ public class EnemyTrigger : MonoBehaviour
     [SerializeField] private TriggerEvent stay = new TriggerEvent();
 
     // Once it's triggered, it keeps triggering while colliding.
-    private void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other)
     {
         Debug.Log("Player is inside!");
         stay.Invoke(other);
@@ -18,16 +18,5 @@ public class EnemyTrigger : MonoBehaviour
     [Serializable]
     public class TriggerEvent : UnityEvent<Collider>
     {
-    }
-
-
-    private void OnTriggerExit(Collider other)
-    {
-        GameObject player = other.gameObject;
-        if (player.CompareTag("Player"))
-        {
-            Debug.Log("Player left!");
-            //em.ChangeMoveType();
-        }
     }
 }
