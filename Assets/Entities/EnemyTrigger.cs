@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyTrigger : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class EnemyTrigger : MonoBehaviour
     [SerializeField] private TriggerEvent stay = new TriggerEvent();
 
     // Once it's triggered, it keeps triggering while colliding.
-    private void OnTriggerStay(Collider other) 
+    private void OnTriggerStay(Collider other)
     {
         Debug.Log("Player is inside!");
         stay.Invoke(other);
@@ -21,7 +20,7 @@ public class EnemyTrigger : MonoBehaviour
     {
     }
 
-    
+
     private void OnTriggerExit(Collider other)
     {
         GameObject player = other.gameObject;

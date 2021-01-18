@@ -20,6 +20,10 @@ public class EnemyMovement : MonoBehaviour
     // Counting time
     [SerializeField] float countWaitingTime = 0f;
 
+    [SerializeField] float idlingDistance = 2f;
+
+    [SerializeField] float dispRemainDistance = 0f;
+
     Animator anim;
 
     // Position
@@ -48,6 +52,15 @@ public class EnemyMovement : MonoBehaviour
 
         if (collider.CompareTag("Player")) {
             agent.destination = collider.transform.position;
+            dispRemainDistance = agent.remainingDistance;
+
+            if (agent.remainingDistance < idlingDistance)
+            {
+                IdlePoint();
+            }
+
+            // Blend Idle and Walk animation 
+            anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
         }
     }
 
