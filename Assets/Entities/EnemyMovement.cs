@@ -20,8 +20,10 @@ public class EnemyMovement : MonoBehaviour
     // Counting time
     [SerializeField] float countWaitingTime = 0f;
 
+    // Idling distance
     [SerializeField] float idlingDistance = 2f;
 
+    // Display remain distance in Inspector
     [SerializeField] float dispRemainDistance = 0f;
 
     Animator anim;
@@ -50,8 +52,12 @@ public class EnemyMovement : MonoBehaviour
         Debug.Log("Start following");
         agent.isStopped = false;
 
-        if (collider.CompareTag("Player")) {
+        if (collider.name.Equals("Player")) {
+
+            // Set player's position as a next target
             agent.destination = collider.transform.position;
+
+            // Displaying remain distance in Inspector
             dispRemainDistance = agent.remainingDistance;
 
             if (agent.remainingDistance < idlingDistance)
