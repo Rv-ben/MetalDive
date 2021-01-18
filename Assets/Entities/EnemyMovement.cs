@@ -40,6 +40,17 @@ public class EnemyMovement : MonoBehaviour
         NextTarget();
     }
 
+    // Enemy follows player called by TriggerEvent 
+    public void FollowPlayer(Collider collider)
+    {
+        Debug.Log("Start following");
+        agent.isStopped = false;
+
+        if (collider.CompareTag("Player")) {
+            agent.destination = collider.transform.position;
+        }
+    }
+
     // Generate the next position and move
     void NextTarget()
     {
