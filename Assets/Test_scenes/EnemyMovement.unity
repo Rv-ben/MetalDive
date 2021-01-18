@@ -1096,6 +1096,8 @@ MonoBehaviour:
   randArea: 5
   waitingTime: 2
   countWaitingTime: 0
+  idlingDistance: 2
+  dispRemainDistance: 0
 --- !u!4 &1019646033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9bc2d67bd2ea6b34a8557fead8ac7fbd, type: 3}
@@ -1443,6 +1445,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d258752d18e71410d954ecac504e9ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1019646032}
+        m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+        m_MethodName: FollowPlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!135 &2120591689
 SphereCollider:
   m_ObjectHideFlags: 0
