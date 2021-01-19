@@ -64,3 +64,8 @@ crashlytics-build.properties
 # Added texture pack ignore
 /[Aa]ssets/Metal textures pack
 /[Aa]ssets/Metal textures pack.meta
+
+# First Weapon Pack Ignore for now
+/[Aa]ssets/MobilityArts
+/[Aa]ssets/SimpleFX
+/[Aa]ssets/Sherbbs Particle Collection
