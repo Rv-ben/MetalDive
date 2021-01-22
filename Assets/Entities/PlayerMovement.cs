@@ -2,24 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
     // Speed variable.  Adjustable in Editor thanks to SerializeField.
-    [SerializeField] float _speed = 5f;
+    [SerializeField] float movementSpeed = 5f;
     // Ensures we only aim at the ground and not, like, walls.
-    [SerializeField] LayerMask _aimLayerMask;
+    [SerializeField] LayerMask aimLayer;
     // The animator component.
-    Animator _animator;
+    Animator animator;
 
-    /**
-     * Handles Animation upon awakening.
-     */
-    private void Awake() => _animator = GetComponent<Animator>();
+    // Starts up the entire animation process.  As this will be changed across the entire game, Awake is necessary instead of Start.
+    private void Awake() => animator = GetComponent<Animator>();
 
-    void Update()
-    {
-        // Aim Function.
-        AimTowardMouse();
+    void Update() {
+        // Create a Ray from the Main Character to the Mouse's position.
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // Use Physics to create a Raycast out of the ground, the max distance to shoot, infinity, and the ground layer.
+        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, aimLayer)) {
+            // Calculates direction.
+            var direction = hitInfo.point - transform.position;
+            // Consider the forward to be the direction of the mouse.
+            transform.forward = direction;
+        }
 
         // Reads input.
         float horizontal = Input.GetAxis("Horizontal");
@@ -29,12 +32,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3(horizontal, 0f, vertical);
 
         // Moving
-        if (movement.magnitude > 0)
-        {
-            // Normalizes movement to prevent strafing going too fast.
-            movement.Normalize();
+        if (movement.magnitude > 0) {
             // Adjust the speed according to framerate.
-            movement *= _speed * Time.deltaTime;
+            movement *= movementSpeed * Time.deltaTime;
             // Moves object according to worldspace.
             transform.Translate(movement, Space.World);
         }
@@ -44,24 +44,7 @@ public class PlayerMovement : MonoBehaviour
         // Animating using Dot Product of normalized movement and the right transform.
         float velocityX = Vector3.Dot(movement.normalized, transform.right);
         // Changes the position of the Player Model and smoothly transitions between animations.
-        _animator.SetFloat("VelocityZ", velocityZ, 0.1f, Time.deltaTime);
-        _animator.SetFloat("VelocityX", velocityX, 0.1f, Time.deltaTime);
-    }
-
-    void AimTowardMouse()
-    {
-        // Create a Ray from the Mouse's position.
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        // Use Physics to create a Raycast out of the ground, the max distance to shoot, infinity, and the ground layer.
-        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, _aimLayerMask))
-        {
-            // Calculates direction.
-            var _direction = hitInfo.point - transform.position;
-            // Prevents Tilting of the Character.
-            _direction.y = 0f;
-            _direction.Normalize();
-            // Consider the forward to be the direction of the mouse.
-            transform.forward = _direction;
-        }
+        animator.SetFloat("VelocityZ", velocityZ, 0.1f, Time.deltaTime);
+        animator.SetFloat("VelocityX", velocityX, 0.1f, Time.deltaTime);
     }
 }

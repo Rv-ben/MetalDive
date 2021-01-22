@@ -7,8 +7,7 @@ public class Pistol : MonoBehaviour
     Animator _animator;
 
     // Upon Awakening, fetch the Animator component and tell the game a Pistol is equipped.
-    private void Awake()
-    {
+    private void Awake() {
         _animator = GetComponent<Animator>();
         _animator.SetBool("PistolEquipped", true);
     }
