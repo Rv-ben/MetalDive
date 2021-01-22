@@ -1092,11 +1092,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26557d8973748444f9fe228f12459d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPoint: {fileID: 1551828990}
-  randArea: 5
+  randArea: 20
   waitingTime: 2
   countWaitingTime: 0
-  idlingDistance: 2
+  idlingDistanceFollowing: 2
   dispRemainDistance: 0
 --- !u!4 &1019646033 stripped
 Transform:
@@ -1445,7 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d258752d18e71410d954ecac504e9ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stay:
+  _stay:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1019646032}
