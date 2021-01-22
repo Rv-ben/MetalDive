@@ -28,7 +28,7 @@ public class EnemyTrigger : MonoBehaviour
     /// Event function that triggers by colliding objects.
     /// If passed collider is tagged as "Player", then enemy will start follow.
     /// </summary>
-    /// <param name="other"> is an object that touched this collider</param>
+    /// <param name="other">object that touched this collider</param>
     void OnTriggerStay(Collider other)
     {
         Debug.Log(other.gameObject + " is inside");
