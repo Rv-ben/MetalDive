@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Represents a node with position
+/// </summary>
 public class RoomNode : Node
 {
-   public RoomNode(Vector2Int bottomLeftAreaCorner, Vector2Int topRightAreaCorner, Node parentNode, int index): base(parentNode)
+   public RoomNode(Vector2Int tl, Vector2Int br, Node parentNode, int index): base(parentNode)
     {
-        this.bottomLeftAreaCorner = bottomLeftAreaCorner;
-        this.topRightAreaCorner = topRightAreaCorner;
+        this.tl = tl;
+        this.br = br;
 
-        this.bottomRightAreaCorner = new Vector2Int(topRightAreaCorner.x,bottomLeftAreaCorner.y);
-        this.topLeftAreaCorner = new Vector2Int(bottomLeftAreaCorner.x, topRightAreaCorner.y);
-
-        this.treeLayerIndex = index;
+        this.treeLayer = index;
     }
 
-    public int width { get => (int)(topRightAreaCorner.x - bottomLeftAreaCorner.x); }
-    public int length { get => (int)(topRightAreaCorner.y - bottomLeftAreaCorner.y); }
+    public int width { get => (int)(tl.x - br.x); }
+    public int length { get => (int)(br.y - tl.y); }
 }
