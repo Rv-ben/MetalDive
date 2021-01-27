@@ -17,7 +17,7 @@ public class PlayerControls : MonoBehaviour {
     float timeToShoot;
     // What bullet gets fired.
     [SerializeField] Bullet bulletPrefab;
-
+    // How fast the bullet goes by default.
     [SerializeField] float bulletSpeed = 15f;
 
     // Starts up the entire animation process.  As this will be changed across the entire game, Awake is necessary instead of Start.
@@ -26,8 +26,9 @@ public class PlayerControls : MonoBehaviour {
     void Update() {
         Move();
         // Should be mapped to Left Click for now.
-        if (Input.GetMouseButtonDown(0))
+        if (shotReady() & Input.GetMouseButtonDown(0))
         {
+            // Shoot function.
             Shoot();
         }
     }
@@ -79,13 +80,7 @@ public class PlayerControls : MonoBehaviour {
     {
         // Sets the next time you're able to shoot.
         timeToShoot = Time.time + shotDelay;
-        /*
-        // Instantiate a Bullet prefab.
-        Bullet bullet = Instantiate(bulletPrefab, ejector.position, transform.rotation);
-        // Tells the bullet to shoot "forward"
-        bullet.Launch(transform.forward * 1f);
-        */
-        
+
         Bullet bullet = Instantiate(bulletPrefab, ejector.position, Quaternion.identity);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = transform.forward * bulletSpeed;
@@ -107,4 +102,14 @@ public class PlayerControls : MonoBehaviour {
             transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
         }
     }
+
+    /*
+    void AimTowardMouse()
+    {
+        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        diff.Normalize();
+        float rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + rotation_on_set);
+    }
+    */
 }
