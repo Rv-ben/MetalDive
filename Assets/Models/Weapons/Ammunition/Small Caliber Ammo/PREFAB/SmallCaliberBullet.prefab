@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 8406420107387048091}
   - component: {fileID: 8296514456863438706}
   - component: {fileID: 8296514456863438707}
-  - component: {fileID: -8617886424599063362}
+  - component: {fileID: -7181101818061926167}
   m_Layer: 0
   m_Name: SmallCaliberBullet
   m_TagString: Untagged
@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 9215009293000100385}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 8996413865391333827}
   m_Father: {fileID: 0}
@@ -144,8 +144,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.0033754352, y: 0.0034968592, z: 0.004311651}
-  m_Center: {x: 0.00018959213, y: 0.0013344502, z: 0.0006865859}
---- !u!114 &-8617886424599063362
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7181101818061926167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,4 +157,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418f75482d810e348855b8b3d152528e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
