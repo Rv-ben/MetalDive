@@ -133,7 +133,7 @@ public class EnemyMovement : MonoBehaviour
     /// </summary>
     /// <param name="distanceVector3"></param>
     /// <param name="vector3">vector3 for center</param>
-    /// <returns>Quaternion</returns>
+    /// <returns>Rotating operation to have the charactor face the direction it is moving to.</returns>
     Quaternion GetQuaternion(Vector3 distanceVector3, Vector3 vector3) {
         return Quaternion.LookRotation(distanceVector3, vector3);
     }
