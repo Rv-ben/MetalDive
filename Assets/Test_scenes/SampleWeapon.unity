@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 958913321}
   - component: {fileID: 958913320}
   - component: {fileID: 958913323}
+  - component: {fileID: 958913324}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -460,7 +461,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958913319}
-  m_LocalRotation: {x: 0.70090926, y: -0.000000019610498, z: 0.000000019271184, w: 0.71325046}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -502,6 +503,19 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &958913324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958913319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344a297128965be4ba57bc4ef9035bdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageEffect: {fileID: 2100000, guid: e7ba46ecab788ad46874752a82989975, type: 2}
 --- !u!1 &1085843355
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +544,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -947,6 +961,7 @@ GameObject:
   - component: {fileID: 5866666020204140429}
   - component: {fileID: 1843391006}
   - component: {fileID: 919132147641669454}
+  - component: {fileID: 919132147641669455}
   m_Layer: 0
   m_Name: R31
   m_TagString: Untagged
@@ -968,6 +983,22 @@ CapsuleCollider:
   m_Height: 0.19995666
   m_Direction: 1
   m_Center: {x: -0.0002709478, y: 0.082647204, z: 0.0016871691}
+--- !u!54 &919132147641669455
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147641669453}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 36
+  m_CollisionDetection: 0
 --- !u!4 &1031632035658430378
 Transform:
   m_ObjectHideFlags: 0
