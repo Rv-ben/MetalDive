@@ -3,8 +3,8 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 
-///<summary>
-///Enemy behavior
+/// <summary>
+/// Enemy behavior
 /// </summary>
 public class EnemyMovement : MonoBehaviour
 {
