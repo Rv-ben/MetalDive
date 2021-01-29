@@ -85,9 +85,9 @@ public class PlayerControls : MonoBehaviour {
     }
 
     /// <summary>
-    /// Lists True or False if the Player is able to shoot their weapon yet.
+    /// Checks if the Player is able to shoot their weapon yet.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>True or False, depending on if the Player is able to shoot yet.</returns>
     bool shotReady() => Time.time >= timeToShoot;
 
     /// <summary>

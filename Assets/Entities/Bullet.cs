@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     /// <summary>
     /// If the Bullet hits something, it'll be deleted.
     /// </summary>
-    /// <param name="collision"></param>
+    /// <param name="collision">A "collision" object implicitly tied to the GameObject that records when two Rigidbody Colliders collide.  </param>
     void OnCollisionEnter(Collision collision)
     {
         // It'll destroy itself immediately if it hits the Environment.
