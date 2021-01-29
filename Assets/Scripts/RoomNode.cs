@@ -7,14 +7,17 @@ using UnityEngine;
 /// </summary>
 public class RoomNode : Node
 {
-   public RoomNode(Vector2Int tl, Vector2Int br, Node parentNode, int index): base(parentNode)
+   public RoomNode(Vector2Int topLeft, int width, int length, Node parentNode): base(parentNode)
     {
-        this.tl = tl;
-        this.br = br;
-
-        this.treeLayer = index;
+        this.topLeft = topLeft;
+        this.width = width;
+        this.length = length;
+        calcBottomRight();
     }
 
-    public int width { get => (int)(tl.x - br.x); }
-    public int length { get => (int)(br.y - tl.y); }
+    public void calcBottomRight()
+    {
+        this.bottom_right.Set(topLeft.x + width, topLeft.y + length);
+    }
+
 }

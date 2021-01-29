@@ -22,6 +22,7 @@ public class DungeonCreator : MonoBehaviour
     {
         DungeonGenerator generator = new DungeonGenerator(dunWidth, dunLength);
         var rootNode = generator.CalculateRooms(maxIterations, roomWidthMin, roomLengthMin);
+     
     }
 
     private void CreateMesh(Vector2Int bottomLeftCorner, Vector2Int topRightCorner)

@@ -13,8 +13,11 @@ public class DungeonGenerator
         this.dungeonWidth = dungeonWidth;
     }
 
-    public List<Node> CalculateRooms(int maxIterations, int roomWidthMin, int roomLengthMin)
+    public RoomNode CalculateRooms(int maxIterations, int roomWidthMin, int roomLengthMin)
     {
-        return null;
+        BinarySpace bsp = new BinarySpace(this.dungeonWidth, this.dungeonLength, roomWidthMin, roomLengthMin);
+        RoomNode root = bsp.rootNode;
+        bsp.partionSpace(root);
+        return root;
     }
 }
