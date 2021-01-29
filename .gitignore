@@ -61,6 +61,7 @@ crashlytics-build.properties
 
 .collabignore
 
+/[Aa]ssets/TextMesh Pro
 # Added texture pack ignore
 /[Aa]ssets/Metal textures pack
 /[Aa]ssets/Metal textures pack.meta
