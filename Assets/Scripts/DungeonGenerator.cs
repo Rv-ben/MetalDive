@@ -19,6 +19,8 @@ public class DungeonGenerator
         BinarySpace bsp = new BinarySpace(this.dungeonWidth, this.dungeonLength, roomWidthMin, roomLengthMin);
         RoomNode root = bsp.rootNode;
         bsp.PartionSpace(root);
+        RoomTree tree = new RoomTree(root);
+        List<RoomNode> list = tree.GetLeaves();
         return root;
     }
 }

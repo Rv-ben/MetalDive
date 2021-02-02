@@ -82,25 +82,31 @@ public class BinarySpace
     public void DivideSpace(RoomNode node, Orientation orientation)
     {
         if(orientation == Orientation.Vertical)
-        {   
+        {
+
+            int topRightX = node.topLeft.x + node.width;
+
             // Random X position to cut down
-            int randomX = Random.Range(node.topLeft.x + this.minWidth, node.topLeft.y + node.width - this.minWidth);
+            int randomX = Random.Range(node.topLeft.x + this.minWidth, topRightX - this.minWidth);
             // Init top left position for new node
             Vector2Int newRoomTopLeft = new Vector2Int(randomX, node.topLeft.y);
 
             // Init new nodes 
             node.left = new RoomNode(node.topLeft, randomX - node.topLeft.x, node.length, node);
-            node.right = new RoomNode(newRoomTopLeft, node.topLeft.x + node.width - randomX, node.length, node);
+            node.right = new RoomNode(newRoomTopLeft, topRightX - randomX, node.length, node);
         }
         else if(orientation == Orientation.Horizontal)
-        {   
+        {
+
+            int bottomLeftY = node.topLeft.y + node.length;
+
             // Random Y position to cut down
-            int randomY = Random.Range(node.topLeft.y + this.minLength, node.topLeft.y + node.length - this.minLength);
+            int randomY = Random.Range(node.topLeft.y + this.minLength, bottomLeftY - this.minLength);
             // Init top left position for new node
             Vector2Int newRoomTopLeft = new Vector2Int(node.topLeft.x, randomY);
 
             node.left = new RoomNode(node.topLeft, node.width, randomY - node.topLeft.y , node);
-            node.right = new RoomNode(newRoomTopLeft, node.width, node.topLeft.y + node.length - randomY, node); ;
+            node.right = new RoomNode(newRoomTopLeft, node.width, bottomLeftY - randomY, node); ;
         }
     }
     
