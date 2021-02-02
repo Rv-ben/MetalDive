@@ -30,5 +30,6 @@ public class Line
 public enum Orientation
 {
     Horizontal = 0,
-    Vertical = 1
+    Vertical = 1,
+    null_ = -1
 }

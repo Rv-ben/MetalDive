@@ -17,7 +17,7 @@ public class DungeonGenerator
     {
         BinarySpace bsp = new BinarySpace(this.dungeonWidth, this.dungeonLength, roomWidthMin, roomLengthMin);
         RoomNode root = bsp.rootNode;
-        bsp.partionSpace(root);
+        bsp.PartionSpace(root);
         return root;
     }
 }
