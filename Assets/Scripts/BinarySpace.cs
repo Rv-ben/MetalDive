@@ -27,7 +27,7 @@ public class BinarySpace
         rootNode = new RoomNode(new Vector2Int(0, 0), spaceWidth, spaceLength, null);
         this.minWidth = minSpaceWidth;
         this.minLength = minSpaceLength;
-        this.rootNode.calcBottomRight();
+        this.rootNode.CalcBottomRight();
     }
 
     /// <summary>

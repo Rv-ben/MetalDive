@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Node class
+/// Class <c>Node</c>
+/// Represents a node 
 /// </summary>
 public abstract class Node 
 {
@@ -23,6 +24,11 @@ public abstract class Node
     public int width { get; set; }
     public int length { get; set; }
 
+    /// <summary>
+    /// method <c>Node</c>
+    /// Inits node
+    /// </summary>
+    /// <param name="parentNode">A parent node</param>
     public Node(Node parentNode)
     {
         this.parent = parentNode;

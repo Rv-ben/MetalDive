@@ -5,11 +5,13 @@ using System;
 
 
 /// <summary>
+/// Class <c>Line</c>
 /// Represents a line, can only be horizontal or vetical 
 /// </summary>
 public class Line 
 {
     /// <summary>
+    /// method <c>Line</c>
     /// Line constructor 
     /// </summary>
     /// <param name="orientation">Orientation of the line(horizontal or veritcal)</param>
@@ -25,7 +27,8 @@ public class Line
 }
 
 /// <summary>
-/// Enum for orientation
+/// Enum <c>Orientaion</c>
+/// Represents a orientation 
 /// </summary>
 public enum Orientation
 {

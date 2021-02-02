@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Class <c>DungeonCreator</c>
+/// </summary>
 public class DungeonCreator : MonoBehaviour
 {
 
@@ -12,12 +15,19 @@ public class DungeonCreator : MonoBehaviour
     public int corridorWidth;
     public Material material;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// method <c>Start</c>
+    /// Starts the creation of a dungeon
+    /// </summary>
     void Start()
     {
         CreateDungeon();
     }
 
+    /// <summary>
+    /// method <c>CreateDungeon</c>
+    /// Creates mesh for calculated rooms
+    /// </summary>
     private void CreateDungeon()
     {
         DungeonGenerator generator = new DungeonGenerator(dunWidth, dunLength);
