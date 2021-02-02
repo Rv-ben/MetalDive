@@ -20,7 +20,12 @@ public class DungeonGenerator
         RoomNode root = bsp.rootNode;
         bsp.PartionSpace(root);
         RoomTree tree = new RoomTree(root);
-        List<RoomNode> list = tree.GetLeaves();
+        List<RoomNode> listOfRooms = tree.GetLeaves();
         return root;
+    }
+
+    public void shrinkRooms(List<RoomNode> listOfRooms)
+    {
+
     }
 }

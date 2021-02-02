@@ -16,7 +16,7 @@ public class RoomNode : Node
     /// <param name="width">width of a room</param>
     /// <param name="length">length of a room</param>
     /// <param name="parentNode">parent of roomnode</param>
-   public RoomNode(Vector2Int topLeft, int width, int length, Node parentNode): base(parentNode)
+   public RoomNode(Vector2 topLeft, float width, float length, Node parentNode): base(parentNode)
     {
         this.topLeft = topLeft;
         this.width = width;
@@ -29,7 +29,20 @@ public class RoomNode : Node
     /// </summary>
     public void CalcBottomRight()
     {
-        this.bottom_right.Set(topLeft.x + width, topLeft.y + length);
+        this.bottomRight.Set(this.topLeft.x + this.width, this.topLeft.y + this.length);
+    }
+
+    /// <summary>
+    /// method <c>Shrink</c>
+    /// 
+    /// </summary>
+    /// <param name="widthPercentage"></param>
+    /// <param name="lengthPercentage"></param>
+    public void Shrink(float widthPercentage, float lengthPercentage)
+    {
+        this.width *= widthPercentage;
+        this.length *= lengthPercentage;
+        CalcBottomRight();
     }
 
 }

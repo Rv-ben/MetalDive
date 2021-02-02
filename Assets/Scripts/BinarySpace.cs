@@ -84,12 +84,12 @@ public class BinarySpace
         if(orientation == Orientation.Vertical)
         {
 
-            int topRightX = node.topLeft.x + node.width;
+            float topRightX = node.topLeft.x + node.width;
 
             // Random X position to cut down
-            int randomX = Random.Range(node.topLeft.x + this.minWidth, topRightX - this.minWidth);
+            float randomX = Random.Range(node.topLeft.x + this.minWidth, topRightX - this.minWidth);
             // Init top left position for new node
-            Vector2Int newRoomTopLeft = new Vector2Int(randomX, node.topLeft.y);
+            Vector2 newRoomTopLeft = new Vector2(randomX, node.topLeft.y);
 
             // Init new nodes 
             node.left = new RoomNode(node.topLeft, randomX - node.topLeft.x, node.length, node);
@@ -98,12 +98,12 @@ public class BinarySpace
         else if(orientation == Orientation.Horizontal)
         {
 
-            int bottomLeftY = node.topLeft.y + node.length;
+            float bottomLeftY = node.topLeft.y + node.length;
 
             // Random Y position to cut down
-            int randomY = Random.Range(node.topLeft.y + this.minLength, bottomLeftY - this.minLength);
+            float randomY = Random.Range(node.topLeft.y + this.minLength, bottomLeftY - this.minLength);
             // Init top left position for new node
-            Vector2Int newRoomTopLeft = new Vector2Int(node.topLeft.x, randomY);
+            Vector2 newRoomTopLeft = new Vector2(node.topLeft.x, randomY);
 
             node.left = new RoomNode(node.topLeft, node.width, randomY - node.topLeft.y , node);
             node.right = new RoomNode(newRoomTopLeft, node.width, bottomLeftY - randomY, node); ;

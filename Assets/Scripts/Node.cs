@@ -12,17 +12,17 @@ public abstract class Node
 
     public int treeLayer { get; set; }
 
-    public Vector2Int topLeft { get; set; }
+    public Vector2 topLeft { get; set; }
 
-    public Vector2Int bottom_right { get; set; }
+    public Vector2 bottomRight { get; set; }
 
     public Node parent { get; set; }
 
     public Node left { get; set; }
 
     public Node right { get; set; }
-    public int width { get; set; }
-    public int length { get; set; }
+    public float width { get; set; }
+    public float length { get; set; }
 
     /// <summary>
     /// method <c>Node</c>
