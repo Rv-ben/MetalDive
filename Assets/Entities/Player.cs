@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControls : MonoBehaviour {
+public class Player : MonoBehaviour {
     // Speed variable.  Adjustable in Editor thanks to SerializeField.
     [SerializeField] float movementSpeed;
     // Ensures we only aim at the ground and not, like, walls.
