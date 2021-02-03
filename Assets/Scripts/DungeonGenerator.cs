@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class DungeonGenerator
 {
-    List<RoomNode> allSpaceNodes = new List<RoomNode>();
+    List<RoomNode> listOfRooms = new List<RoomNode>();
     private int dungeonWidth, dungeonLength;
 
     public DungeonGenerator(int dungeonWidth, int dungeonLength)
@@ -13,14 +14,31 @@ public class DungeonGenerator
         this.dungeonWidth = dungeonWidth;
     }
 
-    public List<Node> CalculateRooms(int maxIterations, int roomWidthMin, int roomLengthMin)
+    public RoomNode CalculateRooms(int maxIterations, int roomWidthMin, int roomLengthMin)
     {
-        BinarySpacePartitioner bsp = new BinarySpacePartitioner(dungeonWidth, dungeonLength);
-        allSpaceNodes = bsp.PrepareNodesCollection(maxIterations, roomWidthMin, roomLengthMin);
-        List<Node> roomSpaces = StructureHelper.TraverseGraphToExtractLowestLeafes(bsp.rootNode);
+        BinarySpace bsp = new BinarySpace(this.dungeonWidth, this.dungeonLength, roomWidthMin, roomLengthMin);
+        RoomNode root = bsp.rootNode;
+        bsp.PartionSpace(root);
 
-        RoomGenerator roomGenerator = new RoomGenerator(maxIterations, roomLengthMin, roomWidthMin);
-        List<RoomNode> roomList = roomGenerator.generateRoomsInGivenSpaces(roomSpaces); 
-        return new List<Node>(roomList);
+        RoomTree tree = new RoomTree(root);
+        List<RoomNode> listOfRooms = tree.GetLeaves();
+        shrinkRooms(listOfRooms);
+        this.listOfRooms = listOfRooms;
+
+        return root;
+    }
+
+    public void shrinkRooms(List<RoomNode> listOfRooms)
+    {
+        foreach (RoomNode roomNode in listOfRooms){
+            float widthPercentage = UnityEngine.Random.Range(0.07f, 0.15f);
+            float lengthPercentage = UnityEngine.Random.Range(0.07f, 0.15f);
+            roomNode.Shrink(widthPercentage, lengthPercentage);
+        }
+    }
+
+    public List<RoomNode> GetListOfRooms()
+    {
+        return this.listOfRooms;
     }
 }
