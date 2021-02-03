@@ -2,19 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class <c>RoomNode</c>
+/// Represents a node with position
+/// </summary>
 public class RoomNode : Node
-{
-   public RoomNode(Vector2Int bottomLeftAreaCorner, Vector2Int topRightAreaCorner, Node parentNode, int index): base(parentNode)
+{   
+    /// <summary>
+    /// method <c>RoomNode</c>
+    /// Init RoomNode
+    /// </summary>
+    /// <param name="topLeft">top left coords</param>
+    /// <param name="width">width of a room</param>
+    /// <param name="length">length of a room</param>
+    /// <param name="parentNode">parent of roomnode</param>
+   public RoomNode(Vector2 topLeft, float width, float length, Node parentNode): base(parentNode)
     {
-        this.bottomLeftAreaCorner = bottomLeftAreaCorner;
-        this.topRightAreaCorner = topRightAreaCorner;
-
-        this.bottomRightAreaCorner = new Vector2Int(topRightAreaCorner.x,bottomLeftAreaCorner.y);
-        this.topLeftAreaCorner = new Vector2Int(bottomLeftAreaCorner.x, topRightAreaCorner.y);
-
-        this.treeLayerIndex = index;
+        this.topLeft = topLeft;
+        this.width = width;
+        this.length = length;
+        CalcBottomRight();
     }
 
-    public int width { get => (int)(topRightAreaCorner.x - bottomLeftAreaCorner.x); }
-    public int length { get => (int)(topRightAreaCorner.y - bottomLeftAreaCorner.y); }
+    /// <summary>
+    /// method <c>CalBottomRight</c>
+    /// </summary>
+    public void CalcBottomRight()
+    {
+        this.bottomRight = new Vector2(this.topLeft.x + this.width, this.topLeft.y + this.length);
+    }
+
+    /// <summary>
+    /// method <c>Shrink</c>
+    /// Shrinks room length and width based on a percentage
+    /// </summary>
+    /// <param name="widthPercentage"></param>
+    /// <param name="lengthPercentage"></param>
+    public void Shrink(float widthPercentage, float lengthPercentage)
+    {
+        this.width = this.width - this.width * widthPercentage;
+        this.length = this.length - this.length * lengthPercentage;
+        CalcBottomRight();
+    }
+
 }
