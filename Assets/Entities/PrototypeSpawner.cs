@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrototypeSpawner : MonoBehaviour
+public class PrototypeSpawner
 {
-    [SerializeField] Player playerPrefab;
     Vector3 playerPosition;
     Quaternion playerRotation;
 
-    private void Spawn(Vector3 playerPosition, Quaternion playerRotation)
+    public GameObject Spawn(Vector3 playerPosition)
     {
-        Player player = Instantiate(playerPrefab, playerPosition, playerRotation);
+        GameObject player = (GameObject)Resources.Load("Characters/Base/PREFABS/R31");
+        player.transform.position = playerPosition;
+        player.name = "Test";
+        return player;
     }
 }

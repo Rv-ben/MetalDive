@@ -8,6 +8,8 @@ using System;
 /// </summary>
 public class DungeonCreator : MonoBehaviour
 {
+    public static Transform targetPoint;
+
 
     public int dunWidth, dunLength;
     public int roomWidthMin, roomLengthMin;
@@ -39,7 +41,12 @@ public class DungeonCreator : MonoBehaviour
         {
             CreateFloor(roomNode);
         }
-     
+
+        PrototypeSpawner spawner = new PrototypeSpawner();
+        Vector3 playerPos = new Vector3(list[0].topLeft.x, 0, list[0].topLeft.y);
+        //Quaternion quaternion = new Quaternion();
+
+        Instantiate(spawner.Spawn(playerPos));
     }
 
     private void CreateFloor(RoomNode node)
