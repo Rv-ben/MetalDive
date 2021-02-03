@@ -32,15 +32,26 @@ public class DungeonCreator : MonoBehaviour
     {
         DungeonGenerator generator = new DungeonGenerator(dunWidth, dunLength);
         var rootNode = generator.CalculateRooms(maxIterations, roomWidthMin, roomLengthMin);
+
+        List<RoomNode> list = generator.GetListOfRooms();
+
+        foreach(RoomNode roomNode in list)
+        {
+            CreateFloor(roomNode);
+        }
      
     }
 
-    private void CreateMesh(Vector2Int bottomLeftCorner, Vector2Int topRightCorner)
+    private void CreateFloor(RoomNode node)
     {
-        Vector3 bottomLeftV = new Vector3(bottomLeftCorner.x, 0, bottomLeftCorner.y);
-        Vector3 bottomRightV = new Vector3(topRightCorner.x, 0, bottomLeftCorner.y);
-        Vector3 topLeftV = new Vector3(bottomLeftCorner.x, 0, topRightCorner.y);
-        Vector3 topRightV = new Vector3(topRightCorner.x, 0, topRightCorner.y);
+
+        Vector2 topLeft = node.topLeft;
+        Vector2 bottomRight = node.bottomRight;
+
+        Vector3 topLeftV = new Vector3(topLeft.x, 0, topLeft.y);
+        Vector3 topRightV = new Vector3(bottomRight.x, 0, topLeft.y);
+        Vector3 bottomRightV = new Vector3(bottomRight.x, 0, bottomRight.y);
+        Vector3 bottomLeftV = new Vector3(topLeft.x, 0, bottomRight.y);
 
         Vector3[] vertices = new Vector3[]
         {
@@ -66,7 +77,7 @@ public class DungeonCreator : MonoBehaviour
         mesh.uv = uvs;
         mesh.triangles = triangles;
 
-        GameObject dungeonFloor = new GameObject("Mesh"+bottomLeftCorner, typeof(MeshFilter), typeof(MeshRenderer));
+        GameObject dungeonFloor = new GameObject("RoomFloor"+topLeft, typeof(MeshFilter), typeof(MeshRenderer));
 
         dungeonFloor.transform.position = Vector3.zero;
         dungeonFloor.transform.localScale = Vector3.one;

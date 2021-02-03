@@ -29,19 +29,19 @@ public class RoomNode : Node
     /// </summary>
     public void CalcBottomRight()
     {
-        this.bottomRight.Set(this.topLeft.x + this.width, this.topLeft.y + this.length);
+        this.bottomRight = new Vector2(this.topLeft.x + this.width, this.topLeft.y + this.length);
     }
 
     /// <summary>
     /// method <c>Shrink</c>
-    /// 
+    /// Shrinks room length and width based on a percentage
     /// </summary>
     /// <param name="widthPercentage"></param>
     /// <param name="lengthPercentage"></param>
     public void Shrink(float widthPercentage, float lengthPercentage)
     {
-        this.width *= widthPercentage;
-        this.length *= lengthPercentage;
+        this.width = this.width - this.width * widthPercentage;
+        this.length = this.length - this.length * lengthPercentage;
         CalcBottomRight();
     }
 
