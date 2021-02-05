@@ -45,7 +45,8 @@ public class DungeonCreator : MonoBehaviour
         R31Spawner spawner = new R31Spawner();
         Vector3 playerPos = new Vector3(list[0].topLeft.x, 0, list[0].topLeft.y);
         Quaternion quaternion = new Quaternion();
-        Instantiate(spawner.getPlayer(), playerPos, quaternion);
+        GameObject ob = spawner.getPlayer();
+        Instantiate(ob, playerPos, quaternion);
     }
 
     private void CreateFloor(RoomNode node)

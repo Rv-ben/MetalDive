@@ -16,8 +16,9 @@ public class R31Spawner : MonoBehaviour
 
     }
 
-    public Player getPlayer()
+    public GameObject getPlayer()
     {
-        return new Player(aimLayer);
+        //return new Player(aimLayer);
+        return new GameObject();
     }
 }
