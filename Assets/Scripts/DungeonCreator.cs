@@ -42,11 +42,10 @@ public class DungeonCreator : MonoBehaviour
             CreateFloor(roomNode);
         }
 
-        PrototypeSpawner spawner = new PrototypeSpawner();
+        R31Spawner spawner = new R31Spawner();
         Vector3 playerPos = new Vector3(list[0].topLeft.x, 0, list[0].topLeft.y);
-        //Quaternion quaternion = new Quaternion();
-
-        Instantiate(spawner.Spawn(playerPos));
+        Quaternion quaternion = new Quaternion();
+        Instantiate(spawner.getPlayer(), playerPos, quaternion);
     }
 
     private void CreateFloor(RoomNode node)
