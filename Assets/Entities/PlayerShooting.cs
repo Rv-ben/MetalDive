@@ -7,13 +7,21 @@ public class PlayerShooting : MonoBehaviour
     // Where the bullet comes out.
     public Transform ejector;
     // Creates a field in which you can decide how long the delay is between shots.
-    [SerializeField] public float shotDelay;
+    public float shotDelay;
     // Float that determines when the Player is able to shoot again.
     public float timeToShoot;
     // What bullet gets fired.
-    [SerializeField] public Bullet bulletPrefab;
+    public Bullet bulletPrefab;
     // How fast the bullet goes by default.
-    [SerializeField] public float bulletSpeed;
+    public float bulletSpeed;
+
+    public PlayerShooting(Transform ejector, float shotDelay, Bullet bulletPrefab, float bulletSpeed)
+    {
+        this.ejector = ejector;
+        this.shotDelay = shotDelay;
+        this.bulletPrefab = bulletPrefab;
+        this.bulletSpeed = bulletSpeed;
+    }
 
     /// <summary>
     /// Checks if the Player is able to shoot their weapon yet.

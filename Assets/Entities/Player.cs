@@ -11,17 +11,10 @@ public class Player : MonoBehaviour {
 
     public LayerMask aimLayer;
 
-    public Player(LayerMask aimLayer)
+    public Player(Animator animator)
     {
-        this.aimLayer = aimLayer;
-        mover = new PlayerMovement(aimLayer);
+        this.animator = animator;
     }
-
-    /// <summary>
-    /// Starts up the entire animation process.  As this will be changed across the entire game, Awake is necessary instead of Start.
-    /// This is because it will keep the generated Animator on permanently.
-    /// </summary>
-    private void Awake() => animator = GetComponent<Animator>();
 
     /// <summary>
     /// This Update Function will run all code within every frame of the game.

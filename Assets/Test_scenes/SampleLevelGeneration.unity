@@ -249,9 +249,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fef5e9520f21845848793765e7c50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 5866666021909216657, guid: 64d35c1edd5ea07418f3d06aeca50cab, type: 3}
+  controller: {fileID: 9100000, guid: 75a630a038e49614092f0f4808b91dcd, type: 2}
   aimLayer:
     serializedVersion: 2
     m_Bits: 256
+  playerObject: {fileID: 919132149155446097, guid: 64d35c1edd5ea07418f3d06aeca50cab, type: 3}
+  ejector: {fileID: -8679921383154817045, guid: 64d35c1edd5ea07418f3d06aeca50cab, type: 3}
+  shotDelay: 1
+  bulletPrefab: {fileID: -7181101818061926167, guid: 3aebbf8b13343f24b9fa686471c0dc28, type: 3}
+  bulletSpeed: 10
 --- !u!1 &1417751229
 GameObject:
   m_ObjectHideFlags: 0
