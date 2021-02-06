@@ -17,6 +17,8 @@ public class DungeonCreator : MonoBehaviour
     public int corridorWidth;
     public Material material;
 
+    [SerializeField] public R31Spawner playerSpawner;
+
     /// <summary>
     /// method <c>Start</c>
     /// Starts the creation of a dungeon
@@ -42,11 +44,9 @@ public class DungeonCreator : MonoBehaviour
             CreateFloor(roomNode);
         }
 
-        R31Spawner spawner = new R31Spawner();
         Vector3 playerPos = new Vector3(list[0].topLeft.x, 0, list[0].topLeft.y);
         Quaternion quaternion = new Quaternion();
-        GameObject ob = spawner.getPlayer();
-        Instantiate(ob, playerPos, quaternion);
+        playerSpawner.Spawn(playerPos, quaternion);
     }
 
     private void CreateFloor(RoomNode node)
