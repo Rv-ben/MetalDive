@@ -17,8 +17,8 @@ public class DungeonCreator : MonoBehaviour
     public int corridorWidth;
     public Material material;
 
-    [SerializeField] public GenericSpawner player;
-    [SerializeField] public GenericSpawner enemy;
+    // Spawns Prefab Entities.
+    [SerializeField] public EntitySpawner spawner;
 
     /// <summary>
     /// method <c>Start</c>
@@ -47,8 +47,11 @@ public class DungeonCreator : MonoBehaviour
 
         Vector3 playerPos = new Vector3(list[0].topLeft.x, 0, list[0].topLeft.y);
         Quaternion quaternion = new Quaternion();
-        player.Spawn(playerPos, quaternion);
-        enemy.Spawn(playerPos, quaternion);
+        // Spawns a Player at the given coordinates (position, rotation).
+        spawner.spawnPlayer(playerPos, quaternion);
+        // Spawns an Enemy at the given coordinates (position, rotation).
+        spawner.spawnEnemy(playerPos, quaternion);
+        
     }
 
     private void CreateFloor(RoomNode node)
