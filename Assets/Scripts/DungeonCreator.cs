@@ -45,12 +45,13 @@ public class DungeonCreator : MonoBehaviour
             CreateFloor(roomNode);
         }
 
-        Vector3 playerPos = new Vector3(list[0].topLeft.x, 0, list[0].topLeft.y);
+        RoomNode firstRoom = list[0];
+        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
         Quaternion quaternion = new Quaternion();
         // Spawns a Player at the given coordinates (position, rotation).
         spawner.spawnPlayer(playerPos, quaternion);
         // Spawns an Enemy at the given coordinates (position, rotation).
-        spawner.spawnEnemy(playerPos, quaternion);
+        // spawner.spawnEnemy(playerPos, quaternion);
         
     }
 
@@ -95,5 +96,6 @@ public class DungeonCreator : MonoBehaviour
         dungeonFloor.transform.localScale = Vector3.one;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
         dungeonFloor.GetComponent<MeshRenderer>().material = material;
+        // dungeonFloor.layer = 8;
     }
 }

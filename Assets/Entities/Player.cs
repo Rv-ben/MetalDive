@@ -11,10 +11,13 @@ public class Player : MonoBehaviour {
 
     public LayerMask aimLayer;
 
-    public Player(Animator animator)
+    /*
+    public void Awake()
     {
-        this.animator = animator;
+        this.animator = this.GetComponent<Animator>();
+        this.mover = new PlayerMovement(aimLayer);
     }
+    */
 
     /// <summary>
     /// This Update Function will run all code within every frame of the game.

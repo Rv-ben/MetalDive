@@ -9,6 +9,10 @@ public class EntitySpawner : MonoBehaviour
 {
     // Chosen Player Prefab.  All functions for gameplay.
     [SerializeField] public GameObject playerPrefab;
+
+    // Prototype Hair.
+    [SerializeField] public GameObject hair;
+
     // Generic Enemy Prefab.
     [SerializeField] public GameObject enemyPrefab;
 
@@ -20,7 +24,13 @@ public class EntitySpawner : MonoBehaviour
     public void spawnPlayer(Vector3 position, Quaternion rot)
     {
         // Instantiates a Player Prefab.  Stores as a GameObject.
-        GameObject ob = Instantiate(playerPrefab, position, rot);     
+        GameObject ob = Instantiate(playerPrefab, position, rot);
+
+        // Begins to spawn non-Player things like Hair and weapons.
+        // GameObject hairChild = Instantiate(hair);
+        // hairChild.transform.parent = GameObject.Find("mixamorig:Head").transform;
+
+
     }
 
     /// <summary>
@@ -33,4 +43,12 @@ public class EntitySpawner : MonoBehaviour
         // Instantiates an Enemy at the position.
         GameObject ob = Instantiate(enemyPrefab, position, rot);
     }
+
+    /**
+    private void Start()
+    {
+        // Instantiates a Player Prefab.  Stores as a GameObject.
+        GameObject ob = Instantiate(playerPrefab, gameObject.transform);
+    }
+    **/
 }

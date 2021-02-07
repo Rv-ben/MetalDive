@@ -3,7 +3,10 @@ guid: e8fef5e9520f21845848793765e7c50b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerPrefab: {fileID: 7458209201009177935, guid: 73668d3f2a3184a4faf6d6d2cdd4dded, type: 3}
+  - hair: {instanceID: 0}
+  - enemyPrefab: {fileID: 7206076284186628298, guid: 24e34a5aadfb6f64380c01b3e602c964, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

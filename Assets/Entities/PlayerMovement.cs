@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void Move(Animator animator)
     {
+
         // Tells the Animator you're not firing, you're moving, which cancels out the Firing animation.  Can be improved later.
         animator.SetBool("Firing", false);
         // Create an infinte-distance Ray from the Main Character to the Mouse's position and beyond.
