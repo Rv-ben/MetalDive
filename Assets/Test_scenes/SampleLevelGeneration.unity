@@ -542,10 +542,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0f8307bfd48f244a4f41ee79ca78d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dunWidth: 10
-  dunLength: 10
-  roomWidthMin: 2
-  roomLengthMin: 2
+  dunWidth: 20
+  dunLength: 20
+  roomWidthMin: 3
+  roomLengthMin: 3
   maxIterations: 20
   corridorWidth: 5
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
