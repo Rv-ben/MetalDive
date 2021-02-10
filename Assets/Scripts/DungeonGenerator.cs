@@ -25,6 +25,9 @@ public class DungeonGenerator
         shrinkRooms(listOfRooms);
         this.listOfRooms = listOfRooms;
 
+        RoomGraph graph = new RoomGraph(listOfRooms);
+        Dictionary<int, List<System.Tuple<int, int, RoomGraph.neighborType>>>  g = graph.generateGraph();
+
         return root;
     }
 
