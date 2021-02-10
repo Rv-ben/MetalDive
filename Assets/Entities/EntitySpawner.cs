@@ -26,9 +26,11 @@ public class EntitySpawner : MonoBehaviour
     {
         // Instantiates a Player Prefab.  Stores as a GameObject.
         GameObject ob = Instantiate(playerPrefab, position, rot);
-
+        // Grabs the Cinemachine Virtual Camera that should already be placed in the scene as a Child of the Main Camera.
         CinemachineVirtualCamera cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        // Sets the Cinemachine Camera to follow the Player Object.
         cinemachineVirtualCamera.m_Follow = ob.transform;
+        // Sets the Cinemachine Camera to look at the Player Object.
         cinemachineVirtualCamera.m_LookAt = ob.transform;
         // Begins to spawn non-Player things like Hair and weapons.
         // GameObject hairChild = Instantiate(hair);
