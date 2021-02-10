@@ -8,12 +8,19 @@ using System;
 /// </summary>
 public class DungeonCreator : MonoBehaviour
 {
+    public static Transform targetPoint;
+
 
     public int dunWidth, dunLength;
     public int roomWidthMin, roomLengthMin;
     public int maxIterations;
     public int corridorWidth;
     public Material material;
+
+    public Mesh aimLayer;
+
+    // Spawns Prefab Entities.
+    [SerializeField] public EntitySpawner spawner;
 
     /// <summary>
     /// method <c>Start</c>
@@ -39,7 +46,15 @@ public class DungeonCreator : MonoBehaviour
         {
             CreateFloor(roomNode);
         }
-     
+
+        RoomNode firstRoom = list[0];
+        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
+        Quaternion quaternion = new Quaternion();
+        // Spawns a Player at the given coordinates (position, rotation).
+        spawner.spawnPlayer(playerPos, quaternion);
+        // Spawns an Enemy at the given coordinates (position, rotation).
+        // spawner.spawnEnemy(playerPos, quaternion);
+        
     }
 
     private void CreateFloor(RoomNode node)
@@ -83,5 +98,7 @@ public class DungeonCreator : MonoBehaviour
         dungeonFloor.transform.localScale = Vector3.one;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
         dungeonFloor.GetComponent<MeshRenderer>().material = material;
+        dungeonFloor.layer = 8;
+        dungeonFloor.AddComponent<MeshCollider>().sharedMesh = aimLayer;
     }
 }
