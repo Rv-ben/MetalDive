@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,14 +11,6 @@ public class Player : MonoBehaviour {
     public PlayerMovement mover;
 
     public LayerMask aimLayer;
-
-    /*
-    public void Awake()
-    {
-        this.animator = this.GetComponent<Animator>();
-        this.mover = new PlayerMovement(aimLayer);
-    }
-    */
 
     /// <summary>
     /// This Update Function will run all code within every frame of the game.

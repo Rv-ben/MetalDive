@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,11 +27,12 @@ public class EntitySpawner : MonoBehaviour
         // Instantiates a Player Prefab.  Stores as a GameObject.
         GameObject ob = Instantiate(playerPrefab, position, rot);
 
+        CinemachineVirtualCamera cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        cinemachineVirtualCamera.m_Follow = ob.transform;
+        cinemachineVirtualCamera.m_LookAt = ob.transform;
         // Begins to spawn non-Player things like Hair and weapons.
         // GameObject hairChild = Instantiate(hair);
         // hairChild.transform.parent = GameObject.Find("mixamorig:Head").transform;
-
-
     }
 
     /// <summary>
