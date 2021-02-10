@@ -331,7 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7458209201009177935, guid: 73668d3f2a3184a4faf6d6d2cdd4dded, type: 3}
   hair: {fileID: 919132149155446097, guid: a141b1c005d414c43bb2192d74df649b, type: 3}
-  enemyPrefab: {fileID: 7206076284186628298, guid: 24e34a5aadfb6f64380c01b3e602c964, type: 3}
+  enemyPrefab: {fileID: 3716679503854617522, guid: 24e34a5aadfb6f64380c01b3e602c964, type: 3}
 --- !u!1 &1417751229
 GameObject:
   m_ObjectHideFlags: 0
