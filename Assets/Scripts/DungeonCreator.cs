@@ -53,8 +53,8 @@ public class DungeonCreator : MonoBehaviour
         // Spawns a Player at the given coordinates (position, rotation).
         spawner.spawnPlayer(playerPos, quaternion);
         // Spawns an Enemy at the given coordinates (position, rotation).
-        // spawner.spawnEnemy(playerPos, quaternion);
-        
+        spawner.spawnEnemy(playerPos, quaternion);
+
     }
 
     private void CreateFloor(RoomNode node)
