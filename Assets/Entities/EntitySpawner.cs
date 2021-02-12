@@ -38,14 +38,26 @@ public class EntitySpawner : MonoBehaviour
         // Begins to spawn non-Player things like Hair and weapons.
         // GameObject hairChild = Instantiate(hair);
         // hairChild.transform.parent = GameObject.Find("mixamorig:Head").transform;
-        GameObject gunChild = Instantiate(gun);
+        // Instantiate an instance of the passed-in gun.
+        spawnPlayerWeapon(ob, Instantiate(gun));
+    }
+
+    public void spawnPlayerWeapon(GameObject ob, GameObject gun)
+    {
+        // Stores a reference to the Player Model's hand.
         GameObject hand = GameObject.Find("mixamorig:RightHand");
-        gunChild.transform.parent = hand.transform;
-        gunChild.transform.position = hand.transform.position;
-        gunChild.transform.Translate(new Vector3(0.03f, -0.005f, 0.003f));
-        gunChild.transform.rotation = hand.transform.rotation;
-        gunChild.transform.Rotate(270, 0, 90);
-        gunChild.transform.localScale = new Vector3(.9f, .9f, .9f);
+        // Parent the Gun to the hand.
+        gun.transform.parent = hand.transform;
+        // Set the gun to the hand's position.
+        gun.transform.position = hand.transform.position;
+        // Fine tune the position of the gun.
+        gun.transform.Translate(new Vector3(0.03f, -0.005f, 0.003f));
+        // Set the gun's rotation equivalent to the hand's rotation.
+        gun.transform.rotation = hand.transform.rotation;
+        // Fine tune the rotation of the gun.
+        gun.transform.Rotate(270, 0, 90);
+        // Fine tune the scale of the gun.
+        gun.transform.localScale = new Vector3(.9f, .9f, .9f);
     }
 
     /// <summary>
