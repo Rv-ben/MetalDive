@@ -100,7 +100,7 @@ public class DungeonCreator : MonoBehaviour
         dungeonFloor.transform.localScale = Vector3.one;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
         dungeonFloor.GetComponent<MeshRenderer>().material = material;
-        dungeonFloor.layer = 8;
-        dungeonFloor.AddComponent<MeshCollider>().sharedMesh = aimLayer;
+        // dungeonFloor.layer = 8;
+        // dungeonFloor.AddComponent<MeshCollider>().sharedMesh = aimLayer;
     }
 }
