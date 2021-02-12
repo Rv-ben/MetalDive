@@ -42,10 +42,12 @@ public class EntitySpawner : MonoBehaviour
     /// </summary>
     /// <param name="position">Vector3 position in the map where the Enemy is to spawn.</param>
     /// <param name="rot">Quaternion Rotation where the Enemy will be facing when they spawn.</param>
-    public void spawnEnemy(Vector3 position, Quaternion rot)
+    public void spawnEnemy(Vector3 position, Quaternion rot, float walkingRange)
     {
         // Instantiates an Enemy at the position.
         GameObject ob = Instantiate(enemyPrefab, position, rot);
+        // Setting enemy's range of random walking.
+        enemyPrefab.GetComponent<EnemyMovement>().SetMoveRange(walkingRange);
     }
 
     /**
