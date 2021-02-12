@@ -8,7 +8,7 @@ using UnityEngine.AI;
 /// </summary>
 public class EnemyMovement : MonoBehaviour
 {
-    private float randArea;
+    private float randArea = 6f;
 
     private float waitingTime = 2f;
 
