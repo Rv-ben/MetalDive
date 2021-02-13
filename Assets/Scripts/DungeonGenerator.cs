@@ -14,7 +14,7 @@ public class DungeonGenerator
         this.dungeonWidth = dungeonWidth;
     }
 
-    public RoomNode CalculateRooms(int maxIterations, int roomWidthMin, int roomLengthMin)
+    public List<RoomNode> GetRooms(int maxIterations, int roomWidthMin, int roomLengthMin)
     {
         BinarySpace bsp = new BinarySpace(this.dungeonWidth, this.dungeonLength, roomWidthMin, roomLengthMin);
         RoomNode root = bsp.rootNode;
@@ -25,7 +25,16 @@ public class DungeonGenerator
         shrinkRooms(listOfRooms);
         this.listOfRooms = listOfRooms;
 
-        return root;
+        return listOfRooms;
+    }
+
+    public List<CorridorNode> GetCorridors(float minCorridorLength)
+    {
+        RoomGraph graph = new RoomGraph(this.listOfRooms, minCorridorLength);
+        graph.generateGraph();
+
+        List<CorridorNode> c = graph.generateCorridors();
+        return c;
     }
 
     public void shrinkRooms(List<RoomNode> listOfRooms)

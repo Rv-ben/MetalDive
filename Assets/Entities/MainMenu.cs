@@ -5,14 +5,17 @@ using UnityEngine.SceneManagement;  // LoadScene()
 
 public class MainMenu : MonoBehaviour
 {
+    private GameObject CharacterCanvas;
     /**
      * Method called from on click event 
      */
     public void PlayGame()
     {
+        //CharacterCanvas = GetComponent(Canvas);
         // Scene manager loads the following scene in queue
         // Queue for scenes is in Unity's Build Settings
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 
     /**
