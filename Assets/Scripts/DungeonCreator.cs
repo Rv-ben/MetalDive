@@ -55,7 +55,7 @@ public class DungeonCreator : MonoBehaviour
 
 
         RoomNode firstRoom = list[0];
-        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 5, firstRoom.topLeft.y + firstRoom.length / 2);
+        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
         Quaternion quaternion = new Quaternion();
         // Spawns a Player at the given coordinates (position, rotation).
         spawner.spawnPlayer(playerPos, quaternion);
@@ -70,10 +70,10 @@ public class DungeonCreator : MonoBehaviour
         Vector2 topLeft = node.topLeft;
         Vector2 bottomRight = node.bottomRight;
 
-        Vector3 topLeftV = new Vector3(topLeft.x, 5, topLeft.y);
-        Vector3 topRightV = new Vector3(bottomRight.x, 5, topLeft.y);
-        Vector3 bottomRightV = new Vector3(bottomRight.x, 5, bottomRight.y);
-        Vector3 bottomLeftV = new Vector3(topLeft.x, 5, bottomRight.y);
+        Vector3 topLeftV = new Vector3(topLeft.x, 0, topLeft.y);
+        Vector3 topRightV = new Vector3(bottomRight.x, 0, topLeft.y);
+        Vector3 bottomRightV = new Vector3(bottomRight.x, 0, bottomRight.y);
+        Vector3 bottomLeftV = new Vector3(topLeft.x, 0, bottomRight.y);
 
         Vector3[] vertices = new Vector3[]
         {

@@ -29,6 +29,9 @@ public class EnemyMovement : MonoBehaviour
 
     private Vector3 positionVector;
 
+    // Attach the Shooting mechanism.
+    [SerializeField] public GenericShooting shooter;
+
     /// <summary>
     /// Initialize all the variables with objects upon game starts.
     /// </summary>
@@ -37,6 +40,8 @@ public class EnemyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         anim = GetComponent<Animator>();
+
+        shooter = GetComponent<GenericShooting>();
 
         GameObject targetObject = GameObject.Find("Target");
 
@@ -78,6 +83,13 @@ public class EnemyMovement : MonoBehaviour
             if (agent.remainingDistance < idlingDistanceFollowing)
             {
                 IdlePoint();
+            }
+
+            // If the Enemy has a shot ready.
+            if (shooter.shotReady())
+            {
+                // Shoot!  Pass in the animator.
+                shooter.Shoot(anim);
             }
 
             // Blend Idle and Walk animation 

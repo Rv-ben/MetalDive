@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShooting : MonoBehaviour
+public class GenericShooting : MonoBehaviour
 {
     // Where the bullet comes out.
     public Transform ejector;
@@ -15,7 +15,7 @@ public class PlayerShooting : MonoBehaviour
     // How fast the bullet goes by default.
     public float bulletSpeed;
 
-    public PlayerShooting(Transform ejector, float shotDelay, Bullet bulletPrefab, float bulletSpeed)
+    public GenericShooting(Transform ejector, float shotDelay, Bullet bulletPrefab, float bulletSpeed)
     {
         this.ejector = ejector;
         this.shotDelay = shotDelay;
