@@ -31,9 +31,9 @@ public class DungeonGenerator
     public List<CorridorNode> GetCorridors(float minCorridorLength)
     {
         RoomGraph graph = new RoomGraph(this.listOfRooms, minCorridorLength);
-        graph.generateGraph();
 
         List<CorridorNode> c = graph.generateCorridors();
+
         return c;
     }
 

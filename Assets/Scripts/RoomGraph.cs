@@ -6,6 +6,7 @@ using System.Linq;
 public class RoomGraph 
 {
     public Dictionary<int, List<System.Tuple<int, int, neighborType>>> roomGraph;
+    public RoomGraphHelper graphHelper;
     public Queue<RoomNode> roomNodesQueue;
     public List<RoomNode> roomNodes;
     public List<int> reachableRooms;
@@ -26,32 +27,9 @@ public class RoomGraph
         {
             roomGraph.Add(i, new List<System.Tuple<int, int, neighborType>>() );
         }
-    }
 
-    public neighborType IsNeighborNode (RoomNode node1, RoomNode node2)
-    {
-        Vector2 topLeftNode1 = node1.topLeft;
-
-        bool xNeighbor = IsInArea(new Vector2(topLeftNode1.x + 4.5f, topLeftNode1.y), node2);
-        bool yNeighbor = IsInArea(new Vector2(topLeftNode1.x , topLeftNode1.y + 4.5f), node2);
-
-        if (xNeighbor)
-        {
-            return neighborType.xNeighbor;
-        }
-        else if (yNeighbor)
-        {
-            return neighborType.yNeighbor;
-        }
-
-        return neighborType._null;
-    }
-
-    public bool IsInArea (Vector2 point, RoomNode area)
-    {
-        bool xStatus = point.x >= area.topLeft.x && point.x <= area.topLeft.x + area.width;
-        bool yStatus = point.y >= area.topLeft.y && point.y <= area.topLeft.y + area.length;
-        return xStatus && yStatus;
+        graphHelper = new RoomGraphHelper(roomGraph);
+        this.generateGraph();
     }
 
     public Dictionary<int, List<System.Tuple<int, int, neighborType>>> generateGraph()
@@ -67,7 +45,7 @@ public class RoomGraph
             
             foreach (RoomNode potentialNeighbor in roomNodesQueue)
             {
-                neighborType type = IsNeighborNode(currentNode, potentialNeighbor);
+                neighborType type = graphHelper.IsNeighborNode(currentNode, potentialNeighbor);
 
                 if (type != neighborType._null)
                 {
@@ -127,6 +105,7 @@ public class RoomGraph
         do
         {
             path.Add(currentNode);
+            //fix
             this.reachableRooms.Add(currentNode);
 
             var possibleChoices = GetPossibleChoices(currentNode, path);
@@ -153,6 +132,7 @@ public class RoomGraph
 
         } while (true);
 
+
         return path;
     }
 
@@ -160,21 +140,18 @@ public class RoomGraph
     {
         List<int> possibleChoices = new List<int>();
         List<int> reachAble = new List<int>();
-        roomGraph[node].ForEach(delegate (System.Tuple<int, int, neighborType> choice)
-        {
-            if (!path.Contains(choice.Item1))
-            {
-                if (this.reachableRooms.Contains(choice.Item1))
-                {
-                    reachAble.Add(choice.Item1);
-                }
-                possibleChoices.Add(choice.Item1);
-            }
-        });
 
-        if (reachAble.Count > 0)
+        for (var i = 0; i < roomGraph[node].Count; i++)
         {
-            return reachAble;
+            if (!path.Contains(roomGraph[node][i].Item1))
+            {
+                if (reachableRooms.Contains(roomGraph[node][i].Item1))
+                {
+                    reachAble.Add(roomGraph[node][i].Item1);
+                    return reachAble;
+                }
+                possibleChoices.Add(roomGraph[node][i].Item1);
+            }
         }
 
         return possibleChoices;
@@ -190,7 +167,7 @@ public class RoomGraph
         {
             if (!reachableRooms.Contains(i))
             {
-                //corridors.AddRange(getCorridors(RandomWalkUntilDead(i)));
+                corridors.AddRange(getCorridors(RandomWalkUntilDead(i)));
             }
         }
 
@@ -211,9 +188,7 @@ public class RoomGraph
 
     public CorridorNode GetCorridorNode(int node1Key, int node2Key)
     {
-        RoomNode node1 = roomNodes[node1Key];
-        RoomNode node2 = roomNodes[node2Key];
-        neighborType neighborTypeN1N2 = GetNeighborType(node1Key, node2Key);
+        neighborType neighborTypeN1N2 = graphHelper.GetNeighborType(node1Key, node2Key);
 
         float lowerBound;
         float upperBound;
@@ -223,16 +198,24 @@ public class RoomGraph
 
         if (neighborType.xNeighbor == neighborTypeN1N2)
         {
-            lowerBound = GetLowerBound(node1.topLeft.y, node2.topLeft.y);
-            upperBound = GetUpperBound(node1.topLeft.y, node2.topLeft.y, node1.length, node2.length);
+            var nodes = graphHelper.GetXOrientation(roomNodes[node1Key], roomNodes[node2Key]);
+            var node1 = nodes.Item1;
+            var node2 = nodes.Item2;
+
+            lowerBound = graphHelper.GetLowerBound(node1.topLeft.y, node2.topLeft.y);
+            upperBound = graphHelper.GetUpperBound(node1.topLeft.y, node2.topLeft.y, node1.length, node2.length);
 
             corridorTopLeft = new Vector2( node1.topLeft.x + node1.width, Random.Range(lowerBound, upperBound - this.minCorridorLength));
             corridorBottomRight = new Vector2( node2.topLeft.x , corridorTopLeft.y + this.minCorridorLength);
         }
         else if(neighborType.yNeighbor == neighborTypeN1N2)
         {
-            lowerBound = GetLowerBound(node1.topLeft.x, node2.topLeft.x);
-            upperBound = GetUpperBound(node1.topLeft.x, node2.topLeft.x, node1.width, node2.width);
+            var nodes = graphHelper.GetYOrientation(roomNodes[node1Key], roomNodes[node2Key]);
+            var node1 = nodes.Item1;
+            var node2 = nodes.Item2;
+
+            lowerBound = graphHelper.GetLowerBound(node1.topLeft.x, node2.topLeft.x);
+            upperBound = graphHelper.GetUpperBound(node1.topLeft.x, node2.topLeft.x, node1.width, node2.width);
              
             corridorTopLeft = new Vector2( Random.Range( lowerBound, upperBound - this.minCorridorLength) , node1.topLeft.y + node1.length );
             corridorBottomRight = new Vector2( corridorTopLeft.x + this.minCorridorLength, node2.topLeft.y);
@@ -241,49 +224,4 @@ public class RoomGraph
         return new CorridorNode(corridorTopLeft, corridorBottomRight);
     }
 
-    public float GetLowerBound(float position1, float position2)
-    {
-        if (position1 >= position2)
-            return position2;
-        else
-            return position1;
-
-    }
-
-    public float GetUpperBound(float position1, float position2, float distance1, float distance2)
-    {
-        if (position1 + distance1 >= position1 + distance2)
-            return position2 + distance2;
-        else
-            return position1 + distance1;
-    }
-
-    public neighborType GetNeighborType(int node1Key, int node2Key)
-    {
-        var listOfEdges = roomGraph[node1Key];
-        neighborType neighborTypeN1N2 = neighborType._null;
-
-        foreach(System.Tuple<int, int, neighborType> edge in listOfEdges)
-        {
-            if(edge.Item1 == node2Key)
-            {
-                neighborTypeN1N2 = edge.Item3;
-                break;
-            }
-        }
-
-        return neighborTypeN1N2;
-    }
-
-    public float Distance(int room1, int room2)
-    {
-        return (this.roomNodes[room1].topLeft - this.roomNodes[room2].topLeft).magnitude;
-    } 
-}
-
-public enum neighborType
-{
-    xNeighbor = 0,
-    yNeighbor = 1,
-    _null = -1
 }
