@@ -38,6 +38,8 @@ public class PlayerShooting : MonoBehaviour
         timeToShoot = Time.time + shotDelay;
         // Instantiates a pre-chosen bullet at specified ejector facing the same way as the ejector.
         Bullet bullet = Instantiate(bulletPrefab, ejector.position, Quaternion.identity);
+
+        bullet.tag = "Attack";
         // Generates a Rigidbody for the generated bullet.
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         // Tells the bullet where to go and how fast it needs to go.
