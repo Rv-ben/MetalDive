@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RoomGraph 
 {
     public Dictionary<int, List<System.Tuple<int, int, neighborType>>> roomGraph;
+    public RoomGraphHelper graphHelper;
     public Queue<RoomNode> roomNodesQueue;
     public List<RoomNode> roomNodes;
+    public List<int> reachableRooms;
+    public float minCorridorLength;
 
-    public RoomGraph (List<RoomNode> roomNodes)
+    public RoomGraph (List<RoomNode> roomNodes, float minCorridorLength)
     {
         this.roomGraph = new Dictionary<int, List<System.Tuple<int, int, neighborType>>>();
         this.roomNodesQueue = new Queue<RoomNode>(roomNodes);
         this.roomNodes = roomNodes;
+        this.reachableRooms = new List<int>();
+        this.minCorridorLength = minCorridorLength;
 
 
         // Make a key for each room node
@@ -21,32 +27,9 @@ public class RoomGraph
         {
             roomGraph.Add(i, new List<System.Tuple<int, int, neighborType>>() );
         }
-    }
 
-    public neighborType isNeighborNode (RoomNode node1, RoomNode node2)
-    {
-        Vector2 topLeftNode1 = node1.topLeft;
-
-        bool xNeighbor = isInArea(new Vector2(topLeftNode1.x + 5, topLeftNode1.y), node2);
-        bool yNeighbor = isInArea(new Vector2(topLeftNode1.x , topLeftNode1.y + 5), node2);
-
-        if (xNeighbor)
-        {
-            return neighborType.xNeighbor;
-        }
-        else if (yNeighbor)
-        {
-            return neighborType.yNeighbor;
-        }
-
-        return neighborType._null;
-    }
-
-    public bool isInArea (Vector2 point, RoomNode area)
-    {
-        bool xStatus = point.x >= area.topLeft.x && point.x <= area.topLeft.x + area.width;
-        bool yStatus = point.y >= area.topLeft.y && point.y <= area.topLeft.y + area.length;
-        return xStatus && yStatus;
+        graphHelper = new RoomGraphHelper(roomGraph);
+        this.generateGraph();
     }
 
     public Dictionary<int, List<System.Tuple<int, int, neighborType>>> generateGraph()
@@ -62,13 +45,13 @@ public class RoomGraph
             
             foreach (RoomNode potentialNeighbor in roomNodesQueue)
             {
-                neighborType type = isNeighborNode(currentNode, potentialNeighbor);
+                neighborType type = graphHelper.IsNeighborNode(currentNode, potentialNeighbor);
 
                 if (type != neighborType._null)
                 {
                     // Make a key and a random weight
                     int neigborKey = roomNodes.IndexOf(potentialNeighbor);
-                    int randomWeight = Random.Range(0, 100);
+                    int randomWeight = Random.Range(0, 3);
 
                     // Add the neighbor and random weight
                     roomGraph[cnKey].Add(new System.Tuple<int, int, neighborType>(neigborKey, randomWeight, type));
@@ -83,11 +66,162 @@ public class RoomGraph
         return roomGraph;
     }
 
-    public enum neighborType
+    public List<int> RandomWalk(int startNode, int steps)
     {
-        xNeighbor = 0,
-        yNeighbor = 1,
-        _null = -1
+        List<int> path = new List<int>();
+
+        int currentNode = startNode;
+
+        for (var i = 0; i < steps; i++)
+        {
+            path.Add(currentNode);
+            this.reachableRooms.Add(currentNode);
+
+            var possibleChoices = GetPossibleChoices(currentNode, path);
+
+            if(possibleChoices.Count == 0)
+            {
+                break;
+            }
+
+            int randomChoice = Random.Range(0, possibleChoices.Count);
+            currentNode = possibleChoices[randomChoice];
+
+        }
+
+        //path.Add(currentNode);
+        //this.reachableRooms.Add(currentNode);
+
+        return path;
+
+    }
+
+    public List<int> RandomWalkUntilDead(int startNode)
+    {
+        List<int> path = new List<int>();
+
+        int currentNode = startNode;
+
+        do
+        {
+            path.Add(currentNode);
+            //fix
+            this.reachableRooms.Add(currentNode);
+
+            var possibleChoices = GetPossibleChoices(currentNode, path);
+
+            if (possibleChoices.Count == 0)
+            {
+                break;
+            }
+
+            if (this.roomNodes.Count == this.reachableRooms.Count)
+            {
+                break;
+            }
+
+            int randomChoice = Random.Range(0, possibleChoices.Count);
+            currentNode = possibleChoices[randomChoice];
+
+            if (this.reachableRooms.Contains(currentNode))
+            {
+                path.Add(currentNode);
+                this.reachableRooms.Add(currentNode);
+                break;
+            }
+
+        } while (true);
+
+
+        return path;
+    }
+
+    public List<int> GetPossibleChoices(int node, List<int> path)
+    {
+        List<int> possibleChoices = new List<int>();
+        List<int> reachAble = new List<int>();
+
+        for (var i = 0; i < roomGraph[node].Count; i++)
+        {
+            if (!path.Contains(roomGraph[node][i].Item1))
+            {
+                if (reachableRooms.Contains(roomGraph[node][i].Item1))
+                {
+                    reachAble.Add(roomGraph[node][i].Item1);
+                    return reachAble;
+                }
+                possibleChoices.Add(roomGraph[node][i].Item1);
+            }
+        }
+
+        return possibleChoices;
+    }
+
+    public List<CorridorNode> generateCorridors()
+    {
+        List<CorridorNode> corridors = new List<CorridorNode>();
+
+        corridors.AddRange(getCorridors(RandomWalk(0, 11)));
+
+        for(var i = 0; i < roomNodes.Count; i++)
+        {
+            if (!reachableRooms.Contains(i))
+            {
+                corridors.AddRange(getCorridors(RandomWalkUntilDead(i)));
+            }
+        }
+
+        return corridors;
+    }
+
+    public List<CorridorNode> getCorridors(List<int> path)
+    {
+        List <CorridorNode> corridors = new List<CorridorNode>();
+
+        for(var i = 0; i < path.Count - 1; i++)
+        {
+            corridors.Add(GetCorridorNode(path[i], path[i + 1]));
+        }
+
+        return corridors;
+    }
+
+    public CorridorNode GetCorridorNode(int node1Key, int node2Key)
+    {
+        neighborType neighborTypeN1N2 = graphHelper.GetNeighborType(node1Key, node2Key);
+
+        float lowerBound;
+        float upperBound;
+
+        Vector2 corridorTopLeft = new Vector2(0,0);
+        Vector2 corridorBottomRight = new Vector2(0, 0);
+
+        if (neighborType.xNeighbor == neighborTypeN1N2)
+        {
+            var nodes = graphHelper.GetXOrientation(roomNodes[node1Key], roomNodes[node2Key]);
+            var node1 = nodes.Item1;
+            var node2 = nodes.Item2;
+
+            lowerBound = graphHelper.GetLowerBound(node1.topLeft.y, node2.topLeft.y);
+            upperBound = graphHelper.GetUpperBound(node1.topLeft.y, node2.topLeft.y, node1.length, node2.length);
+
+            corridorTopLeft = new Vector2( node1.topLeft.x + node1.width, Random.Range(lowerBound, upperBound - this.minCorridorLength));
+            corridorBottomRight = new Vector2( node2.topLeft.x , corridorTopLeft.y + this.minCorridorLength);
+        }
+        else if(neighborType.yNeighbor == neighborTypeN1N2)
+        {
+            var nodes = graphHelper.GetYOrientation(roomNodes[node1Key], roomNodes[node2Key]);
+            var node1 = nodes.Item1;
+            var node2 = nodes.Item2;
+
+            lowerBound = graphHelper.GetLowerBound(node1.topLeft.x, node2.topLeft.x);
+            upperBound = graphHelper.GetUpperBound(node1.topLeft.x, node2.topLeft.x, node1.width, node2.width);
+             
+            corridorTopLeft = new Vector2( Random.Range( lowerBound, upperBound - this.minCorridorLength) , node1.topLeft.y + node1.length );
+            corridorBottomRight = new Vector2( corridorTopLeft.x + this.minCorridorLength, node2.topLeft.y);
+        }
+
+        return new CorridorNode(corridorTopLeft, corridorBottomRight);
     }
 
 }

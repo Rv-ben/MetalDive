@@ -26,6 +26,34 @@ public class EnemyMovement : MonoBehaviour
 
     private Vector3 positionVector;
 
+    // Attach the Shooting mechanism.
+    [SerializeField] public GenericShooting shooter;
+
+    /// <summary>
+    /// Initialize all the variables with objects upon game starts.
+    /// </summary>
+    void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+
+        anim = GetComponent<Animator>();
+
+        shooter = GetComponent<GenericShooting>();
+
+        GameObject targetObject = GameObject.Find("Target");
+
+        targetPoint = targetObject.transform;
+
+        agent.radius = 0.1f;
+
+        // No brake when near obstacle
+        agent.autoBraking = false;
+
+        // No rotation while walking
+        agent.updateRotation = false;
+
+        MoveToNextTarget();
+    }
 
     /// <summary>
     /// Set the enemy's range of random walking distance.
@@ -33,6 +61,29 @@ public class EnemyMovement : MonoBehaviour
     /// <param name="walkingRange">Range of distance </param>
     public void SetMoveRange(float walkingRange)
     {
+        Debug.Log("Start following");
+        agent.isStopped = false;
+
+        if (GetComponent<Collider>().tag.Equals("Player")) {
+
+            // Rotates enemy before changing direction
+            Quaternion rotation = GetQuaternion(GetComponent<Collider>().transform.position - transform.position, Vector3.zero);
+
+            transform.rotation = rotation;
+
+            // Set player's position as a next target
+            agent.destination = GetComponent<Collider>().transform.position;
+
+            // Displaying remain distance in Inspector
+
+            if (agent.remainingDistance < idlingDistanceFollowing)
+            {
+                IdlePoint();
+            }
+
+            // Blend Idle and Walk animation 
+            anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
+        }
         this.randArea = walkingRange;
     }
 
@@ -134,6 +185,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (collider.name.Equals("Player"))
         {
+            anim.Play("Pistol Walk");
 
             // Rotates enemy before changing direction
             Quaternion rotation = GetQuaternion(collider.transform.position - transform.position, Vector3.zero);
@@ -146,6 +198,13 @@ public class EnemyMovement : MonoBehaviour
             if (agent.remainingDistance < idlingDistanceFollowing)
             {
                 IdlePoint();
+            }
+
+            // If the Enemy has a shot ready.
+            if (shooter.shotReady())
+            {
+                // Shoot!  Pass in the animator.
+                shooter.Shoot(anim);
             }
 
             // Blend Idle and Walk animation 
