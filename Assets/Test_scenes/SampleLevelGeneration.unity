@@ -177,7 +177,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.5
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fef5e9520f21845848793765e7c50b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 7458209201009177935, guid: 73668d3f2a3184a4faf6d6d2cdd4dded, type: 3}
+  playerPrefab: {fileID: 5292441945306055172, guid: 73668d3f2a3184a4faf6d6d2cdd4dded, type: 3}
   hair: {fileID: 919132149155446097, guid: a141b1c005d414c43bb2192d74df649b, type: 3}
   enemyPrefab: {fileID: 8979670007398721144, guid: 24e34a5aadfb6f64380c01b3e602c964, type: 3}
   gun: {fileID: 5210775585495844818, guid: 00ad4e3646dc8cf4f932eff84e51cf5a, type: 3}
@@ -594,7 +594,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1417751231

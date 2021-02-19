@@ -73,10 +73,10 @@ public class DungeonCreator : MonoBehaviour
         Vector2 topLeft = node.topLeft;
         Vector2 bottomRight = node.bottomRight;
 
-        Vector3 topLeftV = new Vector3(topLeft.x, 5, topLeft.y);
-        Vector3 topRightV = new Vector3(bottomRight.x, 5, topLeft.y);
-        Vector3 bottomRightV = new Vector3(bottomRight.x, 5, bottomRight.y);
-        Vector3 bottomLeftV = new Vector3(topLeft.x, 5, bottomRight.y);
+        Vector3 topLeftV = new Vector3(topLeft.x, 0, topLeft.y);
+        Vector3 topRightV = new Vector3(bottomRight.x, 0, topLeft.y);
+        Vector3 bottomRightV = new Vector3(bottomRight.x, 0, bottomRight.y);
+        Vector3 bottomLeftV = new Vector3(topLeft.x, 0, bottomRight.y);
 
         Vector3[] vertices = new Vector3[]
         {

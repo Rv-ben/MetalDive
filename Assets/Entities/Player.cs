@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 
     // The animator component.
     public Animator animator;
-    public PlayerShooting shooter;
+    public GenericShooting shooter;
     public PlayerMovement mover;
 
     public LayerMask aimLayer;
