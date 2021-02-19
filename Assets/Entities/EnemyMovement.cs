@@ -64,7 +64,7 @@ public class EnemyMovement : MonoBehaviour
         Debug.Log("Start following");
         agent.isStopped = false;
 
-        if (GetComponent<Collider>().name.Equals("Player")) {
+        if (GetComponent<Collider>().tag.Equals("Player")) {
 
             // Rotates enemy before changing direction
             Quaternion rotation = GetQuaternion(GetComponent<Collider>().transform.position - transform.position, Vector3.zero);
@@ -79,13 +79,6 @@ public class EnemyMovement : MonoBehaviour
             if (agent.remainingDistance < idlingDistanceFollowing)
             {
                 IdlePoint();
-            }
-
-            // If the Enemy has a shot ready.
-            if (shooter.shotReady())
-            {
-                // Shoot!  Pass in the animator.
-                shooter.Shoot(anim);
             }
 
             // Blend Idle and Walk animation 
@@ -205,6 +198,13 @@ public class EnemyMovement : MonoBehaviour
             if (agent.remainingDistance < idlingDistanceFollowing)
             {
                 IdlePoint();
+            }
+
+            // If the Enemy has a shot ready.
+            if (shooter.shotReady())
+            {
+                // Shoot!  Pass in the animator.
+                shooter.Shoot(anim);
             }
 
             // Blend Idle and Walk animation 
