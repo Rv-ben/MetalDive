@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     public EnemyMovement mover;
     private NavMeshAgent agent;
+    private Health health;
     public static Transform targetPoint;
 
     /// <summary>
@@ -41,4 +42,11 @@ public class Enemy : MonoBehaviour
         // Checks every frame whether start moving to the next point or idle.
         mover.Idle(animator);
     }
+
+    public void setEnemyHealthMax(int healthMax) {
+        Debug.Log("Health max is now set!");
+        health.SetMax(healthMax);
+    }
+
+
 }

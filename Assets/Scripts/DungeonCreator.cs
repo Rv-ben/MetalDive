@@ -62,8 +62,9 @@ public class DungeonCreator : MonoBehaviour
         // Spawns a Player at the given coordinates (position, rotation).
         spawner.spawnPlayer(playerPos, quaternion);
         // Spawns an Enemy at the given coordinates (position, rotation).
-        float walkingRange = 6f;
-        spawner.spawnEnemy(enemyPos, quaternion, walkingRange);
+        float walkingRange = 20f;
+        int healthMax = 10;
+        spawner.spawnEnemy(enemyPos, quaternion, walkingRange, healthMax);  // <---------------------------------- added healthMax(int)
 
     }
 

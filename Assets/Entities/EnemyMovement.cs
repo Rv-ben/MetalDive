@@ -8,7 +8,7 @@ using UnityEngine.AI;
 /// </summary>
 public class EnemyMovement : MonoBehaviour
 {
-    private float randArea = 6f;
+    private float randArea = 20f;
 
     private float waitingTime = 2f;
 
@@ -61,29 +61,30 @@ public class EnemyMovement : MonoBehaviour
     /// <param name="walkingRange">Range of distance </param>
     public void SetMoveRange(float walkingRange)
     {
-        Debug.Log("Start following");
-        agent.isStopped = false;
+        //Debug.Log("Start following");
+        //agent.isStopped = false;
 
-        if (GetComponent<Collider>().tag.Equals("Player")) {
+        //if (GetComponent<Collider>().tag.Equals("Player"))
+        //{
 
-            // Rotates enemy before changing direction
-            Quaternion rotation = GetQuaternion(GetComponent<Collider>().transform.position - transform.position, Vector3.zero);
+        //    // Rotates enemy before changing direction
+        //    Quaternion rotation = GetQuaternion(GetComponent<Collider>().transform.position - transform.position, Vector3.zero);
 
-            transform.rotation = rotation;
+        //    transform.rotation = rotation;
 
-            // Set player's position as a next target
-            agent.destination = GetComponent<Collider>().transform.position;
+        //    // Set player's position as a next target
+        //    agent.destination = GetComponent<Collider>().transform.position;
 
-            // Displaying remain distance in Inspector
+        //    // Displaying remain distance in Inspector
 
-            if (agent.remainingDistance < idlingDistanceFollowing)
-            {
-                IdlePoint();
-            }
+        //    if (agent.remainingDistance < idlingDistanceFollowing)
+        //    {
+        //        IdlePoint();
+        //    }
 
-            // Blend Idle and Walk animation 
-            anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
-        }
+        //    // Blend Idle and Walk animation 
+        //    anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
+        //}
         this.randArea = walkingRange;
     }
 
@@ -183,8 +184,9 @@ public class EnemyMovement : MonoBehaviour
         Debug.Log("Start following");
         agent.isStopped = false;
 
-        if (collider.name.Equals("Player"))
+        if (collider.tag.Equals("Player"))
         {
+
             anim.Play("Pistol Walk");
 
             // Rotates enemy before changing direction
@@ -193,22 +195,48 @@ public class EnemyMovement : MonoBehaviour
             transform.rotation = rotation;
 
             // Set player's position as a next target
-            agent.destination = collider.transform.position;
+            agent.destination = GetComponent<Collider>().transform.position;
+
 
             if (agent.remainingDistance < idlingDistanceFollowing)
             {
                 IdlePoint();
             }
 
-            // If the Enemy has a shot ready.
-            if (shooter.shotReady())
-            {
-                // Shoot!  Pass in the animator.
-                shooter.Shoot(anim);
-            }
-
             // Blend Idle and Walk animation 
             anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
         }
+
+
+        //Debug.Log("Start following");
+        //agent.isStopped = false;
+
+        //if (collider.name.Equals("Player"))
+        //{
+        //    anim.Play("Pistol Walk");
+
+        //    // Rotates enemy before changing direction
+        //    Quaternion rotation = GetQuaternion(collider.transform.position - transform.position, Vector3.zero);
+
+        //    transform.rotation = rotation;
+
+        //    // Set player's position as a next target
+        //    agent.destination = collider.transform.position;
+
+        //    if (agent.remainingDistance < idlingDistanceFollowing)
+        //    {
+        //        IdlePoint();
+        //    }
+
+        //    // If the Enemy has a shot ready.
+        //    if (shooter.shotReady())
+        //    {
+        //        // Shoot!  Pass in the animator.
+        //        shooter.Shoot(anim);
+        //    }
+
+        //    // Blend Idle and Walk animation 
+        //    anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
+    
     }
 }

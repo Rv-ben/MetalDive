@@ -39,6 +39,7 @@ public class EntitySpawner : MonoBehaviour
         // GameObject hairChild = Instantiate(hair);
         // hairChild.transform.parent = GameObject.Find("mixamorig:Head").transform;
         GameObject gunChild = Instantiate(gun);
+        gunChild.tag = "Attack";  // <------------------------------------------------------Added tag on gun.
         GameObject hand = GameObject.Find("mixamorig:RightHand");
         gunChild.transform.parent = hand.transform;
         gunChild.transform.position = hand.transform.position;
@@ -53,12 +54,16 @@ public class EntitySpawner : MonoBehaviour
     /// </summary>
     /// <param name="position">Vector3 position in the map where the Enemy is to spawn.</param>
     /// <param name="rot">Quaternion Rotation where the Enemy will be facing when they spawn.</param>
-    public void spawnEnemy(Vector3 position, Quaternion rot, float walkingRange)
+    /// <param name="walkingRange">Enemy can move randomly within this range.</param>
+    /// <param name="healthMax">Enemy's initial health value.</param>
+    public void spawnEnemy(Vector3 position, Quaternion rot, float walkingRange, int healthMax)
     {
         // Instantiates an Enemy at the position.
         GameObject ob = Instantiate(enemyPrefab, position, rot);
         // Setting enemy's range of random walking.
         enemyPrefab.GetComponent<EnemyMovement>().SetMoveRange(walkingRange);
+        // Setting enemy's health max value.
+        enemyPrefab.GetComponent<Enemy>().setEnemyHealthMax(healthMax);
     }
 
     /**
