@@ -55,8 +55,8 @@ public class DungeonCreator : MonoBehaviour
 
 
         RoomNode firstRoom = list[0];
-        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
-        Vector3 enemyPos = new Vector3(0, 0, firstRoom.topLeft.y + 0);
+        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 5, firstRoom.topLeft.y + firstRoom.length / 2);
+        Vector3 enemyPos = new Vector3(1, 5, firstRoom.topLeft.y + 0);
 
         Quaternion quaternion = new Quaternion();
         // Spawns a Player at the given coordinates (position, rotation).
