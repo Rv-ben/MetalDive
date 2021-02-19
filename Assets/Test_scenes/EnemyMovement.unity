@@ -1027,11 +1027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26557d8973748444f9fe228f12459d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randArea: 20
-  waitingTime: 2
-  countWaitingTime: 0
-  idlingDistanceFollowing: 2
-  dispRemainDistance: 0
+  shooter: {fileID: 0}
 --- !u!195 &1802079575
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2029,6 +2025,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5292441945306055172, guid: 73668d3f2a3184a4faf6d6d2cdd4dded, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5292441945306055172, guid: 73668d3f2a3184a4faf6d6d2cdd4dded, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []

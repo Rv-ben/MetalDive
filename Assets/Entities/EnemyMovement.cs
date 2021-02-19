@@ -64,18 +64,17 @@ public class EnemyMovement : MonoBehaviour
         Debug.Log("Start following");
         agent.isStopped = false;
 
-        if (collider.name.Equals("Player")) {
+        if (GetComponent<Collider>().name.Equals("Player")) {
 
             // Rotates enemy before changing direction
-            Quaternion rotation = GetQuaternion(collider.transform.position - transform.position, Vector3.zero);
+            Quaternion rotation = GetQuaternion(GetComponent<Collider>().transform.position - transform.position, Vector3.zero);
 
             transform.rotation = rotation;
 
             // Set player's position as a next target
-            agent.destination = collider.transform.position;
+            agent.destination = GetComponent<Collider>().transform.position;
 
             // Displaying remain distance in Inspector
-            dispRemainDistance = agent.remainingDistance;
 
             if (agent.remainingDistance < idlingDistanceFollowing)
             {
@@ -193,6 +192,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (collider.name.Equals("Player"))
         {
+            anim.Play("Pistol Walk");
 
             // Rotates enemy before changing direction
             Quaternion rotation = GetQuaternion(collider.transform.position - transform.position, Vector3.zero);
