@@ -21,7 +21,7 @@ public class EnemyTrigger : MonoBehaviour
     /// </summary>
     void Start() {
         sphereCollider = GetComponent<SphereCollider>();
-        sphereCollider.radius = 1f;
+        sphereCollider.radius = 0.5f;
     }
 
     /// <summary>
