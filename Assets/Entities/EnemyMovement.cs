@@ -8,16 +8,13 @@ using UnityEngine.AI;
 /// </summary>
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] float randArea = 10f;
+    private float randArea = 6f;
 
-    [SerializeField] float waitingTime = 2f;
+    private float waitingTime = 2f;
 
-    [SerializeField] float countWaitingTime = 0f;
+    private float countWaitingTime = 0f;
 
-    [SerializeField] float idlingDistanceFollowing = 2f;
-
-    // Display remain distance in Inspector
-    [SerializeField] float dispRemainDistance = 0f;
+    private float idlingDistanceFollowing = 0.7f;
 
     public static Transform targetPoint;
 
@@ -59,10 +56,10 @@ public class EnemyMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Enemy starts following player once player touches trigger collider
+    /// Set the enemy's range of random walking distance.
     /// </summary>
-    /// <param name="collider">object that touched this collider</param>
-    public void FollowPlayer(Collider collider)
+    /// <param name="walkingRange">Range of distance </param>
+    public void SetMoveRange(float walkingRange)
     {
         Debug.Log("Start following");
         agent.isStopped = false;
@@ -95,12 +92,13 @@ public class EnemyMovement : MonoBehaviour
             // Blend Idle and Walk animation 
             anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
         }
+        this.randArea = walkingRange;
     }
 
     /// <summary>
     /// Generate the next position and move
     /// </summary>
-    void MoveToNextTarget()
+    public void MoveToNextTarget()
     {
         float position_X;
         float position_Z;
@@ -150,14 +148,18 @@ public class EnemyMovement : MonoBehaviour
         return Quaternion.LookRotation(distanceVector3, vector3);
     }
 
+
     /// <summary>
-    /// Enemy idle behavior.
+    /// Idle behavior.
     /// </summary>
-    void Update()
+    public void Idle(Animator anim)
     {
+        this.anim = anim;
+
         // Enemy idle while waiting for the next point and the remaining distance is less than 0.5
-        if(!agent.pathPending && agent.remainingDistance < minimumWalk) { 
-        //if (agent.remainingDistance == 0) {
+        if (!agent.pathPending && agent.remainingDistance < minimumWalk)
+        {
+            //if (agent.remainingDistance == 0) {
             IdlePoint();
         }
 
@@ -179,5 +181,34 @@ public class EnemyMovement : MonoBehaviour
             countWaitingTime = 0;
         }
     }
-    
+
+    /// <summary>
+    /// Enemy starts following player once player touches trigger collider
+    /// </summary>
+    /// <param name="collider">object that touched this collider</param>
+    public void FollowPlayer(Collider collider)
+    {
+        Debug.Log("Start following");
+        agent.isStopped = false;
+
+        if (collider.name.Equals("Player"))
+        {
+
+            // Rotates enemy before changing direction
+            Quaternion rotation = GetQuaternion(collider.transform.position - transform.position, Vector3.zero);
+
+            transform.rotation = rotation;
+
+            // Set player's position as a next target
+            agent.destination = collider.transform.position;
+
+            if (agent.remainingDistance < idlingDistanceFollowing)
+            {
+                IdlePoint();
+            }
+
+            // Blend Idle and Walk animation 
+            anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
+        }
+    }
 }

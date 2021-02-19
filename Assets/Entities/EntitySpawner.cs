@@ -17,6 +17,9 @@ public class EntitySpawner : MonoBehaviour
     // Generic Enemy Prefab.
     [SerializeField] public GameObject enemyPrefab;
 
+    // Prototype Hair.
+    [SerializeField] public GameObject gun;
+
     /// <summary>
     /// Spawns a Player at the given coordinates.
     /// </summary>
@@ -35,6 +38,14 @@ public class EntitySpawner : MonoBehaviour
         // Begins to spawn non-Player things like Hair and weapons.
         // GameObject hairChild = Instantiate(hair);
         // hairChild.transform.parent = GameObject.Find("mixamorig:Head").transform;
+        GameObject gunChild = Instantiate(gun);
+        GameObject hand = GameObject.Find("mixamorig:RightHand");
+        gunChild.transform.parent = hand.transform;
+        gunChild.transform.position = hand.transform.position;
+        gunChild.transform.Translate(new Vector3(0.03f, -0.005f, 0.003f));
+        gunChild.transform.rotation = hand.transform.rotation;
+        gunChild.transform.Rotate(270, 0, 90);
+        gunChild.transform.localScale = new Vector3(.9f, .9f, .9f);
     }
 
     /// <summary>
@@ -42,10 +53,12 @@ public class EntitySpawner : MonoBehaviour
     /// </summary>
     /// <param name="position">Vector3 position in the map where the Enemy is to spawn.</param>
     /// <param name="rot">Quaternion Rotation where the Enemy will be facing when they spawn.</param>
-    public void spawnEnemy(Vector3 position, Quaternion rot)
+    public void spawnEnemy(Vector3 position, Quaternion rot, float walkingRange)
     {
         // Instantiates an Enemy at the position.
         GameObject ob = Instantiate(enemyPrefab, position, rot);
+        // Setting enemy's range of random walking.
+        enemyPrefab.GetComponent<EnemyMovement>().SetMoveRange(walkingRange);
     }
 
     /**
