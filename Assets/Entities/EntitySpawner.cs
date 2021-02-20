@@ -17,7 +17,7 @@ public class EntitySpawner : MonoBehaviour
     // Generic Enemy Prefab.
     [SerializeField] public GameObject enemyPrefab;
 
-    // Prototype Hair.
+    // Prototype Gun.
     [SerializeField] public GameObject gun;
 
     /// <summary>
