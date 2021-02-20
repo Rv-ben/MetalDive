@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using System;
 
 /// <summary>
@@ -18,6 +19,8 @@ public class DungeonCreator : MonoBehaviour
     public Material material;
 
     public Mesh aimLayer;
+
+    public NavMeshSurface surface;
 
     // Spawns Prefab Entities.
     [SerializeField] public EntitySpawner spawner;
@@ -52,11 +55,17 @@ public class DungeonCreator : MonoBehaviour
             CreateFloor(corridoNode);
         }
 
+        var surfaces = (NavMeshSurface[])FindObjectsOfType(typeof(NavMeshSurface));
+
+        for (var i = 0; i < surfaces.Length; i++)
+        {
+            surfaces[i].BuildNavMesh();
+        }
 
 
         RoomNode firstRoom = list[0];
-        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 5, firstRoom.topLeft.y + firstRoom.length / 2);
-        Vector3 enemyPos = new Vector3(1, 5, firstRoom.topLeft.y + 0);
+        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
+        Vector3 enemyPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
 
         Quaternion quaternion = new Quaternion();
         // Spawns a Player at the given coordinates (position, rotation).
@@ -108,6 +117,10 @@ public class DungeonCreator : MonoBehaviour
         dungeonFloor.transform.localScale = Vector3.one;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
         dungeonFloor.GetComponent<MeshRenderer>().material = material;
+
+        dungeonFloor.AddComponent<NavMeshSurface>();
+
+
         // dungeonFloor.layer = 8;
         // dungeonFloor.AddComponent<MeshCollider>().sharedMesh = aimLayer;
     }
