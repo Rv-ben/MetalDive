@@ -8,13 +8,13 @@ using UnityEngine.AI;
 /// </summary>
 public class EnemyMovement : MonoBehaviour
 {
-    private float randArea = 20f;
+    private float randArea = 10f;
 
     private float waitingTime = 2f;
 
     private float countWaitingTime = 0f;
 
-    private float idlingDistanceFollowing = 0.7f;
+    private float idlingDistanceFollowing = 0.5f;
 
     public static Transform targetPoint;
 
@@ -32,28 +32,28 @@ public class EnemyMovement : MonoBehaviour
     /// <summary>
     /// Initialize all the variables with objects upon game starts.
     /// </summary>
-    void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
+    //void Start()
+    //{
+    //    agent = GetComponent<NavMeshAgent>();
 
-        anim = GetComponent<Animator>();
+    //    anim = GetComponent<Animator>();
 
-        shooter = GetComponent<GenericShooting>();
+    //    shooter = GetComponent<GenericShooting>();
 
-        GameObject targetObject = GameObject.Find("Target");
+    //    GameObject targetObject = GameObject.Find("Target");
 
-        targetPoint = targetObject.transform;
+    //    targetPoint = targetObject.transform;
 
-        agent.radius = 0.1f;
+    //    agent.radius = 0.1f;
 
-        // No brake when near obstacle
-        agent.autoBraking = false;
+    //    // No brake when near obstacle
+    //    agent.autoBraking = false;
 
-        // No rotation while walking
-        agent.updateRotation = false;
+    //    // No rotation while walking
+    //    agent.updateRotation = false;
 
-        MoveToNextTarget();
-    }
+    //    MoveToNextTarget();
+    //}
 
     /// <summary>
     /// Set the enemy's range of random walking distance.

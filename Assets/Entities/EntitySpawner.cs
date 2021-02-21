@@ -25,7 +25,7 @@ public class EntitySpawner : MonoBehaviour
     /// </summary>
     /// <param name="position">Vector3 position in the map where the Player is to spawn.</param>
     /// <param name="rot">Quaternion Rotation where the Player will be facing when they spawn.</param>
-    public void spawnPlayer(Vector3 position, Quaternion rot)
+    public void spawnPlayer(Vector3 position, Quaternion rot, int healthMax)
     {
         // Instantiates a Player Prefab.  Stores as a GameObject.
         GameObject ob = Instantiate(playerPrefab, position, rot);
@@ -47,6 +47,8 @@ public class EntitySpawner : MonoBehaviour
         gunChild.transform.rotation = hand.transform.rotation;
         gunChild.transform.Rotate(270, 0, 90);
         gunChild.transform.localScale = new Vector3(.9f, .9f, .9f);
+        // Setting enemy's health max value.
+        playerPrefab.GetComponent<Player>().setPlayerHealthMax(healthMax);
     }
 
     /// <summary>

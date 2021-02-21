@@ -57,14 +57,14 @@ public class DungeonCreator : MonoBehaviour
         RoomNode firstRoom = list[0];
         Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 5, firstRoom.topLeft.y + firstRoom.length / 2);
         Vector3 enemyPos = new Vector3(1, 5, firstRoom.topLeft.y + 0);
-
+        int playerHealthMax = 100;
         Quaternion quaternion = new Quaternion();
         // Spawns a Player at the given coordinates (position, rotation).
-        spawner.spawnPlayer(playerPos, quaternion);
+        spawner.spawnPlayer(playerPos, quaternion, playerHealthMax);
         // Spawns an Enemy at the given coordinates (position, rotation).
-        float walkingRange = 20f;
-        int healthMax = 10;
-        spawner.spawnEnemy(enemyPos, quaternion, walkingRange, healthMax);  // <---------------------------------- added healthMax(int)
+        float walkingRange = 10f;
+        int enemyHealthMax = 100;
+        spawner.spawnEnemy(enemyPos, quaternion, walkingRange, enemyHealthMax);  // <---------------------------------- added healthMax(int)
 
     }
 

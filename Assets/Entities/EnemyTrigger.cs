@@ -14,6 +14,7 @@ public class EnemyTrigger : MonoBehaviour
     [SerializeField] private TriggerEvent _stay = new TriggerEvent();
 
     private SphereCollider sphereCollider;
+    private Enemy enemy;
 
     /// <summary>
     /// Initialize radius centered enemy.
@@ -21,7 +22,7 @@ public class EnemyTrigger : MonoBehaviour
     /// </summary>
     void Start() {
         sphereCollider = GetComponent<SphereCollider>();
-        sphereCollider.radius = 1.3f;
+        sphereCollider.radius = 1.5f;
     }
 
     /// <summary>
@@ -31,7 +32,7 @@ public class EnemyTrigger : MonoBehaviour
     /// <param name="other">object that touched this collider</param>
     void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.gameObject + " is inside");
+        Debug.Log(other.gameObject.tag + " is inside");
         if (other.CompareTag("Player")) {
             _stay.Invoke(other);
         }
