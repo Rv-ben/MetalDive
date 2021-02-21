@@ -17,8 +17,31 @@ public class EntitySpawner : MonoBehaviour
     // Generic Enemy Prefab.
     [SerializeField] public GameObject enemyPrefab;
 
-    // Prototype Gun.
-    [SerializeField] public GameObject gun;
+    // Equipped Pistol
+    [SerializeField] public GameObject pistol;
+
+    // Equipped Shotgun
+    [SerializeField] public GameObject shotgun;
+
+    public int switchCount = 0;
+
+    // DELETE THIS WHEN USING IN MAJOR CONTEXTS - TESTING ONLY
+    public void Start()
+    {
+        spawnPlayer(Vector3.zero, Quaternion.identity);
+    }
+
+    // Testing Only - Will Figure Out Later
+    public void Update()
+    {
+        // Testing Purposes - Sets the Player's Weapon as a Pistol when TAB is pressed.
+        if (Input.GetKey(KeyCode.Tab) && switchCount == 0)
+        {
+            // Spawn the serialized pistol
+            spawnShotgun(Instantiate(shotgun));
+            switchCount++;
+        }
+    }
 
     /// <summary>
     /// Spawns a Player at the given coordinates.
@@ -35,29 +58,40 @@ public class EntitySpawner : MonoBehaviour
         cinemachineVirtualCamera.m_Follow = ob.transform;
         // Sets the Cinemachine Camera to look at the Player Object.
         cinemachineVirtualCamera.m_LookAt = ob.transform;
-        // Begins to spawn non-Player things like Hair and weapons.
-        // GameObject hairChild = Instantiate(hair);
-        // hairChild.transform.parent = GameObject.Find("mixamorig:Head").transform;
-        // Instantiate an instance of the passed-in gun.
-        spawnPlayerWeapon(ob, Instantiate(gun));
     }
 
-    public void spawnPlayerWeapon(GameObject ob, GameObject gun)
+    public void spawnPistol(GameObject pistol)
     {
         // Stores a reference to the Player Model's hand.
         GameObject hand = GameObject.Find("mixamorig:RightHand");
         // Parent the Gun to the hand.
-        gun.transform.parent = hand.transform;
+        pistol.transform.parent = hand.transform;
         // Set the gun to the hand's position.
-        gun.transform.position = hand.transform.position;
+        pistol.transform.position = hand.transform.position;
         // Fine tune the position of the gun.
-        gun.transform.Translate(new Vector3(0.03f, -0.005f, 0.003f));
+        pistol.transform.Translate(new Vector3(-0.01f, -0.029f, 0.015f));
         // Set the gun's rotation equivalent to the hand's rotation.
-        gun.transform.rotation = hand.transform.rotation;
+        pistol.transform.rotation = hand.transform.rotation;
         // Fine tune the rotation of the gun.
-        gun.transform.Rotate(270, 0, 90);
+        pistol.transform.Rotate(270, 0, 90);
         // Fine tune the scale of the gun.
-        gun.transform.localScale = new Vector3(.9f, .9f, .9f);
+        pistol.transform.localScale = new Vector3(.9f, .9f, .9f);
+    }
+
+    public void spawnShotgun(GameObject shotgun)
+    {
+        // Stores a reference to the Player Model's hand.
+        GameObject hand = GameObject.Find("mixamorig:RightHand");
+        // Parent the Gun to the hand.
+        shotgun.transform.parent = hand.transform;
+        // Set the gun to the hand's position.
+        shotgun.transform.position = hand.transform.position;
+        // Fine tune the position of the gun.
+        shotgun.transform.Translate(new Vector3(-0.02f, -0.06f, 0.005f));
+        // Set the gun's rotation equivalent to the hand's rotation.
+        shotgun.transform.rotation = hand.transform.rotation;
+        // Fine tune the rotation of the gun.
+        shotgun.transform.Rotate(30, 0, 80);
     }
 
     /// <summary>

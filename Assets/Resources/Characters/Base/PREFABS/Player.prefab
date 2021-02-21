@@ -1932,6 +1932,8 @@ MonoBehaviour:
   aimLayer:
     serializedVersion: 2
     m_Bits: 256
+  equippedArchetype: 
+  tabPressed: 0
 --- !u!136 &7458209201009177932
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1960,7 +1962,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 36
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &7458209201009177923
 MonoBehaviour:
@@ -1977,7 +1979,8 @@ MonoBehaviour:
   ejector: {fileID: 7728608043356851106}
   shotDelay: 1
   timeToShoot: 0
-  bulletPrefab: {fileID: -7181101818061926167, guid: 3aebbf8b13343f24b9fa686471c0dc28, type: 3}
+  pistolBullet: {fileID: 4006315354287480729, guid: 3aebbf8b13343f24b9fa686471c0dc28, type: 3}
+  shotgunPellet: {fileID: 5400907408949093505, guid: 8620e634e1e9f1143a4f9bef836ea1f0, type: 3}
   bulletSpeed: 5
 --- !u!114 &7458209201009177922
 MonoBehaviour:
