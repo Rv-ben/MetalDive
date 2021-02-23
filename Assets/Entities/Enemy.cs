@@ -28,34 +28,20 @@ public class Enemy : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         capsuleCollider.radius = 0.5f;
 
-        agent = GetComponent<NavMeshAgent>();
-
-        agent.radius = 0.1f;
-
-        // No brake when near obstacle
-        agent.autoBraking = false;
-
-        // No rotation while walking
-        agent.updateRotation = false;
-
-        GameObject targetObject = GameObject.Find("Target");
-
-        targetPoint = targetObject.transform;
-
         mover.MoveToNextTarget();
     }
 
     /// <summary>
     /// Enemy idle behavior.
     /// </summary>
-    void Update()
-    {
-        // Checks every frame whether start moving to the next point or idle.
-        mover.Idle(animator);
-    }
+    //void Update()
+    //{
+    //    // Checks every frame whether start moving to the next point or idle.
+    //    mover.Idle(animator);
+    //}
 
     public void setEnemyHealthMax(int healthMax) {
-        Debug.Log("Enemy Health max is now set!");
+        Debug.Log("Enemy Health max is now set");
         health.SetMax(healthMax);
         this.maxHealth = healthMax;
         this.healthValue = maxHealth;

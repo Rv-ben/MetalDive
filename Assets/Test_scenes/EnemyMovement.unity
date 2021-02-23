@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 296859002}
   m_Layer: 0
   m_Name: Obstacle (3)
-  m_TagString: Obstacles
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -344,7 +344,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ef487c1205a780f449087516148f1a9e, type: 2}
+  - {fileID: 2100000, guid: 24e31327fb7e5495fb9e21484cbec156, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -658,7 +658,7 @@ GameObject:
   - component: {fileID: 746106875}
   m_Layer: 0
   m_Name: Obstacle (1)
-  m_TagString: Obstacles
+  m_TagString: Health
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -695,7 +695,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ef487c1205a780f449087516148f1a9e, type: 2}
+  - {fileID: 2100000, guid: f99409a515156b94aa792519c53bb72a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -751,7 +751,7 @@ GameObject:
   - component: {fileID: 750828441}
   - component: {fileID: 750828442}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: EnemyHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -954,7 +954,7 @@ GameObject:
   - component: {fileID: 835660235}
   - component: {fileID: 835660236}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: PlayerHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -978,7 +978,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.9644, y: -0.2756}
+  m_AnchoredPosition: {x: -165, y: 197}
   m_SizeDelta: {x: 74.1284, y: 22.5617}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &835660235
@@ -1028,7 +1028,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 34
+  m_Value: 77
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a3b4bfad50d7547aa6958ed1caf002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  slider: {fileID: 835660235}
 --- !u!1 &880263633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,13 +1121,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880263633}
-  m_LocalRotation: {x: 0.6820361, y: 0.0023503676, z: 0.010983668, w: 0.7312322}
-  m_LocalPosition: {x: -0.4, y: 22.7, z: -1.1}
+  m_LocalRotation: {x: 0.56440866, y: 0.013173198, z: 0.00009773808, w: 0.82539046}
+  m_LocalPosition: {x: -0.6, y: 14.03, z: -7.56}
   m_LocalScale: {x: 1.153824, y: 1.153824, z: 1.0730793}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 85.869, y: 14.815, z: 15.515}
+  m_LocalEulerAnglesHint: {x: 68.703, y: 3.45, z: 2.372}
 --- !u!1 &900951320
 GameObject:
   m_ObjectHideFlags: 0
@@ -5528,7 +5528,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7458209200769792023}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.2
   m_Height: 0.19995666
@@ -5565,6 +5565,7 @@ GameObject:
   - component: {fileID: 7458209200769792021}
   - component: {fileID: 7458209200769792026}
   - component: {fileID: 7458209200769792024}
+  - component: {fileID: 7458209200769792025}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5589,6 +5590,28 @@ MonoBehaviour:
   timeToShoot: 0
   bulletPrefab: {fileID: -7181101818061926167, guid: 3aebbf8b13343f24b9fa686471c0dc28, type: 3}
   bulletSpeed: 5
+--- !u!195 &7458209200769792025
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7458209200769792023}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.1
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &7458209200769792026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5725,7 +5748,7 @@ MonoBehaviour:
   animator: {fileID: 4191476557122074839}
   shooter: {fileID: 7458209200769792024}
   mover: {fileID: 7458209200769792026}
-  health: {fileID: 750828442}
+  health: {fileID: 835660236}
   aimLayer:
     serializedVersion: 2
     m_Bits: 256
