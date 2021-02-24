@@ -39,7 +39,7 @@ public class EntitySpawner : MonoBehaviour
         // GameObject hairChild = Instantiate(hair);
         // hairChild.transform.parent = GameObject.Find("mixamorig:Head").transform;
         GameObject gunChild = Instantiate(gun);
-        gunChild.tag = "Attack";  // <------------------------------------------------------Added tag on gun.
+        gunChild.tag = "PlayerShoot";
         GameObject hand = GameObject.Find("mixamorig:RightHand");
         gunChild.transform.parent = hand.transform;
         gunChild.transform.position = hand.transform.position;

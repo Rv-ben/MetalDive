@@ -60,11 +60,11 @@ public class DungeonCreator : MonoBehaviour
         int playerHealthMax = 100;
         Quaternion quaternion = new Quaternion();
         // Spawns a Player at the given coordinates (position, rotation).
-        spawner.spawnPlayer(playerPos, quaternion, playerHealthMax);      // <---------------------------------- added healthMax(int)
+        spawner.spawnPlayer(playerPos, quaternion, playerHealthMax);
         // Spawns an Enemy at the given coordinates (position, rotation).
         float walkingRange = 10f;
         int enemyHealthMax = 100;
-        spawner.spawnEnemy(enemyPos, quaternion, walkingRange, enemyHealthMax);  // <---------------------------------- added healthMax(int)
+        spawner.spawnEnemy(enemyPos, quaternion, walkingRange, enemyHealthMax);
 
     }
 

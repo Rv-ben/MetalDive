@@ -32,7 +32,7 @@ public class Player : MonoBehaviour {
         // Attacks are mapped to Left Click for now.
         if (shooter.shotReady() & Input.GetMouseButtonDown(0)) {
             // Handles attacks with firearms.
-            shooter.Shoot(animator);
+            shooter.Shoot(animator, "PlayerShoot");
         }
     }
 
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         // update current health value based on collider object.
-        if (other.CompareTag("Attack"))
+        if (other.CompareTag("EnemyShoot"))
         {
             setPlayerCurrentHealth(-10);
         }

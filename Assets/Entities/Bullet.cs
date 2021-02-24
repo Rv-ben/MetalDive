@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Bullet : MonoBehaviour
 {
+
     /// <summary>
     /// If the Bullet hits something, it'll be deleted.
     /// </summary>
@@ -14,11 +15,12 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // It'll destroy itself immediately if it hits the Environment.
-        if (collision.gameObject.tag == "Environment")
+        if (collision.gameObject.tag == "Environment" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy")
         {
             // This destroys the object the script is attached to; thus, the Bullet.
             Destroy(gameObject);
         }
+
     }
 
     /// <summary>

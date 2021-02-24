@@ -32,14 +32,14 @@ public class GenericShooting : MonoBehaviour
     /// <summary>
     /// Handles the action of "Shooting" for the Player.  Ejects a bullet from a specified position down a specified line.
     /// </summary>
-    public void Shoot(Animator animator)
+    public void Shoot(Animator animator, string tagName)
     {
         // Determines the next time you're able to shoot.
         timeToShoot = Time.time + shotDelay;
         // Instantiates a pre-chosen bullet at specified ejector facing the same way as the ejector.
         Bullet bullet = Instantiate(bulletPrefab, ejector.position, Quaternion.identity);
 
-        bullet.tag = "Attack";
+        bullet.tag = tagName;
         // Generates a Rigidbody for the generated bullet.
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         // Tells the bullet where to go and how fast it needs to go.

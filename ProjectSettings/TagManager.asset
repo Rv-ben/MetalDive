@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Attack
   - Health
+  - EnemyShoot
+  - PlayerShoot
   layers:
   - Default
   - TransparentFX

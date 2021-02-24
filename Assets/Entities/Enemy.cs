@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     // The animator component.
     public Animator animator;
     public EnemyMovement mover;
-    private NavMeshAgent agent;
     public Health health;
     public static Transform targetPoint;
     private CapsuleCollider capsuleCollider;
@@ -22,23 +21,20 @@ public class Enemy : MonoBehaviour
     /// </summary>
     void Start()
     {
-        
         setEnemyHealthMax(maxHealth);   // ------------------------------ delete after testing
 
         capsuleCollider = GetComponent<CapsuleCollider>();
-        capsuleCollider.radius = 0.5f;
-
-        mover.MoveToNextTarget();
+        capsuleCollider.radius = 0.1f;
     }
 
     /// <summary>
-    /// Enemy idle behavior.
+    /// This Update Function will run all code within every frame of the game.
+    /// This function will keep updating the orientation of Enemy health bar to face the camera.
     /// </summary>
-    //void Update()
-    //{
-    //    // Checks every frame whether start moving to the next point or idle.
-    //    mover.Idle(animator);
-    //}
+    void Update()
+    {
+        GameObject.Find("EnemyCanvas").transform.LookAt(Camera.main.transform.position);
+    }
 
     public void setEnemyHealthMax(int healthMax) {
         Debug.Log("Enemy Health max is now set");
@@ -47,20 +43,20 @@ public class Enemy : MonoBehaviour
         this.healthValue = maxHealth;
     }
 
-    public void setEnemyCurrentHealth(int healthValue) {
-        Debug.Log("Enemy Health value has been updated to " + healthValue);
-        health.SetHealth(healthValue);
-        if (this.healthValue - healthValue < 0)
+    public void setEnemyCurrentHealth(int changingValue) {
+        if (this.healthValue + changingValue < 0)
         {
             this.healthValue = 0;
         }
         else
-            this.healthValue -= healthValue;
+            this.healthValue += changingValue;
+
+        health.SetHealth(this.healthValue);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Attack"))
+        if (other.CompareTag("PlayerShoot"))
         {
             setEnemyCurrentHealth(-10);
         }

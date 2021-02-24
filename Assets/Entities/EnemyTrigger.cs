@@ -21,8 +21,9 @@ public class EnemyTrigger : MonoBehaviour
     /// Enemy will follow once player touches collider.
     /// </summary>
     void Start() {
+        enemy = GetComponent<Enemy>();
         sphereCollider = GetComponent<SphereCollider>();
-        sphereCollider.radius = 1.5f;
+        sphereCollider.radius = 1.0f;
     }
 
     /// <summary>
@@ -32,7 +33,7 @@ public class EnemyTrigger : MonoBehaviour
     /// <param name="other">object that touched this collider</param>
     void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.gameObject.tag + " is inside");
+        
         if (other.CompareTag("Player")) {
             _stay.Invoke(other);
         }

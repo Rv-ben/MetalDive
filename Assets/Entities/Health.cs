@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public Slider slider;
-
+    public Gradient gradient;
+    public Image image;
 
     /// <summary>
     /// Setter for health max value and character's starting value.
@@ -13,6 +14,8 @@ public class Health : MonoBehaviour
     public void SetMax(int max) {
         slider.maxValue = max;
         slider.value = max;
+
+        image.color = gradient.Evaluate(1f);
     }
 
     /// <summary>
@@ -22,6 +25,6 @@ public class Health : MonoBehaviour
     public void SetHealth(int value) {
 
         slider.value = value;
-
+        image.color = gradient.Evaluate(slider.normalizedValue);
     }
 }
