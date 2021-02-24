@@ -436,6 +436,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 8979670007398721144, guid: 24e34a5aadfb6f64380c01b3e602c964, type: 3}
   pistol: {fileID: 5210775585495844818, guid: 00ad4e3646dc8cf4f932eff84e51cf5a, type: 3}
   shotgun: {fileID: 1624697429439270, guid: eedb02d5022eae8419dfe61ce8b8db75, type: 3}
+  AR: {fileID: 8732431320938740938, guid: ee35e1fa3c40344428536edb2eee624f, type: 3}
   switchCount: 0
 --- !u!4 &1016388430
 Transform:

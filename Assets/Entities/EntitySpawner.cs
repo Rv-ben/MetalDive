@@ -23,23 +23,41 @@ public class EntitySpawner : MonoBehaviour
     // Equipped Shotgun
     [SerializeField] public GameObject shotgun;
 
-    public int switchCount = 0;
+    // Equipped AR
+    [SerializeField] public GameObject AR;
+
+    public GameObject equipped;
+    public bool armed;
 
     // DELETE THIS WHEN USING IN MAJOR CONTEXTS - TESTING ONLY
     public void Start()
     {
         spawnPlayer(Vector3.zero, Quaternion.identity);
+        armed = false;
     }
 
-    // Testing Only - Will Figure Out Later
     public void Update()
     {
         // Testing Purposes - Sets the Player's Weapon as a Pistol when TAB is pressed.
-        if (Input.GetKey(KeyCode.Tab) && switchCount == 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && armed == false)
         {
-            // Spawn the serialized pistol
+            // Spawn the serialized weapon
+            spawnPistol(Instantiate(pistol));
+        }
+        // Testing Purposes - Sets the Player's Weapon as a Pistol when TAB is pressed.
+        if (Input.GetKeyDown(KeyCode.Alpha2) && armed == false)
+        {
             spawnShotgun(Instantiate(shotgun));
-            switchCount++;
+        }
+        // Testing Purposes - Sets the Player's Weapon as a Pistol when TAB is pressed.
+        if (Input.GetKeyDown(KeyCode.Alpha3) && armed == false)
+        {
+            spawnAR(Instantiate(AR));
+        }
+        // Testing Purposes - Sets the Player's Weapon as a Pistol when TAB is pressed.
+        if (Input.GetKeyDown(KeyCode.Alpha0) && armed == true)
+        {
+            despawnWeapon();
         }
     }
 
@@ -62,36 +80,66 @@ public class EntitySpawner : MonoBehaviour
 
     public void spawnPistol(GameObject pistol)
     {
+        this.equipped = pistol;
         // Stores a reference to the Player Model's hand.
         GameObject hand = GameObject.Find("mixamorig:RightHand");
         // Parent the Gun to the hand.
-        pistol.transform.parent = hand.transform;
+        equipped.transform.parent = hand.transform;
         // Set the gun to the hand's position.
-        pistol.transform.position = hand.transform.position;
+        equipped.transform.position = hand.transform.position;
         // Fine tune the position of the gun.
-        pistol.transform.Translate(new Vector3(-0.01f, -0.029f, 0.015f));
+        equipped.transform.Translate(new Vector3(-0.01f, -0.029f, 0.015f));
         // Set the gun's rotation equivalent to the hand's rotation.
-        pistol.transform.rotation = hand.transform.rotation;
+        equipped.transform.rotation = hand.transform.rotation;
         // Fine tune the rotation of the gun.
-        pistol.transform.Rotate(270, 0, 90);
+        equipped.transform.Rotate(270, 0, 90);
         // Fine tune the scale of the gun.
-        pistol.transform.localScale = new Vector3(.9f, .9f, .9f);
+        equipped.transform.localScale = new Vector3(.9f, .9f, .9f);
+        armed = true;
     }
 
     public void spawnShotgun(GameObject shotgun)
     {
+        this.equipped = shotgun;
         // Stores a reference to the Player Model's hand.
         GameObject hand = GameObject.Find("mixamorig:RightHand");
         // Parent the Gun to the hand.
-        shotgun.transform.parent = hand.transform;
+        equipped.transform.parent = hand.transform;
         // Set the gun to the hand's position.
-        shotgun.transform.position = hand.transform.position;
+        equipped.transform.position = hand.transform.position;
         // Fine tune the position of the gun.
-        shotgun.transform.Translate(new Vector3(-0.02f, -0.06f, 0.005f));
+        equipped.transform.Translate(new Vector3(-0.02f, -0.06f, 0.005f));
         // Set the gun's rotation equivalent to the hand's rotation.
-        shotgun.transform.rotation = hand.transform.rotation;
+        equipped.transform.rotation = hand.transform.rotation;
         // Fine tune the rotation of the gun.
-        shotgun.transform.Rotate(30, 0, 80);
+        equipped.transform.Rotate(30, 0, 80);
+        armed = true;
+    }
+
+    public void spawnAR(GameObject AR)
+    {
+        this.equipped = AR;
+        // Stores a reference to the Player Model's hand.
+        GameObject hand = GameObject.Find("mixamorig:RightHand");
+        // Parent the Gun to the hand.
+        equipped.transform.parent = hand.transform;
+        // Set the gun to the hand's position.
+        equipped.transform.position = hand.transform.position;
+        // Fine tune the position of the gun.
+        equipped.transform.Translate(new Vector3(-0.02f, -0.06f, 0.005f));
+        // Set the gun's rotation equivalent to the hand's rotation.
+        equipped.transform.rotation = hand.transform.rotation;
+        // Fine tune the rotation of the gun.
+        equipped.transform.Rotate(30, 0, 80);
+        // Fine tune the scale of the gun.
+        equipped.transform.localScale = new Vector3(.01f, .01f, .01f);
+        armed = true;
+    }
+
+    public void despawnWeapon()
+    {
+        Destroy(equipped);
+        armed = false;
     }
 
     /// <summary>
