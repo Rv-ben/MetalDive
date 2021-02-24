@@ -47,9 +47,17 @@ public class PlayerShooting : MonoBehaviour
         {
             // Instantiates a pre-chosen bullet at specified ejector facing the same way as the ejector.
             GameObject bull = Instantiate(bullet, ejector.position, ejector.rotation);
-            Vector3 direction = transform.forward + new Vector3(0, 0, Random.Range(-spread, spread));
-            // Tells the bullet where to go and how fast it needs to go.
-            bull.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+            if (guitar)
+            {
+                bull.transform.rotation = new Quaternion(Random.Range(0, 90), Random.Range(0, 90), Random.Range(0, 90), Random.Range(0, 90));
+                ScaleToTarget(bull, new Vector3(2.5f, 2.5f, 7.5f), 2.5f);
+            }
+            else
+            {
+                Vector3 direction = transform.forward + new Vector3(0, 0, Random.Range(-spread, spread));
+                // Tells the bullet where to go and how fast it needs to go.
+                bull.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+            }
         }
     }
 
@@ -77,5 +85,29 @@ public class PlayerShooting : MonoBehaviour
             // Tell the animator to play the "Firing" animation.
             animator.SetTrigger("FiringLongarm");
         }
+    }
+
+
+    public void ScaleToTarget(GameObject bullet, Vector3 targetScale, float duration)
+    {
+        StartCoroutine(ScaleToTargetCoroutine(bullet, targetScale, duration));
+    }
+
+    private IEnumerator ScaleToTargetCoroutine(GameObject bullet, Vector3 targetScale, float duration)
+    {
+        Vector3 startScale = bullet.transform.localScale;
+        float timer = 0.0f;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            float t = timer / duration;
+            //smoother step algorithm
+            t = t * t * t * (t * (6f * t - 15f) + 10f);
+            bullet.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            yield return null;
+        }
+
+        yield return null;
     }
 }

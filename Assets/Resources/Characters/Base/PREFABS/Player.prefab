@@ -1939,6 +1939,7 @@ MonoBehaviour:
   spreadNumber: 0
   pellet: {fileID: 5400907408949093505, guid: 8620e634e1e9f1143a4f9bef836ea1f0, type: 3}
   bullet: {fileID: 4006315354287480729, guid: 3aebbf8b13343f24b9fa686471c0dc28, type: 3}
+  waves: {fileID: 3543719186205735482, guid: 7c3b5fd708f7c1049818642b2bcd5d5a, type: 3}
   ammo: {fileID: 0}
   armed: 0
 --- !u!136 &7458209201009177932
@@ -1986,6 +1987,7 @@ MonoBehaviour:
   ejector: {fileID: 7728608043356851106}
   timeToShoot: 0
   bulletSpeed: 3
+  guitar: 0
   bullet: {fileID: 0}
 --- !u!114 &7458209201009177922
 MonoBehaviour:

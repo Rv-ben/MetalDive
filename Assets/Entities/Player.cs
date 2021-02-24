@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     [SerializeField] public GameObject pellet;
     [SerializeField] public GameObject bullet;
 
+    [SerializeField] public GameObject waves;
+
     public GameObject ammo;
     public bool armed;
     private bool enableMovement;
@@ -122,10 +124,10 @@ public class Player : MonoBehaviour
         animator.SetBool("Unarmed", true);
         animator.SetBool("LongGunEquipped", false);
         animator.SetBool("PistolEquipped", false);
-        ammo = pellet;
-        spread = 180;
+        ammo = waves;
+        spread = 1;
         shotDelay = 0;
-        spreadNumber = 30;
+        spreadNumber = 1;
         armed = true;
     }
 
