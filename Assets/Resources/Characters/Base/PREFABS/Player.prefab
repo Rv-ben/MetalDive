@@ -1934,11 +1934,13 @@ MonoBehaviour:
     m_Bits: 256
   delayTime: 0
   delay: 4
+  spread: 0
   shotDelay: 0
   spreadNumber: 0
   pellet: {fileID: 5400907408949093505, guid: 8620e634e1e9f1143a4f9bef836ea1f0, type: 3}
   bullet: {fileID: 4006315354287480729, guid: 3aebbf8b13343f24b9fa686471c0dc28, type: 3}
   ammo: {fileID: 0}
+  armed: 0
 --- !u!136 &7458209201009177932
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1983,7 +1985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ejector: {fileID: 7728608043356851106}
   timeToShoot: 0
-  bulletSpeed: 5
+  bulletSpeed: 3
   bullet: {fileID: 0}
 --- !u!114 &7458209201009177922
 MonoBehaviour:

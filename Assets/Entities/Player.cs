@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     // Creates a field in which you can decide how long the delay is when interrupted.
     public float delay = 4;
 
+    public float spread;
     public float shotDelay;
     public int spreadNumber;
 
@@ -23,7 +24,8 @@ public class Player : MonoBehaviour
 
     public GameObject ammo;
     public bool armed;
-
+    private bool enableMovement;
+    
     public void Start()
     {
         setUnarmed();
@@ -36,8 +38,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Update()
     {
-        // The Movement Function.  Checks every frame because it also handles NOT moving.
-        if (freeze())
+        if (enableMovement)
         {
             mover.Move(animator);
         }
@@ -54,18 +55,29 @@ public class Player : MonoBehaviour
         {
             setAR();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha4) && armed == false)
+        {
+            setGuitar();
+        }
         if (Input.GetKeyDown(KeyCode.Alpha0) && armed == true)
         {
             setUnarmed();
         }
-        // For EXTREMELY Full-Auto Fire
         if (shooter.shotReady() && Input.GetMouseButton(0))
         {
-            shooter.Shoot(animator, shotDelay, spreadNumber, ammo);
+            shooter.Shoot(animator, spread, shotDelay, spreadNumber, ammo);
+            if (shooter.getGuitar())
+            {
+                enableMovement = false;
+            }
         }
-    }
+        else
+        {
+            animator.SetBool("PlayingGuitar", false);
+            enableMovement = true;
+        }
 
-    public bool freeze() => Time.time >= delayTime;
+    }
 
     public void setPistol()
     {
@@ -73,6 +85,7 @@ public class Player : MonoBehaviour
         animator.SetBool("PistolEquipped", true);
         animator.SetBool("Unarmed", false);
         ammo = bullet;
+        spread = 1;
         shotDelay = 1;
         spreadNumber = 1;
         armed = true;
@@ -84,6 +97,7 @@ public class Player : MonoBehaviour
         animator.SetBool("LongGunEquipped", true);
         animator.SetBool("Unarmed", false);
         ammo = pellet;
+        spread = 30;
         shotDelay = 1.5f;
         spreadNumber = 9;
         armed = true;
@@ -95,18 +109,35 @@ public class Player : MonoBehaviour
         animator.SetBool("LongGunEquipped", true);
         animator.SetBool("Unarmed", false);
         ammo = bullet;
+        spread = 1;
         shotDelay = 0.2f;
         spreadNumber = 1;
         armed = true;
     }
 
+    public void setGuitar()
+    {
+        shooter.setGuitar(true);
+        // Tells the animator to play Long Gun Anims.
+        animator.SetBool("Unarmed", true);
+        animator.SetBool("LongGunEquipped", false);
+        animator.SetBool("PistolEquipped", false);
+        ammo = pellet;
+        spread = 180;
+        shotDelay = 0;
+        spreadNumber = 30;
+        armed = true;
+    }
+
     public void setUnarmed()
     {
+        shooter.setGuitar(false);
         // Tells the animator to play Long Gun Anims.
         animator.SetBool("Unarmed", true);
         animator.SetBool("LongGunEquipped", false);
         animator.SetBool("PistolEquipped", false);
         ammo = null;
+        spread = 0;
         shotDelay = 0;
         spreadNumber = 0;
         armed = false;

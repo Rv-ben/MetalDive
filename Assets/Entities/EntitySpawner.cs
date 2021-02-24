@@ -26,6 +26,9 @@ public class EntitySpawner : MonoBehaviour
     // Equipped AR
     [SerializeField] public GameObject AR;
 
+    // Equipped Guitar
+    [SerializeField] public GameObject guitar;
+
     public GameObject equipped;
     public bool armed;
 
@@ -53,6 +56,11 @@ public class EntitySpawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3) && armed == false)
         {
             spawnAR(Instantiate(AR));
+        }
+        // Testing Purposes - Sets the Player's Weapon as a Pistol when TAB is pressed.
+        if (Input.GetKeyDown(KeyCode.Alpha4) && armed == false)
+        {
+            spawnGuitar(Instantiate(guitar));
         }
         // Testing Purposes - Sets the Player's Weapon as a Pistol when TAB is pressed.
         if (Input.GetKeyDown(KeyCode.Alpha0) && armed == true)
@@ -133,6 +141,26 @@ public class EntitySpawner : MonoBehaviour
         equipped.transform.Rotate(-52.146f, 13.04f, 79.097f);
         // Fine tune the scale of the gun.
         equipped.transform.localScale = new Vector3(.009f, .009f, .009f);
+        armed = true;
+    }
+
+    public void spawnGuitar(GameObject guitar)
+    {
+        this.equipped = guitar;
+        // Stores a reference to the Player Model's hand.
+        GameObject hand = GameObject.Find("mixamorig:LeftHand");
+        // Parent the Gun to the hand.
+        equipped.transform.parent = hand.transform;
+        // Set the gun to the hand's position.
+        equipped.transform.position = hand.transform.position;
+        // Fine tune the position of the gun.
+        equipped.transform.localPosition = new Vector3(-0.02750365f, 0.006047898f, 0.02101708f);
+        // Set the gun's rotation equivalent to the hand's rotation.
+        equipped.transform.rotation = hand.transform.rotation;
+        // Fine tune the rotation of the gun.
+        equipped.transform.Rotate(-23.13f, 37.067f, 184.243f);
+        // Fine tune the scale of the gun.
+        equipped.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
         armed = true;
     }
 

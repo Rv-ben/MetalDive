@@ -12,6 +12,8 @@ public class PlayerShooting : MonoBehaviour
     // How fast the bullet goes by default.
     public float bulletSpeed;
 
+    public bool guitar;
+
     // The stored bullet
     public GameObject bullet;
 
@@ -21,27 +23,49 @@ public class PlayerShooting : MonoBehaviour
     /// <returns>True or False, depending on if the Player is able to shoot yet.</returns>
     public bool shotReady() => Time.time >= timeToShoot;
 
+    public void setGuitar(bool set)
+    {
+        this.guitar = set;
+    }
+
+    public bool getGuitar()
+    {
+        return guitar;
+    }
+
     public void setBullet(GameObject bullet)
     {
         this.bullet = bullet;
     }
 
-    public void Shoot(Animator animator, float shotDelay, int spreadNumber, GameObject bullet)
+    public void Shoot(Animator animator, float spread, float shotDelay, int spreadNumber, GameObject bullet)
     {
+        playAnim(animator);
         // Determines the next time you're able to shoot.
         timeToShoot = Time.time + shotDelay;
         for (int i = 0; i < spreadNumber; i++)
         {
             // Instantiates a pre-chosen bullet at specified ejector facing the same way as the ejector.
-            bullet = Instantiate(bullet, ejector.position, Quaternion.Euler(Random.Range(-30f, 30f), Random.Range(-30f, 30f), Random.Range(-30f, 30f)));
+            GameObject bull = Instantiate(bullet, ejector.position, ejector.rotation);
+            Vector3 direction = transform.forward + new Vector3(0, 0, Random.Range(-spread, spread));
             // Tells the bullet where to go and how fast it needs to go.
-            bullet.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+            bull.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
         }
-        // Will replace with Enums later.
+    }
+
+    public void playAnim(Animator animator)
+    {
         if (animator.GetBool("Unarmed"))
         {
-            // Tell the animator to play the "DropKick" animation.
-            animator.SetTrigger("DropKick");
+            if (guitar)
+            {
+                animator.SetBool("PlayingGuitar", true);
+            }
+            else
+            {
+                // Tell the animator to play the "DropKick" animation.
+                animator.SetTrigger("DropKick");
+            }
         }
         else if (animator.GetBool("PistolEquipped"))
         {
