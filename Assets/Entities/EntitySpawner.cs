@@ -88,7 +88,7 @@ public class EntitySpawner : MonoBehaviour
         // Set the gun to the hand's position.
         equipped.transform.position = hand.transform.position;
         // Fine tune the position of the gun.
-        equipped.transform.Translate(new Vector3(-0.01f, -0.029f, 0.015f));
+        equipped.transform.localPosition = new Vector3(-0.0021f, 0.0096f, 0.0005f);
         // Set the gun's rotation equivalent to the hand's rotation.
         equipped.transform.rotation = hand.transform.rotation;
         // Fine tune the rotation of the gun.
@@ -108,7 +108,7 @@ public class EntitySpawner : MonoBehaviour
         // Set the gun to the hand's position.
         equipped.transform.position = hand.transform.position;
         // Fine tune the position of the gun.
-        equipped.transform.Translate(new Vector3(-0.02f, -0.06f, 0.005f));
+        equipped.transform.localPosition = new Vector3(-0.002f, 0.0221f, 0.0106f);
         // Set the gun's rotation equivalent to the hand's rotation.
         equipped.transform.rotation = hand.transform.rotation;
         // Fine tune the rotation of the gun.
@@ -126,13 +126,13 @@ public class EntitySpawner : MonoBehaviour
         // Set the gun to the hand's position.
         equipped.transform.position = hand.transform.position;
         // Fine tune the position of the gun.
-        equipped.transform.Translate(new Vector3(-0.02f, -0.06f, 0.005f));
+        equipped.transform.localPosition= new Vector3(0.0135f, 0.0157f, 0.0076f);
         // Set the gun's rotation equivalent to the hand's rotation.
         equipped.transform.rotation = hand.transform.rotation;
         // Fine tune the rotation of the gun.
-        equipped.transform.Rotate(30, 0, 80);
+        equipped.transform.Rotate(-52.146f, 13.04f, 79.097f);
         // Fine tune the scale of the gun.
-        equipped.transform.localScale = new Vector3(.01f, .01f, .01f);
+        equipped.transform.localScale = new Vector3(.009f, .009f, .009f);
         armed = true;
     }
 
