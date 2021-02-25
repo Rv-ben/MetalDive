@@ -29,6 +29,10 @@ public class EntitySpawner : MonoBehaviour
     // Equipped Guitar
     [SerializeField] public GameObject guitar;
 
+    [SerializeField] public GameObject miniRifle;
+
+    [SerializeField] public GameObject rocketRifle;
+
     public GameObject equipped;
     public bool armed;
 
@@ -61,6 +65,16 @@ public class EntitySpawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4) && armed == false)
         {
             spawnGuitar(Instantiate(guitar));
+        }
+        // Testing Purposes - Sets the Player's Weapon as a Pistol when TAB is pressed.
+        if (Input.GetKeyDown(KeyCode.Alpha5) && armed == false)
+        {
+            spawnMiniRifle(Instantiate(miniRifle));
+        }
+        // Testing Purposes - Sets the Player's Weapon as a Pistol when TAB is pressed.
+        if (Input.GetKeyDown(KeyCode.Alpha6) && armed == false)
+        {
+            spawnRocketRifle(Instantiate(rocketRifle));
         }
         // Testing Purposes - Sets the Player's Weapon as a Pistol when TAB is pressed.
         if (Input.GetKeyDown(KeyCode.Alpha0) && armed == true)
@@ -134,11 +148,11 @@ public class EntitySpawner : MonoBehaviour
         // Set the gun to the hand's position.
         equipped.transform.position = hand.transform.position;
         // Fine tune the position of the gun.
-        equipped.transform.localPosition= new Vector3(0.0135f, 0.0157f, 0.0076f);
+        equipped.transform.localPosition= new Vector3(0.0135016f, 0.01583202f, 0.007588122f);
         // Set the gun's rotation equivalent to the hand's rotation.
         equipped.transform.rotation = hand.transform.rotation;
         // Fine tune the rotation of the gun.
-        equipped.transform.Rotate(-52.146f, 13.04f, 79.097f);
+        equipped.transform.Rotate(-55.913f, 13.854f, 78.192f);
         // Fine tune the scale of the gun.
         equipped.transform.localScale = new Vector3(.009f, .009f, .009f);
         armed = true;
@@ -159,6 +173,46 @@ public class EntitySpawner : MonoBehaviour
         equipped.transform.rotation = hand.transform.rotation;
         // Fine tune the rotation of the gun.
         equipped.transform.Rotate(-23.13f, 37.067f, 184.243f);
+        // Fine tune the scale of the gun.
+        equipped.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+        armed = true;
+    }
+
+    public void spawnMiniRifle(GameObject miniRifle)
+    {
+        this.equipped = miniRifle;
+        // Stores a reference to the Player Model's hand.
+        GameObject hand = GameObject.Find("mixamorig:RightHand");
+        // Parent the Gun to the hand.
+        equipped.transform.parent = hand.transform;
+        // Set the gun to the hand's position.
+        equipped.transform.position = hand.transform.position;
+        // Fine tune the position of the gun.
+        equipped.transform.localPosition = new Vector3(-0.0053f, 0.0193f, 0.009f);
+        // Set the gun's rotation equivalent to the hand's rotation.
+        equipped.transform.rotation = hand.transform.rotation;
+        // Fine tune the rotation of the gun.
+        equipped.transform.Rotate(-56.573f, 13.36f, 75.833f);
+        // Fine tune the scale of the gun.
+        equipped.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+        armed = true;
+    }
+
+    public void spawnRocketRifle(GameObject rocketRifle)
+    {
+        this.equipped = rocketRifle;
+        // Stores a reference to the Player Model's hand.
+        GameObject hand = GameObject.Find("mixamorig:RightHand");
+        // Parent the Gun to the hand.
+        equipped.transform.parent = hand.transform;
+        // Set the gun to the hand's position.
+        equipped.transform.position = hand.transform.position;
+        // Fine tune the position of the gun.
+        equipped.transform.localPosition = new Vector3(-0.00361f, 0.01585f, 0.00479f);
+        // Set the gun's rotation equivalent to the hand's rotation.
+        equipped.transform.rotation = hand.transform.rotation;
+        // Fine tune the rotation of the gun.
+        equipped.transform.Rotate(-56.409f, 15.781f, 74.286f);
         // Fine tune the scale of the gun.
         equipped.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
         armed = true;

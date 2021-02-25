@@ -438,6 +438,8 @@ MonoBehaviour:
   shotgun: {fileID: 1624697429439270, guid: eedb02d5022eae8419dfe61ce8b8db75, type: 3}
   AR: {fileID: 8732431320938740938, guid: ee35e1fa3c40344428536edb2eee624f, type: 3}
   guitar: {fileID: 100000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+  miniRifle: {fileID: 7027180664150321808, guid: 1328cc8740ca1384ea59cc9d72d57482, type: 3}
+  rocketRifle: {fileID: 3749711958463993782, guid: 516b001570ce47348b5bb59216279da2, type: 3}
   equipped: {fileID: 0}
   armed: 0
 --- !u!4 &1016388430

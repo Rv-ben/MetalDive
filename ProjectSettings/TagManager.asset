@@ -8,7 +8,11 @@ TagManager:
   - Obstacles
   - Enemy
   - Pellet
-  - SmallCal
+  - AR
+  - Mini
+  - Pistol
+  - Rocket
+  - Sound
   layers:
   - Default
   - TransparentFX

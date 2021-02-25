@@ -1932,13 +1932,11 @@ MonoBehaviour:
   aimLayer:
     serializedVersion: 2
     m_Bits: 256
-  delayTime: 0
-  delay: 4
-  spread: 0
-  shotDelay: 0
-  spreadNumber: 0
   pellet: {fileID: 5400907408949093505, guid: 8620e634e1e9f1143a4f9bef836ea1f0, type: 3}
-  bullet: {fileID: 4006315354287480729, guid: 3aebbf8b13343f24b9fa686471c0dc28, type: 3}
+  pistolBullet: {fileID: 6910468197738857177, guid: 9ddd06b3a16347a4c8153b91c53d86ff, type: 3}
+  ARBullet: {fileID: 1324474603367395274, guid: 7bf4d270b84ac7c4a97cb8aceadd50fb, type: 3}
+  miniBullet: {fileID: 6762415419842610594, guid: a82390cb3775a574185bef39435dad51, type: 3}
+  rocket: {fileID: 4927126803874607142, guid: 9f4de8628cde71c4ab0779f591a82676, type: 3}
   waves: {fileID: 3543719186205735482, guid: 7c3b5fd708f7c1049818642b2bcd5d5a, type: 3}
   ammo: {fileID: 0}
   armed: 0
@@ -1986,7 +1984,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ejector: {fileID: 7728608043356851106}
   timeToShoot: 0
-  bulletSpeed: 3
   guitar: 0
   bullet: {fileID: 0}
 --- !u!114 &7458209201009177922
@@ -2059,13 +2056,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7728608043356851101}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.134, z: 0.0685}
+  m_LocalRotation: {x: 2.88785e-19, y: -0.9363771, z: 1.0906868e-17, w: 0.35099557}
+  m_LocalPosition: {x: 0.015500002, y: 0.15580001, z: 0.069300026}
   m_LocalScale: {x: 0.0001, y: 0.0001, z: 0.0001}
   m_Children: []
   m_Father: {fileID: 7839413917838471157}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -138.904, z: 0}
 --- !u!1 &7737497521112958695
 GameObject:
   m_ObjectHideFlags: 0

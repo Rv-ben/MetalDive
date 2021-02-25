@@ -9,9 +9,6 @@ public class PlayerShooting : MonoBehaviour
     // Float that determines when the Player is able to shoot again.
     public float timeToShoot;
 
-    // How fast the bullet goes by default.
-    public float bulletSpeed;
-
     public bool guitar;
 
     // The stored bullet
@@ -38,25 +35,24 @@ public class PlayerShooting : MonoBehaviour
         this.bullet = bullet;
     }
 
-    public void Shoot(Animator animator, float spread, float shotDelay, int spreadNumber, GameObject bullet)
+    public void Shoot(Animator animator, GameObject bullet)
     {
         playAnim(animator);
         // Determines the next time you're able to shoot.
-        timeToShoot = Time.time + shotDelay;
-        for (int i = 0; i < spreadNumber; i++)
+        timeToShoot = Time.time + bullet.GetComponent<Bullet>().getShotDelay();
+        for (int i = 0; i < bullet.GetComponent<Bullet>().getSpreadNumber(); i++)
         {
             // Instantiates a pre-chosen bullet at specified ejector facing the same way as the ejector.
             GameObject bull = Instantiate(bullet, ejector.position, ejector.rotation);
             if (guitar)
             {
                 bull.transform.rotation = new Quaternion(Random.Range(0, 90), Random.Range(0, 90), Random.Range(0, 90), Random.Range(0, 90));
-                ScaleToTarget(bull, new Vector3(2.5f, 2.5f, 7.5f), 2.5f);
+                ScaleToTarget(bull, new Vector3(10f, 10f, 10f), 0.9f);
             }
             else
             {
-                Vector3 direction = transform.forward + new Vector3(0, 0, Random.Range(-spread, spread));
                 // Tells the bullet where to go and how fast it needs to go.
-                bull.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+                bull.GetComponent<Rigidbody>().velocity = transform.forward + new Vector3(0, 0, Random.Range(-bullet.GetComponent<Bullet>().getSpread(), bullet.GetComponent<Bullet>().getSpread())) * bullet.GetComponent<Bullet>().getBulletSpeed();
             }
         }
     }
@@ -80,11 +76,13 @@ public class PlayerShooting : MonoBehaviour
             // Tell the animator to play the "Firing" animation.
             animator.SetTrigger("FiringPistol");
         }
+        /**
         else if (animator.GetBool("LongGunEquipped"))
         {
             // Tell the animator to play the "Firing" animation.
             animator.SetTrigger("FiringLongarm");
         }
+        **/
     }
 
 
