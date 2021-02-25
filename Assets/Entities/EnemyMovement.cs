@@ -106,6 +106,8 @@ public class EnemyMovement : MonoBehaviour
 
         agent.destination = positionVector;
 
+        anim.Play("Blend Tree");
+
     }
 
     /// <summary>

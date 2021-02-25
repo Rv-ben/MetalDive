@@ -44,7 +44,5 @@ public class GenericShooting : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         // Tells the bullet where to go and how fast it needs to go.
         rb.velocity = transform.forward * bulletSpeed;
-        // Tell the animator to play the "Firing" animation.
-        animator.SetBool("Firing", true);
     }
 }
