@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
     public void setShotgun()
     {
         // Tells the animator to play Long Gun Anims.
-        animator.SetBool("LongGunEquipped", true);
+        animator.SetBool("LongarmEquipped", true);
         // Cancels Unarmed animations.
         animator.SetBool("Unarmed", false);
         // Sets the shotgun pellet as currently-equipped ammo.
@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
     public void setAR()
     {
         // Tells the animator to play Long Gun Anims.
-        animator.SetBool("LongGunEquipped", true);
+        animator.SetBool("LongarmEquipped", true);
         // Cancels Unarmed animations.
         animator.SetBool("Unarmed", false);
         // Sets the AR bullet as currently-equipped ammo.
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
     public void setMiniRifle()
     {
         // Tells the animator to play Long Gun Anims.
-        animator.SetBool("LongGunEquipped", true);
+        animator.SetBool("LongarmEquipped", true);
         // Cancels Unarmed animations.
         animator.SetBool("Unarmed", false);
         // Sets the minigun bullet as currently-equipped ammo.
@@ -166,7 +166,7 @@ public class Player : MonoBehaviour
     public void setRocketRifle()
     {
         // Tells the animator to play Long Gun Anims.
-        animator.SetBool("LongGunEquipped", true);
+        animator.SetBool("LongarmEquipped", true);
         // Cancels Unarmed animations.
         animator.SetBool("Unarmed", false);
         // Sets the rocket bullet as currently-equipped ammo.
@@ -181,7 +181,7 @@ public class Player : MonoBehaviour
         // Tells the animator to play Unarmed Anims.
         animator.SetBool("Unarmed", true);
         // Tells the animator to cancel Long Gun Anims.
-        animator.SetBool("LongGunEquipped", false);
+        animator.SetBool("LongarmEquipped", false);
         // Tells the animator to cancel Pistol Anims.
         animator.SetBool("PistolEquipped", false);
         // Sets the guitar soundwave as currently-equipped ammo.
@@ -196,7 +196,7 @@ public class Player : MonoBehaviour
         // Tells the animator to play Long Gun Anims.
         animator.SetBool("Unarmed", true);
         // Tells the animator to cancel Long Gun Anims.
-        animator.SetBool("LongGunEquipped", false);
+        animator.SetBool("LongarmEquipped", false);
         // Tells the animator to cancel Pistol Anims.
         animator.SetBool("PistolEquipped", false);
         // Removes equipped ammo reference.
