@@ -8,13 +8,24 @@ using UnityEngine;
 /// </summary>
 public class Bullet : MonoBehaviour
 {
+    // Determines spread accuracy of bullet. 0 = Dead-On, > 0 = Max Random Angle
     public float spread;
+    // Delay between shots.
     public float shotDelay;
+    // Number of bullets to shoot at a time.  Useful for shotguns.
     public int spreadNumber;
+    // Speed of the bullet.
     public float bulletSpeed;
-
+    // How long the bullet "lives" before being deleted.
     public float lifeTime;
 
+    /// <summary>
+    /// Constructor for a Bullet
+    /// </summary>
+    /// <param name="spread"> The accuracy of the bullet.  </param>
+    /// <param name="shotDelay"> How long between shots. </param>
+    /// <param name="spreadNumber"> How many bullets get spawned per shot. </param>
+    /// <param name="bulletSpeed"> How fast the bullet travels. </param>
     public Bullet(float spread, float shotDelay, int spreadNumber, float bulletSpeed)
     {
         this.spread = spread;
@@ -70,8 +81,10 @@ public class Bullet : MonoBehaviour
     /// <param name="collision">A "collision" object implicitly tied to the GameObject that records when two Rigidbody Colliders collide.  </param>
     void OnCollisionEnter(Collision collision)
     {
+        // If the bullet hits itself (surprisingly necessary)
         if (collision.gameObject.tag == this.gameObject.tag)
         {
+            // Do nothing.
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
         }
         // It'll destroy itself immediately if it hits the Environment.
@@ -87,7 +100,7 @@ public class Bullet : MonoBehaviour
     /// </summary>
     void Update()
     {
-        // Destroys the bullet after 1 second.
+        // Destroys the bullet after lifetime seconds.
         Destroy(gameObject, lifeTime);
     }
 }
