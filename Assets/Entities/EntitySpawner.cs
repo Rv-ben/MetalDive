@@ -68,6 +68,10 @@ public class EntitySpawner : MonoBehaviour
         enemyPrefab.GetComponent<Enemy>().setEnemyHealthMax(healthMax);
     }
 
+    /// <summary>
+    /// Spawns an empty GameObject. Enemy follows this object when its randomly walking.
+    /// </summary>
+    /// <param name="position">Vector3 position in the map where the GameObject is to spawn.</param>
     public void spawnEnemyTarget(Vector3 position)
     {
         GameObject gameObject = new GameObject("Target");

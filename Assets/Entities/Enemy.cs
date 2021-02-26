@@ -14,7 +14,8 @@ public class Enemy : MonoBehaviour
     private CapsuleCollider capsuleCollider;
     private int maxHealth = 100;
     private int healthValue;
-
+    private GameObject enemyCanvas;
+    private Vector3 rotation;
 
     /// <summary>
     /// Initialize all the variables with objects upon game starts.
@@ -25,25 +26,44 @@ public class Enemy : MonoBehaviour
 
         capsuleCollider = GetComponent<CapsuleCollider>();
         capsuleCollider.radius = 0.1f;
+
+        enemyCanvas = GameObject.Find("EnemyCanvas");
+
+        // Getting enemyCanvas's rotation to use in Update().
+        rotation = enemyCanvas.transform.localRotation.eulerAngles;
     }
 
     /// <summary>
     /// This Update Function will run all code within every frame of the game.
-    /// This function will keep updating the orientation of Enemy health bar to face the camera.
+    /// This function will keep updating the orientation of Enemy health bar to stay horizontal on the screen.
     /// </summary>
     void Update()
     {
-        GameObject.Find("EnemyCanvas").transform.LookAt(Camera.main.transform.position);
+        // Get enemy's rotation.
+        Vector3 enemyQuaternion = transform.localRotation.eulerAngles;
+
+        // Use localRotation to rotate only the enemyCanvas, not the Enemy(parent). 
+        // Original enemyCanvas's rotation - enemy's rotation will keep the health bar horizontal on the screen.
+        enemyCanvas.transform.localRotation = Quaternion.Euler(rotation - enemyQuaternion);
     }
 
-    public void setEnemyHealthMax(int healthMax) {
-        Debug.Log("Enemy Health max is now set");
+    /// <summary>
+    /// This function sets enemy's maximum health value and should be called when enemy's spawned.
+    /// </summary>
+    /// <param name="healthMax">Integer value that is maximum limit of enemy health.</param>
+    public void setEnemyHealthMax(int healthMax) 
+    {
         health.SetMax(healthMax);
         this.maxHealth = healthMax;
         this.healthValue = maxHealth;
     }
 
-    public void setEnemyCurrentHealth(int changingValue) {
+    /// <summary>
+    /// This function is to update enemy's health value every time its changed.
+    /// </summary>
+    /// <param name="changingValue">Integer value that represents pickup-health or damage.</param>
+    public void setEnemyCurrentHealth(int changingValue) 
+    {
         if (this.healthValue + changingValue < 0)
         {
             this.healthValue = 0;
@@ -51,9 +71,14 @@ public class Enemy : MonoBehaviour
         else
             this.healthValue += changingValue;
 
+        // Update the health value on slider.
         health.SetHealth(this.healthValue);
     }
 
+    /// <summary>
+    /// This function will be called when a GameObject collides with enemy.
+    /// </summary>
+    /// <param name="other">Object that touched enemy collider.</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerShoot"))

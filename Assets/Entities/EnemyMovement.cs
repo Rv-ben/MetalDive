@@ -186,16 +186,18 @@ public class EnemyMovement : MonoBehaviour
 
     }
 
-    void Update() {
-
+    /// <summary>
+    /// This Update Function will run all code within every frame of the game.
+    /// Determines enemy behavior whether to stay idle or walk.
+    /// </summary>
+    void Update() 
+    {
         if (agent.remainingDistance < idlingDistanceFollowing)
         {
             IdlePoint();
         }
-
         // Blend Idle and Walk animation 
         anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
-
     }
 
 }
