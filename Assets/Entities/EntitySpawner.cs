@@ -68,6 +68,11 @@ public class EntitySpawner : MonoBehaviour
         enemyPrefab.GetComponent<Enemy>().setEnemyHealthMax(healthMax);
     }
 
+    public void spawnEnemyTarget(Vector3 position)
+    {
+        GameObject gameObject = new GameObject("Target");
+    }
+
     /**
     private void Start()
     {

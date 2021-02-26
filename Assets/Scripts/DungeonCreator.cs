@@ -65,7 +65,8 @@ public class DungeonCreator : MonoBehaviour
         float walkingRange = 10f;
         int enemyHealthMax = 100;
         spawner.spawnEnemy(enemyPos, quaternion, walkingRange, enemyHealthMax);
-
+        // Spawn an empty object that enemy follows when randomly walking.
+        spawner.spawnEnemyTarget(playerPos);
     }
 
     private void CreateFloor(Node node)
