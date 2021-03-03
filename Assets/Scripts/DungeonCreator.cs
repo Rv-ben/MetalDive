@@ -66,68 +66,30 @@ public class DungeonCreator : MonoBehaviour
         RoomNode firstRoom = list[0];
         int playerHealthMax = 100;
         Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
-        Vector3 enemyPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
-        Quaternion quaternion = new Quaternion();
         // Spawns a Player at the given coordinates (position, rotation).
+        Quaternion quaternion = new Quaternion();
         spawner.spawnPlayer(playerPos, quaternion, playerHealthMax);
-        // Spawns an Enemy at the given coordinates (position, rotation).
-        float walkingRange = 10f;
-        int enemyHealthMax = 100;
-        spawner.spawnEnemy(enemyPos, quaternion, walkingRange, enemyHealthMax);
+
+        SpawnEnemies(list);
+
         // Spawn an empty object that enemy follows when randomly walking.
-        spawner.spawnEnemyTarget(playerPos);
 
         var surfaces = (NavMeshSurface[])FindObjectsOfType(typeof(NavMeshSurface));
 
         surfaces[0].BuildNavMesh();
     }
 
-    private void CreateFloor(Node node)
+    public void SpawnEnemies(List<RoomNode> rooms)
     {
-
-        Vector2 topLeft = node.topLeft;
-        Vector2 bottomRight = node.bottomRight;
-
-        Vector3 topLeftV = new Vector3(topLeft.x, 0, topLeft.y);
-        Vector3 topRightV = new Vector3(bottomRight.x, 0, topLeft.y);
-        Vector3 bottomRightV = new Vector3(bottomRight.x, 0, bottomRight.y);
-        Vector3 bottomLeftV = new Vector3(topLeft.x, 0, bottomRight.y);
-
-        Vector3[] vertices = new Vector3[]
+        Quaternion quaternion = new Quaternion();
+        for (var i = 1; i < rooms.Count; i++)
         {
-            topLeftV,
-            topRightV,
-            bottomLeftV,
-            bottomRightV
-        };
-
-        Vector2[] uvs = new Vector2[vertices.Length];
-        for (int i = 0; i < uvs.Length; i++)
-        {
-            uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
+            Vector3 enemyPos = new Vector3(rooms[i].topLeft.x + rooms[i].width / 2, 0, rooms[i].topLeft.y + rooms[i].length / 2);
+            float walkingRange = 10f;
+            int enemyHealthMax = 100;
+            // Spawns an Enemy at the given coordinates (position, rotation).
+            spawner.spawnEnemy(enemyPos, quaternion, walkingRange, enemyHealthMax);
+            spawner.spawnEnemyTarget(enemyPos);
         }
-
-        int[] triangles = new int[]
-        {
-            0,1,2,2,1,3
-        };
-
-        Mesh mesh = new Mesh();
-        mesh.vertices = vertices;
-        mesh.uv = uvs;
-        mesh.triangles = triangles;
-
-        GameObject dungeonFloor = new GameObject("RoomFloor"+topLeft, typeof(MeshFilter), typeof(MeshRenderer));
-
-        dungeonFloor.transform.position = Vector3.zero;
-        dungeonFloor.transform.localScale = Vector3.one;
-        dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
-        dungeonFloor.GetComponent<MeshRenderer>().material = material;
-
-        dungeonFloor.AddComponent<NavMeshSurface>();
-
-
-        // dungeonFloor.layer = 8;
-        // dungeonFloor.AddComponent<MeshCollider>().sharedMesh = aimLayer;
     }
 }

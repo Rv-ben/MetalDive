@@ -75,6 +75,7 @@ public class EntitySpawner : MonoBehaviour
     public void spawnEnemyTarget(Vector3 position)
     {
         GameObject gameObject = new GameObject("Target");
+        gameObject.transform.position = position;
     }
 
     /**
