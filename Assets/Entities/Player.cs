@@ -12,18 +12,6 @@ public class Player : MonoBehaviour
     private int maxHealth = 100;
     private int healthValue;
 
-    /// <summary>
-    /// Initialize all the variables with objects upon game starts.
-    /// </summary>
-    void Start()
-    {
-        setPlayerHealthMax(maxHealth);   // ------------------------------ delete after testing
-    // Handles shooting behavior.
-    public PlayerShooting shooter;
-    // Handles movement controls.
-    public PlayerMovement mover;
-    // The layer that the mouse interacts with to aim.
-    public LayerMask aimLayer;
     // The shotgun pellet prefab.
     [SerializeField] public GameObject pellet;
     // The pistol bullet prefab.
@@ -42,30 +30,17 @@ public class Player : MonoBehaviour
     public bool armed;
     // checks if the player is able to move.
     private bool enableMovement;
-    
+
     /// <summary>
     /// At the start of it's instantiation:
     /// </summary>
     public void Start()
     {
+        setPlayerHealthMax(maxHealth);
         // Set the Player to Unarmed.
         setUnarmed();
         // Set the bool to unarmed.
         armed = false;
-    }
-
-    /// <summary>
-    /// This Update Function will run all code within every frame of the game.
-    /// It will constantly be checking for Movement and Attack Inputs and call the appropriate methods.
-    /// </summary>
-    public void Update() {
-        // The Movement Function.  Checks every frame because it also handles NOT moving.
-        mover.Move(animator);
-        // Attacks are mapped to Left Click for now.
-        if (shooter.shotReady() & Input.GetMouseButtonDown(0)) {
-            // Handles attacks with firearms.
-            shooter.Shoot(animator, "PlayerShoot");
-        }
     }
 
     /// <summary>

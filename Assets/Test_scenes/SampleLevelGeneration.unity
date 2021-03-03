@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43683732, g: 0.48447788, b: 0.5647334, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -517,7 +517,14 @@ MonoBehaviour:
   playerPrefab: {fileID: 5308238937512107167, guid: 73668d3f2a3184a4faf6d6d2cdd4dded, type: 3}
   hair: {fileID: 919132149155446097, guid: a141b1c005d414c43bb2192d74df649b, type: 3}
   enemyPrefab: {fileID: 8906490284687781599, guid: 24e34a5aadfb6f64380c01b3e602c964, type: 3}
-  gun: {fileID: 5210775585495844818, guid: 00ad4e3646dc8cf4f932eff84e51cf5a, type: 3}
+  pistol: {fileID: 5210775585495844818, guid: 00ad4e3646dc8cf4f932eff84e51cf5a, type: 3}
+  shotgun: {fileID: 1624697429439270, guid: eedb02d5022eae8419dfe61ce8b8db75, type: 3}
+  AR: {fileID: 8732431320938740938, guid: ee35e1fa3c40344428536edb2eee624f, type: 3}
+  guitar: {fileID: 100000, guid: a8d53702db3c4f24db9805f2662d6c37, type: 3}
+  miniRifle: {fileID: 7027180664150321808, guid: 1328cc8740ca1384ea59cc9d72d57482, type: 3}
+  rocketRifle: {fileID: 3749711958463993782, guid: 516b001570ce47348b5bb59216279da2, type: 3}
+  equipped: {fileID: 0}
+  armed: 0
 --- !u!1 &1417751229
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +601,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1417751231

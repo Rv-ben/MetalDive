@@ -46,7 +46,7 @@ public class EntitySpawner : MonoBehaviour
     public void Start()
     {
         // DELETE THIS WHEN USING IN Dungeon Spawner - TESTING ONLY
-        spawnPlayer(Vector3.zero, Quaternion.identity);
+        //spawnPlayer(Vector3.zero, Quaternion.identity);
         // Confirms the Player is unarmed.
         armed = false;
     }
