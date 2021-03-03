@@ -63,11 +63,6 @@ public class DungeonCreator : MonoBehaviour
             corridor.AddComponent<NavMeshSurface>();
         }
 
-        var surfaces = (NavMeshSurface[])FindObjectsOfType(typeof(NavMeshSurface));
-
-        surfaces[0].BuildNavMesh();
-
-
         RoomNode firstRoom = list[0];
         int playerHealthMax = 100;
         Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
@@ -81,6 +76,10 @@ public class DungeonCreator : MonoBehaviour
         spawner.spawnEnemy(enemyPos, quaternion, walkingRange, enemyHealthMax);
         // Spawn an empty object that enemy follows when randomly walking.
         spawner.spawnEnemyTarget(playerPos);
+
+        var surfaces = (NavMeshSurface[])FindObjectsOfType(typeof(NavMeshSurface));
+
+        surfaces[0].BuildNavMesh();
     }
 
     private void CreateFloor(Node node)
