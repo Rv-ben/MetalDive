@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using System;
+using ProceduralPrimitives;
 
 /// <summary>
 /// Class <c>DungeonCreator</c>
@@ -18,6 +20,8 @@ public class DungeonCreator : MonoBehaviour
     public Material material;
 
     public Mesh aimLayer;
+
+    public NavMeshSurface surface;
 
     // Spawns Prefab Entities.
     [SerializeField] public EntitySpawner spawner;
@@ -44,20 +48,30 @@ public class DungeonCreator : MonoBehaviour
 
         foreach(RoomNode roomNode in list)
         {
-            CreateFloor(roomNode);
+            var room = ProceduralPrimitives.Primitive.CreatePlaneGameObject(roomNode.width, roomNode.length, 2, 2);
+            room.transform.position = new Vector3(roomNode.topLeft.x + roomNode.width/2, 0, roomNode.topLeft.y + roomNode.length/2);
+            room.AddComponent<NavMeshSurface>();
         }
 
-        foreach(CorridorNode corridoNode in listOfCooridors)
+        foreach(CorridorNode corridorNode in listOfCooridors)
         {
-            CreateFloor(corridoNode);
+            //CreateFloor(corridorNode);
+            corridorNode.CalculateLength();
+            corridorNode.CalulateWidth();
+            var corridor = ProceduralPrimitives.Primitive.CreatePlaneGameObject(corridorNode.width, corridorNode.length, 1, 1);
+            corridor.transform.position = new Vector3(corridorNode.topLeft.x + corridorNode.width / 2, 0, corridorNode.topLeft.y + corridorNode.length / 2);
+            corridor.AddComponent<NavMeshSurface>();
         }
 
+        var surfaces = (NavMeshSurface[])FindObjectsOfType(typeof(NavMeshSurface));
+
+        surfaces[0].BuildNavMesh();
 
 
         RoomNode firstRoom = list[0];
-        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 5, firstRoom.topLeft.y + firstRoom.length / 2);
-        Vector3 enemyPos = new Vector3(1, 5, firstRoom.topLeft.y + 0);
         int playerHealthMax = 100;
+        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
+        Vector3 enemyPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
         Quaternion quaternion = new Quaternion();
         // Spawns a Player at the given coordinates (position, rotation).
         spawner.spawnPlayer(playerPos, quaternion, playerHealthMax);
@@ -110,6 +124,10 @@ public class DungeonCreator : MonoBehaviour
         dungeonFloor.transform.localScale = Vector3.one;
         dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
         dungeonFloor.GetComponent<MeshRenderer>().material = material;
+
+        dungeonFloor.AddComponent<NavMeshSurface>();
+
+
         // dungeonFloor.layer = 8;
         // dungeonFloor.AddComponent<MeshCollider>().sharedMesh = aimLayer;
     }

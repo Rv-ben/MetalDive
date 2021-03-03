@@ -19,4 +19,14 @@ public class CorridorNode : Node
     }
 
 
+    public void CalculateLength()
+    {
+        this.length = bottomRight.y - topLeft.y;
+    }
+
+    public void CalulateWidth()
+    {
+        this.width = bottomRight.x - topLeft.x;
+    }
+
 }
