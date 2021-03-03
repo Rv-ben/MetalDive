@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;  // LoadScene()
@@ -16,63 +18,21 @@ public class MainMenu : MonoBehaviour
 
     public TMP_Text progressText;
 
+    public int i = 0;
     /// <summary>
     /// Method called from on click event, waits for specified time
     /// to show loading canvas, then loads new scene
     /// </summary>
     public void PlayGame()
     {
-        // show loading canvas
-        //loadingCanvas.SetActive(true);
+        // show loading canvas with updating slider
+        DisplayLoadingCanvas();
 
-        //int next = SceneManager.GetActiveScene().buildIndex + 1;
 
-        // start coroutine to wait for specified time
-        StartCoroutine(LoadCanvas(waitTime));
-
-        
-        // Scene manager loads the following scene in queue (from Unity build settings)
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);   // ******************WORKS
+        // after waiting for specified time, load play game scene
+        Invoke("LoadNextScene", waitTime);
     }
-
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    IEnumerator LoadCanvas(float waitTime)
-    {
-        float progress = 0;
-        float count = 0;
-
-        for (float i = 0; i < waitTime; ++i)
-        {
-            // calculate progress 
-            progress = waitTime / (Mathf.Pow(waitTime, 2) / (i + 1));
-
-            // update slider values with new progress
-            this.UpdateSlider(progress);
-
-
-            // if progress at MAX possible value for slider, break
-            if (progress == 1)
-            {
-                Debug.Log("progress is 1");
-                count = progress;
-                break;
-            }
-
-            //yield return new WaitForSeconds(waitTime);
-
-
-            //yield return null;
-            //yield return new WaitForSeconds(time);
-        }
-        loadingCanvas.SetActive(true);
-        yield return new WaitForSeconds(waitTime); // **************************WORKS
-        //yield return new WaitUntil(() => count == 1);
-    }
-
-
+   
     /// <summary>   
     /// Method called from on click event 
     /// </summary>
@@ -89,17 +49,43 @@ public class MainMenu : MonoBehaviour
     /// <summary>
     /// update progress bar value and text
     /// </summary>
-    public void UpdateSlider(float progress)
+    public void UpdateSlider()
     {
-
-        Debug.Log("updating slide with progress: " + progress);
+        Debug.Log("i: " + i);
+        // calculate progress 
+        float progress = 10 / (Mathf.Pow(10, 2) / (i + 1));
 
         // update slider value to new progress value
         progressBar.value = progress;
+
         // update slider text to new progress value as a percentage
-        progressText.text = progress * 100f + "%";
+        progressText.text = progress * 100f + "%";        
         
-        Debug.Log("progressBar value:text: " + progressBar.value + ":" + progressText.text);
+        Debug.Log("progressBar: " + progressBar.value + ":" + progressText.text);
+        i++;
+    }
+
+    /// <summary>
+    /// Activates loading canvas game object
+    /// side effect: invokes updateslider function after 1 second
+    /// </summary>
+    public void DisplayLoadingCanvas()
+    {
+        loadingCanvas.SetActive(true);
+
+        for (int i = 0; i < 10; ++i)
+        {
+            Invoke("UpdateSlider", 1.0f);
+        }
+    }
+
+    /// <summary>
+    /// Function invoked from PlayGame function after <waitTime> seconds 
+    /// </summary>
+    public void LoadNextScene()
+    {
+        // Scene manager loads the following scene in queue (from Unity build settings)
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }
