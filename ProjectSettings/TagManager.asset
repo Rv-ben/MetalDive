@@ -11,6 +11,12 @@ TagManager:
   - Health
   - EnemyShoot
   - PlayerShoot
+  - Pellet
+  - AR
+  - Mini
+  - Pistol
+  - Rocket
+  - Sound
   layers:
   - Default
   - TransparentFX

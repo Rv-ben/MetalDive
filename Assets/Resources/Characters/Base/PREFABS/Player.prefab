@@ -2302,6 +2302,22 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8190751809797098762
 GameObject:
+  animator: {fileID: 4191476557958493583}
+  shooter: {fileID: 7458209201009177923}
+  mover: {fileID: 7458209201009177922}
+  aimLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  pellet: {fileID: 5400907408949093505, guid: 8620e634e1e9f1143a4f9bef836ea1f0, type: 3}
+  pistolBullet: {fileID: 6910468197738857177, guid: 9ddd06b3a16347a4c8153b91c53d86ff, type: 3}
+  ARBullet: {fileID: 1324474603367395274, guid: 7bf4d270b84ac7c4a97cb8aceadd50fb, type: 3}
+  miniBullet: {fileID: 6762415419842610594, guid: a82390cb3775a574185bef39435dad51, type: 3}
+  rocket: {fileID: 4927126803874607142, guid: 9f4de8628cde71c4ab0779f591a82676, type: 3}
+  waves: {fileID: 3543719186205735482, guid: 7c3b5fd708f7c1049818642b2bcd5d5a, type: 3}
+  ammo: {fileID: 0}
+  armed: 0
+--- !u!136 &7458209201009177932
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2361,6 +2377,17 @@ Canvas:
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &8190751809797098764
+  m_GameObject: {fileID: 7458209201009177935}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: 0
+  m_AngularDrag: 5
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &7458209201009177923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2384,6 +2411,11 @@ MonoBehaviour:
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
 --- !u!114 &8190751809797098763
+  ejector: {fileID: 7728608043356851106}
+  timeToShoot: 0
+  guitar: 0
+  bullet: {fileID: 0}
+--- !u!114 &7458209201009177922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
