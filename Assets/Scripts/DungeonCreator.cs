@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using ProceduralPrimitives;
 
 /// <summary>
 /// Class <c>DungeonCreator</c>
@@ -47,20 +48,24 @@ public class DungeonCreator : MonoBehaviour
 
         foreach(RoomNode roomNode in list)
         {
-            CreateFloor(roomNode);
+            var room = ProceduralPrimitives.Primitive.CreatePlaneGameObject(roomNode.width, roomNode.length, 2, 2);
+            room.transform.position = new Vector3(roomNode.topLeft.x + roomNode.width/2, 0, roomNode.topLeft.y + roomNode.length/2);
+            room.AddComponent<NavMeshSurface>();
         }
 
-        foreach(CorridorNode corridoNode in listOfCooridors)
+        foreach(CorridorNode corridorNode in listOfCooridors)
         {
-            CreateFloor(corridoNode);
+            //CreateFloor(corridorNode);
+            corridorNode.CalculateLength();
+            corridorNode.CalulateWidth();
+            var corridor = ProceduralPrimitives.Primitive.CreatePlaneGameObject(corridorNode.width, corridorNode.length, 1, 1);
+            corridor.transform.position = new Vector3(corridorNode.topLeft.x + corridorNode.width / 2, 0, corridorNode.topLeft.y + corridorNode.length / 2);
+            corridor.AddComponent<NavMeshSurface>();
         }
 
         var surfaces = (NavMeshSurface[])FindObjectsOfType(typeof(NavMeshSurface));
 
-        for (var i = 0; i < surfaces.Length; i++)
-        {
-            surfaces[i].BuildNavMesh();
-        }
+        surfaces[0].BuildNavMesh();
 
 
         RoomNode firstRoom = list[0];
