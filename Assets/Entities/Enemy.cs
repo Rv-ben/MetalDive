@@ -25,7 +25,6 @@ public class Enemy : MonoBehaviour
         setEnemyHealthMax(maxHealth);   // ------------------------------ delete after testing
 
         capsuleCollider = GetComponent<CapsuleCollider>();
-        capsuleCollider.radius = 0.1f;
 
         enemyCanvas = GameObject.Find("EnemyCanvas");
 
@@ -81,7 +80,27 @@ public class Enemy : MonoBehaviour
     /// <param name="other">Object that touched enemy collider.</param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PlayerShoot"))
+        if (other.CompareTag("Pistol"))
+        {
+            setEnemyCurrentHealth(-10);
+        }
+        else if (other.CompareTag("AR"))
+        {
+            setEnemyCurrentHealth(-5);
+        }
+        else if (other.CompareTag("Mini"))
+        {
+            setEnemyCurrentHealth(-2);
+        }
+        else if (other.CompareTag("Pellet"))
+        {
+            setEnemyCurrentHealth(-5);
+        }
+        else if (other.CompareTag("Rocket"))
+        {
+            setEnemyCurrentHealth(-30);
+        }
+        else if (other.CompareTag("Sound"))
         {
             setEnemyCurrentHealth(-10);
         }

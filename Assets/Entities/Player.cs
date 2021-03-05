@@ -100,8 +100,29 @@ public class Player : MonoBehaviour
     /// <param name="other">Collide object to distinguish what function needed to be called.</param>
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.tag + " is coming!");
         // update current health value based on collider object.
-        if (other.CompareTag("EnemyShoot"))
+        if (other.CompareTag("Pistol"))
+        {
+            setPlayerCurrentHealth(-10);
+        }
+        else if(other.CompareTag("AR"))
+        {
+            setPlayerCurrentHealth(-5);
+        }
+        else if (other.CompareTag("Mini"))
+        {
+            setPlayerCurrentHealth(-2);
+        }
+        else if (other.CompareTag("Pellet"))
+        {
+            setPlayerCurrentHealth(-5);
+        }
+        else if (other.CompareTag("Rocket"))
+        {
+            setPlayerCurrentHealth(-30);
+        }
+        else if (other.CompareTag("Sound"))
         {
             setPlayerCurrentHealth(-10);
         }

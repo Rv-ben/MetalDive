@@ -46,8 +46,6 @@ public class EnemyMovement : MonoBehaviour
 
         targetPoint = targetObject.transform;
 
-        agent.radius = 0.1f;
-
         // No brake when near obstacle
         agent.autoBraking = false;
 
