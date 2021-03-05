@@ -29,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
     // Attach the Shooting mechanism.
     [SerializeField] public GenericShooting shooter;
 
-    public GameObject bullet;
+    [SerializeField] public GameObject bullet;
 
     /// <summary>
     /// Initialize all the variables with objects upon game starts.
@@ -182,7 +182,7 @@ public class EnemyMovement : MonoBehaviour
             if (shooter.shotReady())
             {
                 // Shoot!  Pass in the animator.
-                shooter.Shoot(anim, bullet);
+                shooter.Shoot(anim, Instantiate(bullet));
             }
         }
 
