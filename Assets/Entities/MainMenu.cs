@@ -9,6 +9,14 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+
+    private int i = 0;
+
+    // storing string values of functions to be used in Invoke call
+    private readonly string LoadSceneFunc = nameof(LoadNextScene);
+
+    private readonly string UpdateSliderFunc = nameof(UpdateSlider);
+
     // specified time from Unity
     [SerializeField] private float waitTime;
 
@@ -18,7 +26,6 @@ public class MainMenu : MonoBehaviour
 
     public TMP_Text progressText;
 
-    public int i = 0;
     /// <summary>
     /// Method called from on click event, waits for specified time
     /// to show loading canvas, then loads new scene
@@ -30,7 +37,7 @@ public class MainMenu : MonoBehaviour
 
 
         // after waiting for specified time, load play game scene
-        Invoke("LoadNextScene", waitTime);
+        Invoke(LoadSceneFunc, waitTime);
     }
    
     /// <summary>   
@@ -73,9 +80,9 @@ public class MainMenu : MonoBehaviour
     {
         loadingCanvas.SetActive(true);
 
-        for (int i = 0; i < 10; ++i)
+        for (int j = 0; j < 10; ++j)
         {
-            Invoke("UpdateSlider", 1.0f);
+            Invoke(UpdateSliderFunc, 1.0f);
         }
     }
 
