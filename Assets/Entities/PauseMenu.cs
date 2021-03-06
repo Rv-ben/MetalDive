@@ -12,14 +12,18 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] public GameObject ConfirmationUI;
 
-    public bool isPaused = false;
+    public static bool isPaused = false;
 
     // Update is called once per frame
     void Update()
     {
+        // if ESC is pressed
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused == true)
+            Debug.Log("Escape key pressed!!!!!!!!");
+            Debug.Log("isPaused:" + isPaused.ToString());
+
+            if (isPaused == false)
             {
                 //pause
                 PauseGame();
@@ -39,10 +43,11 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     public void PauseGame()
     {
-        Debug.Log("pausing");
+        isPaused = true;
+        Debug.Log("game is currently pause");
 
-        PauseMenuUI.SetActive(true);
-        // 3 options
+        // TODO: logic to save current state and pause time
+        Time.timeScale = 0f;
     }
 
     /// <summary>
@@ -51,8 +56,9 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         Debug.Log("resuming");
-        PauseMenuUI.SetActive(false);
-
+        isPaused = false;
+        //PauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
         
     }
 
@@ -62,9 +68,9 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         // prompt confirmation
-        ConfirmationUI.SetActive(true);
+        //ConfirmationUI.SetActive(true);
 
-        Debug.Log("Exiting to desktop from pause menu");
+        Debug.Log("Quiting game from pause menu");
     }
 
     /// <summary>
@@ -73,7 +79,7 @@ public class PauseMenu : MonoBehaviour
     public void ExitToDesktop()
     {
         // prompt confirmation
-        ConfirmationUI.SetActive(true);
+        //ConfirmationUI.SetActive(true);
 
 
         Debug.Log("Exiting to desktop from pause menu");
