@@ -26,6 +26,8 @@ public class DungeonCreator : MonoBehaviour
     // Spawns Prefab Entities.
     [SerializeField] public EntitySpawner spawner;
 
+    //[SerializeField] public ObjectSpawner objectSpawner;
+
     /// <summary>
     /// method <c>Start</c>
     /// Starts the creation of a dungeon
@@ -77,6 +79,15 @@ public class DungeonCreator : MonoBehaviour
         var surfaces = (NavMeshSurface[])FindObjectsOfType(typeof(NavMeshSurface));
 
         surfaces[0].BuildNavMesh();
+
+
+
+
+        var objectSpawner = new MapObjectSpawner();
+        var pos = new Vector2(firstRoom.topLeft.x + firstRoom.width, firstRoom.topLeft.y + firstRoom.length);
+
+        var objToSpawn = objectSpawner.CreateSpawnableMapObject(pos, MapAssetEnum.Bitcoin);
+        objToSpawn.Spawn();
     }
 
     public void SpawnEnemies(List<RoomNode> rooms)
