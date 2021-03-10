@@ -20,9 +20,6 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void Move(Animator animator)
     {
-
-        // Tells the Animator you're not firing, you're moving, which cancels out the Firing animation.  Can be improved later.
-        animator.SetBool("Firing", false);
         // Create an infinte-distance Ray from the Main Character to the Mouse's position and beyond.
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         // Check if an infinitely-long Ray generated from the Mouse to the character intersects with a collider on the aimLayer mask.
