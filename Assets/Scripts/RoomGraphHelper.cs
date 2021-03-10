@@ -14,9 +14,9 @@ public class RoomGraphHelper
     public float GetLowerBound(float position1, float position2)
     {
         if (position1 >= position2)
-            return position2;
-        else
             return position1;
+        else
+            return position2;
 
     }
 

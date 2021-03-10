@@ -1,11 +1,11 @@
 fileFormatVersion: 2
 guid: 860756d8db5d30c429b26c21fbf1a966
 ModelImporter:
-  serializedVersion: 20101
+  serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Pistol Hit Reaction
+    second: Pistol Shoot Reaction
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,7 +35,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Pistol Hit Reaction
+      name: Pistol Shoot Reaction
       takeName: mixamo.com
       internalID: 0
       firstFrame: 32
@@ -878,6 +878,7 @@ ModelImporter:
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

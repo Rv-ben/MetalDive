@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using System;
+using ProceduralPrimitives;
 
 /// <summary>
 /// Class <c>DungeonCreator</c>
@@ -18,6 +20,8 @@ public class DungeonCreator : MonoBehaviour
     public Material material;
 
     public Mesh aimLayer;
+
+    public NavMeshSurface surface;
 
     // Spawns Prefab Entities.
     [SerializeField] public EntitySpawner spawner;
@@ -44,68 +48,48 @@ public class DungeonCreator : MonoBehaviour
 
         foreach(RoomNode roomNode in list)
         {
-            CreateFloor(roomNode);
+            var room = ProceduralPrimitives.Primitive.CreatePlaneGameObject(roomNode.width, roomNode.length, 2, 2);
+            room.transform.position = new Vector3(roomNode.topLeft.x + roomNode.width/2, 0, roomNode.topLeft.y + roomNode.length/2);
+            room.AddComponent<NavMeshSurface>();
         }
 
-        foreach(CorridorNode corridoNode in listOfCooridors)
+        foreach(CorridorNode corridorNode in listOfCooridors)
         {
-            CreateFloor(corridoNode);
+            //CreateFloor(corridorNode);
+            corridorNode.CalculateLength();
+            corridorNode.CalulateWidth();
+            var corridor = ProceduralPrimitives.Primitive.CreatePlaneGameObject(corridorNode.width, corridorNode.length, 1, 1);
+            corridor.transform.position = new Vector3(corridorNode.topLeft.x + corridorNode.width / 2, 0, corridorNode.topLeft.y + corridorNode.length / 2);
+            corridor.AddComponent<NavMeshSurface>();
         }
-
-
 
         RoomNode firstRoom = list[0];
-        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 5, firstRoom.topLeft.y + firstRoom.length / 2);
-        Quaternion quaternion = new Quaternion();
+        int playerHealthMax = 100;
+        Vector3 playerPos = new Vector3(firstRoom.topLeft.x + firstRoom.width / 2, 0, firstRoom.topLeft.y + firstRoom.length / 2);
         // Spawns a Player at the given coordinates (position, rotation).
-        spawner.spawnPlayer(playerPos, quaternion);
-        // Spawns an Enemy at the given coordinates (position, rotation).
-        // spawner.spawnEnemy(playerPos, quaternion);
-        
+        Quaternion quaternion = new Quaternion();
+        spawner.spawnPlayer(playerPos, quaternion, playerHealthMax);
+
+        SpawnEnemies(list);
+
+        // Spawn an empty object that enemy follows when randomly walking.
+
+        var surfaces = (NavMeshSurface[])FindObjectsOfType(typeof(NavMeshSurface));
+
+        surfaces[0].BuildNavMesh();
     }
 
-    private void CreateFloor(Node node)
+    public void SpawnEnemies(List<RoomNode> rooms)
     {
-
-        Vector2 topLeft = node.topLeft;
-        Vector2 bottomRight = node.bottomRight;
-
-        Vector3 topLeftV = new Vector3(topLeft.x, 5, topLeft.y);
-        Vector3 topRightV = new Vector3(bottomRight.x, 5, topLeft.y);
-        Vector3 bottomRightV = new Vector3(bottomRight.x, 5, bottomRight.y);
-        Vector3 bottomLeftV = new Vector3(topLeft.x, 5, bottomRight.y);
-
-        Vector3[] vertices = new Vector3[]
+        Quaternion quaternion = new Quaternion();
+        for (var i = 1; i < rooms.Count; i++)
         {
-            topLeftV,
-            topRightV,
-            bottomLeftV,
-            bottomRightV
-        };
-
-        Vector2[] uvs = new Vector2[vertices.Length];
-        for (int i = 0; i < uvs.Length; i++)
-        {
-            uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
+            Vector3 enemyPos = new Vector3(rooms[i].topLeft.x + rooms[i].width / 2, 0, rooms[i].topLeft.y + rooms[i].length / 2);
+            float walkingRange = 10f;
+            int enemyHealthMax = 100;
+            // Spawns an Enemy at the given coordinates (position, rotation).
+            spawner.spawnEnemy(enemyPos, quaternion, walkingRange, enemyHealthMax);
+            spawner.spawnEnemyTarget(enemyPos);
         }
-
-        int[] triangles = new int[]
-        {
-            0,1,2,2,1,3
-        };
-
-        Mesh mesh = new Mesh();
-        mesh.vertices = vertices;
-        mesh.uv = uvs;
-        mesh.triangles = triangles;
-
-        GameObject dungeonFloor = new GameObject("RoomFloor"+topLeft, typeof(MeshFilter), typeof(MeshRenderer));
-
-        dungeonFloor.transform.position = Vector3.zero;
-        dungeonFloor.transform.localScale = Vector3.one;
-        dungeonFloor.GetComponent<MeshFilter>().mesh = mesh;
-        dungeonFloor.GetComponent<MeshRenderer>().material = material;
-        // dungeonFloor.layer = 8;
-        // dungeonFloor.AddComponent<MeshCollider>().sharedMesh = aimLayer;
     }
 }

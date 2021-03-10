@@ -8,16 +8,13 @@ using UnityEngine.AI;
 /// </summary>
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] float randArea = 10f;
+    private float randArea = 5f;
 
-    [SerializeField] float waitingTime = 2f;
+    private float waitingTime = 2f;
 
-    [SerializeField] float countWaitingTime = 0f;
+    private float countWaitingTime = 0f;
 
-    [SerializeField] float idlingDistanceFollowing = 2f;
-
-    // Display remain distance in Inspector
-    [SerializeField] float dispRemainDistance = 0f;
+    private float idlingDistanceFollowing = 0.5f;
 
     public static Transform targetPoint;
 
@@ -29,6 +26,11 @@ public class EnemyMovement : MonoBehaviour
 
     private Vector3 positionVector;
 
+    // Attach the Shooting mechanism.
+    [SerializeField] public GenericShooting shooter;
+
+    [SerializeField] public GameObject bullet;
+
     /// <summary>
     /// Initialize all the variables with objects upon game starts.
     /// </summary>
@@ -38,11 +40,11 @@ public class EnemyMovement : MonoBehaviour
 
         anim = GetComponent<Animator>();
 
+        shooter = GetComponent<GenericShooting>();
+
         GameObject targetObject = GameObject.Find("Target");
 
         targetPoint = targetObject.transform;
-
-        agent.radius = 0.1f;
 
         // No brake when near obstacle
         agent.autoBraking = false;
@@ -54,41 +56,18 @@ public class EnemyMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Enemy starts following player once player touches trigger collider
+    /// Set the enemy's range of random walking distance.
     /// </summary>
-    /// <param name="collider">object that touched this collider</param>
-    public void FollowPlayer(Collider collider)
+    /// <param name="walkingRange">Range of distance </param>
+    public void SetMoveRange(float walkingRange)
     {
-        Debug.Log("Start following");
-        agent.isStopped = false;
-
-        if (collider.name.Equals("Player")) {
-
-            // Rotates enemy before changing direction
-            Quaternion rotation = GetQuaternion(collider.transform.position - transform.position, Vector3.zero);
-
-            transform.rotation = rotation;
-
-            // Set player's position as a next target
-            agent.destination = collider.transform.position;
-
-            // Displaying remain distance in Inspector
-            dispRemainDistance = agent.remainingDistance;
-
-            if (agent.remainingDistance < idlingDistanceFollowing)
-            {
-                IdlePoint();
-            }
-
-            // Blend Idle and Walk animation 
-            anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
-        }
+        this.randArea = walkingRange;
     }
 
     /// <summary>
     /// Generate the next position and move
     /// </summary>
-    void MoveToNextTarget()
+    public void MoveToNextTarget()
     {
         float position_X;
         float position_Z;
@@ -126,6 +105,9 @@ public class EnemyMovement : MonoBehaviour
         transform.rotation = rotation;
 
         agent.destination = positionVector;
+
+        anim.Play("Blend Tree");
+
     }
 
     /// <summary>
@@ -138,14 +120,18 @@ public class EnemyMovement : MonoBehaviour
         return Quaternion.LookRotation(distanceVector3, vector3);
     }
 
+
     /// <summary>
-    /// Enemy idle behavior.
+    /// Idle behavior.
     /// </summary>
-    void Update()
+    public void Idle(Animator anim)
     {
+        this.anim = anim;
+
         // Enemy idle while waiting for the next point and the remaining distance is less than 0.5
-        if(!agent.pathPending && agent.remainingDistance < minimumWalk) { 
-        //if (agent.remainingDistance == 0) {
+        if (!agent.pathPending && agent.remainingDistance < minimumWalk)
+        {
+            //if (agent.remainingDistance == 0) {
             IdlePoint();
         }
 
@@ -167,5 +153,51 @@ public class EnemyMovement : MonoBehaviour
             countWaitingTime = 0;
         }
     }
-    
+
+    /// <summary>
+    /// Enemy starts following player once player touches trigger collider
+    /// </summary>
+    /// <param name="collider">object that touched this collider</param>
+    public void FollowPlayer(Collider collider)
+    {
+        Debug.Log("Start following");
+        agent.isStopped = false;
+
+        if (collider.tag.Equals("Player"))
+        {
+
+            anim.Play("Pistol Walk");
+
+            // Rotates enemy before changing direction
+            Quaternion rotation = GetQuaternion(collider.transform.position - transform.position, Vector3.zero);
+
+            transform.rotation = rotation;
+
+            // Set player's position as a next target
+            agent.destination = GetComponent<Collider>().transform.position;
+
+            // If the Enemy has a shot ready.
+            if (shooter.shotReady())
+            {
+                // Shoot!  Pass in the animator.
+                shooter.Shoot(anim, Instantiate(bullet));
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// This Update Function will run all code within every frame of the game.
+    /// Determines enemy behavior whether to stay idle or walk.
+    /// </summary>
+    void Update() 
+    {
+        if (agent.remainingDistance < idlingDistanceFollowing)
+        {
+            IdlePoint();
+        }
+        // Blend Idle and Walk animation 
+        anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
+    }
+
 }
