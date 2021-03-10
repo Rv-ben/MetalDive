@@ -80,10 +80,32 @@ public class MainMenu : MonoBehaviour
     {
         loadingCanvas.SetActive(true);
 
-        for (int j = 0; j < 10; ++j)
+        Invoke(UpdateSliderFunc, 0.5f);
+
+        Invoke(UpdateSliderFunc, 1.5f);
+
+        Invoke(UpdateSliderFunc, 2.5f);
+
+        Invoke(UpdateSliderFunc, 3.5f);
+
+        Invoke(UpdateSliderFunc, 4.5f);
+
+        Invoke(UpdateSliderFunc, 5.5f);
+
+        Invoke(UpdateSliderFunc, 6.5f);
+
+        Invoke(UpdateSliderFunc, 7.5f);
+
+        Invoke(UpdateSliderFunc, 8.5f);
+
+        Invoke(UpdateSliderFunc, 9.5f);
+
+
+        /*for (int j = 0; j < 10; ++j)
         {
-            Invoke(UpdateSliderFunc, 1.0f);
-        }
+            float time = (i+1)*0.5f;
+            Invoke(UpdateSliderFunc, time);
+        }*/
     }
 
     /// <summary>
