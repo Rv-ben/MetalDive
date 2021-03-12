@@ -7,6 +7,13 @@ TagManager:
   - Environment
   - Obstacles
   - Enemy
+  - Health
+  - Pellet
+  - AR
+  - Mini
+  - Pistol
+  - Rocket
+  - Sound
   layers:
   - Default
   - TransparentFX
