@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// 
+/// Class <c>PauseMenu</c>
 /// </summary>
 public class PauseMenu : MonoBehaviour
 {
@@ -21,79 +21,60 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Escape key pressed");
-            Debug.Log("isPaused:" + isPaused.ToString());
-            isPaused = !isPaused;
+
+            Debug.Log("isPaused: " + isPaused.ToString());
+            isPaused = true;
+
             if (isPaused)
             {
-                //pause
-                Debug.Log("isPaused is true");
                 PauseGame();
             }
         }
-
-        
     }
 
     /// <summary>
-    /// 
+    /// Activates Pause Menu Game object and sets timeScale at 0
     /// </summary>
     public void PauseGame()
     {
-        Debug.Log("game is currently pause");
-
-        // TODO: logic to save current state and pause time
+        Debug.Log("game is currently paused");
+        PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }
 
     /// <summary>
-    /// 
+    /// Resumes game by setting timeScale to 1 and deactivates menus
     /// </summary>
     public void ResumeGame()
     {
         Debug.Log("resuming");
         isPaused = false;
-        //PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        
+        PauseMenuUI.SetActive(false);
+        ConfirmationUI.SetActive(false);
     }
 
+    
     /// <summary>
-    /// 
+    /// loads a confirmation canvas
     /// </summary>
     public void QuitGame()
     {
         // prompt confirmation
-        //ConfirmationUI.SetActive(true);
+        ConfirmationUI.SetActive(true);
 
         Debug.Log("Quiting game from pause menu");
     }
 
     /// <summary>
-    /// 
+    /// Prompts confirmation to exit and closes application
     /// </summary>
     public void ExitToDesktop()
     {
         // prompt confirmation
-        //ConfirmationUI.SetActive(true);
-
+        ConfirmationUI.SetActive(true);
 
         Debug.Log("Exiting to desktop from pause menu");
         Application.Quit();
-    }
-
-    public bool ConfirmExit()
-    {
-
-
-        // keep no on first button, have user move to yes to quit
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            return false;
-        }
-
-        else
-        {
-            return true;
-        }
     }
 }
