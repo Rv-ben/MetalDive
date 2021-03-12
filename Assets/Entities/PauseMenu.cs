@@ -20,18 +20,14 @@ public class PauseMenu : MonoBehaviour
         // if ESC is pressed
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Escape key pressed!!!!!!!!");
+            Debug.Log("Escape key pressed");
             Debug.Log("isPaused:" + isPaused.ToString());
-
-            if (isPaused == false)
+            isPaused = !isPaused;
+            if (isPaused)
             {
                 //pause
+                Debug.Log("isPaused is true");
                 PauseGame();
-            }
-            else
-            {
-                //resume
-                ResumeGame();
             }
         }
 
@@ -43,7 +39,6 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     public void PauseGame()
     {
-        isPaused = true;
         Debug.Log("game is currently pause");
 
         // TODO: logic to save current state and pause time
