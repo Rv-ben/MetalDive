@@ -80,14 +80,6 @@ public class DungeonCreator : MonoBehaviour
 
         surfaces[0].BuildNavMesh();
 
-
-
-
-        var objectSpawner = new MapObjectSpawner();
-        var pos = new Vector2(firstRoom.topLeft.x + firstRoom.width, firstRoom.topLeft.y + firstRoom.length);
-
-        var objToSpawn = objectSpawner.CreateSpawnableMapObject(pos, MapAssetEnum.Bitcoin);
-        objToSpawn.Spawn();
     }
 
     public void SpawnEnemies(List<RoomNode> rooms)
