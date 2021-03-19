@@ -21,9 +21,9 @@ public class EnemyTrigger : MonoBehaviour
     /// Enemy will follow once player touches collider.
     /// </summary>
     void Start() {
-        enemy = GetComponent<Enemy>();
-        sphereCollider = GetComponent<SphereCollider>();
-        sphereCollider.radius = 1.0f;
+        //enemy = GetComponent<Enemy>();
+        //sphereCollider = GetComponent<SphereCollider>();
+        //sphereCollider.radius = 1.0f;
     }
 
     /// <summary>

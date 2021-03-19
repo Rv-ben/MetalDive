@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
 {
 
     // The animator component.
-    public Animator animator;
-    public EnemyMovement mover;
+    //public Animator animator;
+    //public EnemyMovement mover;
     public Health health;
     public static Transform targetPoint;
     private CapsuleCollider capsuleCollider;
@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private int healthValue;
     private GameObject enemyCanvas;
     private Vector3 rotation;
+    public float walkingRange;
 
     /// <summary>
     /// Initialize all the variables with objects upon game starts.
@@ -44,6 +45,15 @@ public class Enemy : MonoBehaviour
         // Use localRotation to rotate only the enemyCanvas, not the Enemy(parent). 
         // Original enemyCanvas's rotation - enemy's rotation will keep the health bar horizontal on the screen.
         enemyCanvas.transform.localRotation = Quaternion.Euler(rotation - enemyQuaternion);
+    }
+
+    /// <summary>
+    /// Set the enemy's range of random walking distance.
+    /// </summary>
+    /// <param name="walkingRange">Range of distance </param>
+    public void SetMoveRange(float walkingRange)
+    {
+        this.walkingRange = walkingRange;
     }
 
     /// <summary>
