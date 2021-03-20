@@ -67,7 +67,7 @@ crashlytics-build.properties
 /[Aa]ssets/Metal textures pack.meta
 
 # Unity Editor Settings
-UserSettings/EditorUserSettings.asset
+/UserSettings/EditorUserSettings.asset
 
 # First Weapon Pack Ignore for now
 /[Aa]ssets/MobilityArts
