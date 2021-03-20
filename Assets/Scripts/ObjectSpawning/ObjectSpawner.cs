@@ -12,6 +12,8 @@ public class Spawner : MonoBehaviour
 
     GameObject[] mapAssetsPrefabs;
     readonly Dictionary<MapAssetEnum, GameObject> mapAssetsPrefabDict;
+    GameObject[] characterPrefabs;
+    readonly Dictionary<CharacterEnum, GameObject> characterPrefabDict;
 
     /// <summary>
     /// Method <c>MapObjectSpawner</c>
@@ -23,9 +25,14 @@ public class Spawner : MonoBehaviour
 
         // Get all the prefabs from Resources/Map Assets/Prefabs
         mapAssetsPrefabs = Resources.LoadAll<GameObject>("Map Assets/Prefabs");
+        // Get all character prefabs
+        characterPrefabs = Resources.LoadAll<GameObject>("Characters/Prefabs");
 
-        // Make an empty dictionary
+        // Make empty dictionaries
         mapAssetsPrefabDict = new Dictionary<MapAssetEnum, GameObject>();
+        
+        characterPrefabDict = new Dictionary<CharacterEnum, GameObject>();
+
 
         foreach (GameObject spawnableObject in mapAssetsPrefabs)
         {   
@@ -33,6 +40,12 @@ public class Spawner : MonoBehaviour
             var enumKey = (MapAssetEnum)Enum.Parse(typeof(MapAssetEnum), spawnableObject.name);
             // Add the enum as a key and the prefab to a dictionary
             mapAssetsPrefabDict.Add(enumKey, spawnableObject);
+        }
+
+        foreach (GameObject spawnableCharacter in characterPrefabs)
+        {
+            var enumKey = (CharacterEnum)Enum.Parse(typeof(CharacterEnum), spawnableCharacter.name);
+            characterPrefabDict.Add(enumKey, spawnableCharacter);
         }
     }
 
@@ -52,9 +65,20 @@ public class Spawner : MonoBehaviour
         return Instantiate(prefab, new Vector3(center.x, 0, center.y), new Quaternion());
     }
 
-    public GameObject SpawnCharater(Vector2 center, CharaterEnum type)
+    /// <summary>
+    /// Method <c>Spawn</c>
+    /// Spawns a character object
+    /// </summary>
+    /// <param name="center">Vector2 position</param>
+    /// <param name="type">CharacterEnum</param>
+    /// <returns></returns>
+    public GameObject SpawnCharacter(Vector2 center, CharacterEnum type)
     {
-        return null;
+        // Store prefab from Dictionary given key
+        var prefab = this.characterPrefabDict[type];
+
+        // Return the character prefab onto the game at the given position
+        return Instantiate(prefab, new Vector3(center.x, 0, center.y), new Quaternion());
     }
 }
 
@@ -70,7 +94,12 @@ public enum MapAssetEnum
     Bitcoin
 }
 
-public enum CharaterEnum
+/// <summary>
+/// Enum <c>CharacterEnum</c>
+/// Represents all the spawnable character objects
+/// </summary>
+public enum CharacterEnum
 {
-
+    Enemy,
+    Player
 }
