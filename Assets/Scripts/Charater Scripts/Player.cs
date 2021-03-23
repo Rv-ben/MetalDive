@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
         if (enableMovement)
         {
             // Moves the Player around.  Handles look rotation, too.
-            mover.Move(animator);
+            // mover.Move(animator);
         }
         // Testing Purposes - Handles the logic to set the Player's Weapon to the pistol when 1 is pressed, and prevents them from continually updating it every frame.
         if (Input.GetKeyDown(KeyCode.Alpha1) && armed == false)
