@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
         if (shooter.shotReady() && Input.GetMouseButton(0))
         {
             // Shoot the weapon (with the ammo's characteristics)
-            shooter.Shoot(animator, ammo);
+            // shooter.Shoot(animator, ammo);
             // If the weapon's ammo grows around the user:
             if (shooter.getGrows())
             {

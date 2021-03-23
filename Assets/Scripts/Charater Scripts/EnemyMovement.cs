@@ -180,7 +180,7 @@ public class EnemyMovement : MonoBehaviour
             if (shooter.shotReady())
             {
                 // Shoot!  Pass in the animator.
-                shooter.Shoot(anim, Instantiate(bullet));
+                // shooter.Shoot(anim, Instantiate(bullet));
             }
         }
 
