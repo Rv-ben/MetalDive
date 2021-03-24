@@ -7,8 +7,11 @@ using System;
 /// Enemy behavior
 /// </summary>
 public class EnemyMovement : MonoBehaviour
-{
-    private float walkingRange;
+{   
+    [Serializable] public class TriggerEvent : UnityEvent<Collider> { }
+    public float walkingRange;
+    public float walkingSpeed;
+
     private float waitingTime = 2f;
     private float countWaitingTime = 0f;
     private float idlingDistanceFollowing = 0.5f;
@@ -18,7 +21,6 @@ public class EnemyMovement : MonoBehaviour
     private Animator anim;
     private Vector3 positionVector;
     private GameObject targetObject;
-    [Serializable] public class TriggerEvent : UnityEvent<Collider>{}
     [SerializeField] private TriggerEvent _stay = new TriggerEvent();
 
     /// <summary>
@@ -30,10 +32,10 @@ public class EnemyMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         targetObject = GameObject.Find("Target");
         targetPoint = targetObject.transform;
-        this.walkingRange = GetComponent<Enemy>().walkingRange;
+        agent.speed = this.walkingSpeed;
+        anim.speed = this.walkingSpeed;
         agent.autoBraking = false;  // No brake when near obstacle
         agent.updateRotation = false;   // No rotation while walking
-        
         MoveToNextTarget();
     }
 
@@ -45,7 +47,6 @@ public class EnemyMovement : MonoBehaviour
     {
         if (agent.remainingDistance < idlingDistanceFollowing)
         {
-            Debug.Log("under Update()");
             IdlePoint();
         }
         // Blend Idle and Walk animation 
@@ -60,7 +61,6 @@ public class EnemyMovement : MonoBehaviour
     {
         agent.isStopped = true;
         countWaitingTime += Time.deltaTime;
-        Debug.Log("under IdlePoint() time: " + countWaitingTime);
         if (countWaitingTime > waitingTime)
         {
             MoveToNextTarget();
@@ -130,7 +130,6 @@ public class EnemyMovement : MonoBehaviour
     /// <param name="collider">object that touched this collider</param>
     public void FollowPlayer(Collider collider)
     {
-        Debug.Log("Start following");
         agent.isStopped = false;
 
         if (collider.tag.Equals("Player"))
