@@ -31,7 +31,13 @@ public class HealthSlider : MonoBehaviour
 
 public enum DamageEnum
 {
-    // create enums using prefab name.
+    Pistol = -10,
+    AR = -5,
+    Minigun = -2,
+    ShotPellet = -5,
+    Rocket = -30,
+    Field = -10,
+    Healthkit = 10
 }
 
 // Keep track of character's health value in HealthSlider class.
