@@ -5,10 +5,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(CapsuleCollider))]
 public class Enemy : MonoBehaviour
 {
-
-    // The animator component.
-    public Animator animator;
-    public EnemyMovement mover;
     public HealthSlider health;
     public static Transform targetPoint;
     private CapsuleCollider capsuleCollider;
