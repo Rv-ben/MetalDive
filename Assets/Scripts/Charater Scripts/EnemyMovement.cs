@@ -30,8 +30,7 @@ public class EnemyMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         targetObject = GameObject.Find("Target");
         targetPoint = targetObject.transform;
-        this.walkingRange = 10f;  // ------------------------------ delete after testing
-        //this.walkingRange = GetComponent<Enemy>().walkingRange;
+        this.walkingRange = GetComponent<Enemy>().walkingRange;
         agent.autoBraking = false;  // No brake when near obstacle
         agent.updateRotation = false;   // No rotation while walking
         
