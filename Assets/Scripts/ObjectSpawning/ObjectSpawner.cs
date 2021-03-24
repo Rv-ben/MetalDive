@@ -10,10 +10,11 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 
-    GameObject[] mapAssetsPrefabs;
+    GameObject[] mapAssetsPrefabs, characterPrefabs, weaponPrefabs, bulletPrefabs;
     readonly Dictionary<MapAssetEnum, GameObject> mapAssetsPrefabDict;
-    GameObject[] characterPrefabs;
     readonly Dictionary<CharacterEnum, GameObject> characterPrefabDict;
+    readonly Dictionary<WeaponEnum, GameObject> weaponPrefabDict;
+    readonly Dictionary<BulletEnum, GameObject> bulletPrefabDict;
 
     /// <summary>
     /// Method <c>MapObjectSpawner</c>
@@ -23,16 +24,17 @@ public class Spawner : MonoBehaviour
     {   
         // SetMapAssetsDict()
 
-        // Get all the prefabs from Resources/Map Assets/Prefabs
+        // Get all the prefabs from Resources: Map Assets, Characters, Weapons, and Bullets
         mapAssetsPrefabs = Resources.LoadAll<GameObject>("Map Assets/Prefabs");
-        // Get all character prefabs
         characterPrefabs = Resources.LoadAll<GameObject>("Characters/Prefabs");
+        weaponPrefabs = Resources.LoadAll<GameObject>("Weapons/Prefabs/WeaponPrefabs");
+        bulletPrefabs = Resources.LoadAll<GameObject>("Weapons/Prefabs/BulletPrefabs");
 
         // Make empty dictionaries
         mapAssetsPrefabDict = new Dictionary<MapAssetEnum, GameObject>();
-        
         characterPrefabDict = new Dictionary<CharacterEnum, GameObject>();
-
+        weaponPrefabDict = new Dictionary<WeaponEnum, GameObject>();
+        bulletPrefabDict = new Dictionary<BulletEnum, GameObject>();
 
         foreach (GameObject spawnableObject in mapAssetsPrefabs)
         {   
@@ -46,6 +48,18 @@ public class Spawner : MonoBehaviour
         {
             var enumKey = (CharacterEnum)Enum.Parse(typeof(CharacterEnum), spawnableCharacter.name);
             characterPrefabDict.Add(enumKey, spawnableCharacter);
+        }
+
+        foreach (GameObject spawnableWeapon in weaponPrefabs)
+        {
+            var enumKey = (WeaponEnum)Enum.Parse(typeof(WeaponEnum), spawnableWeapon.name);
+            weaponPrefabDict.Add(enumKey, spawnableWeapon);
+        }
+
+        foreach (GameObject spawnableBullet in bulletPrefabs)
+        {
+            var enumKey = (BulletEnum)Enum.Parse(typeof(BulletEnum), spawnableBullet.name);
+            bulletPrefabDict.Add(enumKey, spawnableBullet);
         }
     }
 
@@ -77,7 +91,39 @@ public class Spawner : MonoBehaviour
         // Store prefab from Dictionary given key
         var prefab = this.characterPrefabDict[type];
 
-        // Return the character prefab onto the game at the given position
+        // Return the correct character prefab
+        return Instantiate(prefab, new Vector3(center.x, 0, center.y), new Quaternion());
+    }
+
+    /// <summary>
+    /// Method <c>Spawn</c>
+    /// Spawns a weapon object
+    /// </summary>
+    /// <param name="center">Vector2 position</param>
+    /// <param name="type">WeaponEnum</param>
+    /// <returns></returns>
+    public GameObject SpawnWeapon(Vector2 center, WeaponEnum type)
+    {
+        // Find in prefab from the dictionary
+        var prefab = this.weaponPrefabDict[type];
+
+        // Return the correct weapon object
+        return Instantiate(prefab, new Vector3(center.x, 0, center.y), new Quaternion());
+    }
+
+    /// <summary>
+    /// Method <c>Spawn</c>
+    /// Spawns a bullet object
+    /// </summary>
+    /// <param name="center">Vector2 position</param>
+    /// <param name="type">BulletEnum</param>
+    /// <returns></returns>
+    public GameObject SpawnBullet(Vector2 center, BulletEnum type)
+    {
+        // Store prefab from Dictionary given key
+        var prefab = this.bulletPrefabDict[type];
+
+        // Return the correct bullet prefab
         return Instantiate(prefab, new Vector3(center.x, 0, center.y), new Quaternion());
     }
 }
@@ -102,4 +148,32 @@ public enum CharacterEnum
 {
     Enemy,
     Player
+}
+
+/// <summary>
+/// Enum <c>WeaponEnum</c>
+/// Represents all the spawnable weapon objects
+/// </summary>
+public enum WeaponEnum
+{
+    ElectricGuitar,
+    Launcher,
+    LightAR,
+    MiniRifle,
+    SciFiHandGun,
+    ShotGun
+}
+
+// <summary>
+/// Enum <c>BulletEnum</c>
+/// Represents all the spawnable bullet objects
+/// </summary>
+public enum BulletEnum
+{
+    AR,
+    Field,
+    MiniGun,
+    Pistol,
+    Rocket,
+    ShotPellet
 }
