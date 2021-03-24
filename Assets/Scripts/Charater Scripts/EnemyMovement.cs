@@ -131,7 +131,6 @@ public class EnemyMovement : MonoBehaviour
         // Enemy idle while waiting for the next point and the remaining distance is less than 0.5
         if (!agent.pathPending && agent.remainingDistance < minimumWalk)
         {
-            //if (agent.remainingDistance == 0) {
             IdlePoint();
         }
 
@@ -176,12 +175,7 @@ public class EnemyMovement : MonoBehaviour
             // Set player's position as a next target
             agent.destination = GetComponent<Collider>().transform.position;
 
-            // If the Enemy has a shot ready.
-            if (shooter.shotReady())
-            {
-                // Shoot!  Pass in the animator.
-                shooter.Shoot(anim, Instantiate(bullet));
-            }
+            
         }
 
     }
