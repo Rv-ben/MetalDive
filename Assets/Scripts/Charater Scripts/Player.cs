@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public Animator animator;
     public GenericShooting shooter;
     public PlayerMovement mover;
-    public Health health;
+    public HealthSlider health;
     public LayerMask aimLayer;
     private int maxHealth = 100;
     private int healthValue;

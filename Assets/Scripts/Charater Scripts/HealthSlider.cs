@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class HealthSlider : MonoBehaviour
 {
     public Slider slider;
     public Gradient gradient;
@@ -28,3 +28,10 @@ public class Health : MonoBehaviour
         image.color = gradient.Evaluate(slider.normalizedValue);
     }
 }
+
+public enum DamageEnum
+{
+    // create enums using prefab name.
+}
+
+// Keep track of character's health value in HealthSlider class.

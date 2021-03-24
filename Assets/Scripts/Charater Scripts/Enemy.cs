@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     // The animator component.
     public Animator animator;
     public EnemyMovement mover;
-    public Health health;
+    public HealthSlider health;
     public static Transform targetPoint;
     private CapsuleCollider capsuleCollider;
     private int maxHealth = 100;
