@@ -294,7 +294,7 @@ public class EntitySpawner : MonoBehaviour
         // Instantiates an Enemy at the position.
         GameObject ob = Instantiate(enemyPrefab, position, rot);
         // Setting enemy's range of random walking.
-        enemyPrefab.GetComponent<EnemyMovement>().SetMoveRange(walkingRange);
+        enemyPrefab.GetComponent<Enemy>().SetMoveRange(walkingRange);
         // Setting enemy's health max value.
         enemyPrefab.GetComponent<Enemy>().setEnemyHealthMax(healthMax);
     }
