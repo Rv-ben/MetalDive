@@ -6,6 +6,10 @@ public class HealthSlider : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image image;
+    public int healthValue;
+
+    // ADD LOGIC FOR UPDATING HEALTH VALUE
+
 
     /// <summary>
     /// Setter for health max value and character's starting value.
@@ -16,6 +20,7 @@ public class HealthSlider : MonoBehaviour
         slider.maxValue = max;
         slider.value = max;
         image.color = gradient.Evaluate(1f);
+        this.healthValue = max;
     }
 
     /// <summary>
@@ -26,6 +31,7 @@ public class HealthSlider : MonoBehaviour
     {
         slider.value = value;
         image.color = gradient.Evaluate(slider.normalizedValue);
+        this.healthValue = value;
     }
 }
 
@@ -40,4 +46,3 @@ public enum DamageEnum
     Healthkit = 10
 }
 
-// Keep track of character's health value in HealthSlider class.
