@@ -238,6 +238,7 @@ MonoBehaviour:
   ejector: {fileID: 253924020}
   timeToShoot: 0
   grows: 0
+  animator: {fileID: 0}
   bullet: {fileID: 0}
 --- !u!54 &173327861
 Rigidbody:
