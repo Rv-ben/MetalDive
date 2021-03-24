@@ -146,11 +146,9 @@ public class EnemyMovement : MonoBehaviour
 
             // Set player's position as a next target
             agent.destination = GetComponent<Collider>().transform.position;
+
         }
 
     }
 
-
-
 }
-

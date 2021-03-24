@@ -7,30 +7,32 @@ using UnityEngine;
 /// Class <c>MapObjectSpawner</c>
 /// Handles the spawing of MapAssets
 /// </summary>
-public class MapObjectSpawner 
+public class Spawner : MonoBehaviour
 {
 
-    GameObject[] mapAssets;
-    readonly Dictionary<MapAssetEnum, GameObject> prefabDict;
+    GameObject[] mapAssetsPrefabs;
+    readonly Dictionary<MapAssetEnum, GameObject> mapAssetsPrefabDict;
 
     /// <summary>
     /// Method <c>MapObjectSpawner</c>
     /// Populates prefab dictionary
     /// </summary>
-    public MapObjectSpawner()
-    {
+    public Spawner()
+    {   
+        // SetMapAssetsDict()
+
         // Get all the prefabs from Resources/Map Assets/Prefabs
-        mapAssets = Resources.LoadAll<GameObject>("Map Assets/Prefabs");
+        mapAssetsPrefabs = Resources.LoadAll<GameObject>("Map Assets/Prefabs");
 
         // Make an empty dictionary
-        prefabDict = new Dictionary<MapAssetEnum, GameObject>();
+        mapAssetsPrefabDict = new Dictionary<MapAssetEnum, GameObject>();
 
-        foreach (GameObject spawnableObject in mapAssets)
+        foreach (GameObject spawnableObject in mapAssetsPrefabs)
         {   
             // Parse the prefab name to a enum
             var enumKey = (MapAssetEnum)Enum.Parse(typeof(MapAssetEnum), spawnableObject.name);
             // Add the enum as a key and the prefab to a dictionary
-            prefabDict.Add(enumKey, spawnableObject);
+            mapAssetsPrefabDict.Add(enumKey, spawnableObject);
         }
     }
 
@@ -41,58 +43,19 @@ public class MapObjectSpawner
     /// <param name="center">Vector2 position</param>
     /// <param name="type">MapAssetEnum</param>
     /// <returns></returns>
-    public SpawnableMapObject CreateSpawnableMapObject(Vector2 center, MapAssetEnum type)
+    public GameObject SpawnMapAsset(Vector2 center, MapAssetEnum type)
     {
         // Find in prefab from the dictionary
-        var prefab = prefabDict[type];
+        var prefab = this.mapAssetsPrefabDict[type];
         
         // Return a the correct map asset object
-        return new SpawnableMapObject(center, prefab);
+        return Instantiate(prefab, new Vector3(center.x, 0, center.y), new Quaternion());
     }
-}
 
-/// <summary>
-/// Class <c>SpawnableMapObject</c>
-/// Represents a spawnable map asset
-/// </summary>
-public class SpawnableMapObject : MonoBehaviour
-{
-    GameObject prefab;
-    Vector2 center;
-    Vector2 size;
-
-    /// <summary>
-    /// Method <c>SpawnableMapObject</c>
-    /// Constructor
-    /// </summary>
-    /// <param name="center"></param>
-    /// <param name="prefab"></param>
-    public SpawnableMapObject(Vector2 center, GameObject prefab)
+    public GameObject SpawnCharater(Vector2 center, CharaterEnum type)
     {
-        this.center = center;
-        this.prefab = prefab;
+        return null;
     }
-
-    /// <summary>
-    /// Method <c>IsOverLap</c>
-    /// Checks if object is overlaping with another
-    /// </summary>
-    /// <param name="other"></param>
-    /// <returns>Bool</returns>
-    public bool IsOverlap(SpawnableMapObject other)
-    {
-        return true;
-    }
-
-    /// <summary>
-    /// Method <c>Spawn</c>
-    /// Instantiates a spawnable map asset
-    /// </summary>
-    public void Spawn()
-    {
-        Instantiate(prefab, new Vector3(this.center.x, 0, this.center.y), new Quaternion());
-    }
-
 }
 
 /// <summary>
@@ -105,4 +68,9 @@ public enum MapAssetEnum
     Barrier,
     Elevator,
     Bitcoin
+}
+
+public enum CharaterEnum
+{
+
 }

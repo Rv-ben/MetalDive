@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
     // Speed variable.  Adjustable in Editor thanks to SerializeField.
     public float movementSpeed = 0.5f;
     // Ensures we only aim at the ground and not, like, walls.
-    // [SerializeField] public LayerMask aimLayer;
     public LayerMask aimLayer;
+    [SerializeField] Animator animator;
 
     public PlayerMovement(LayerMask aimLayer) 
     {
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Handles the 3D movement of the Player Character.
     /// </summary>
-    public void Move(Animator animator)
+    public void Update()
     {
         // Create an infinte-distance Ray from the Main Character to the Mouse's position and beyond.
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
