@@ -1736,6 +1736,7 @@ MonoBehaviour:
   ejector: {fileID: 8434695241495782389}
   timeToShoot: 0
   grows: 0
+  animator: {fileID: 0}
   bullet: {fileID: 6910468197738857177, guid: 9ddd06b3a16347a4c8153b91c53d86ff, type: 3}
 --- !u!1 &2456812868375256313
 GameObject:
@@ -1773,7 +1774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 6443492463348131776}
-  walkingRange: 0
+  walkingRange: 5
+  walkingSpeed: 1
 --- !u!136 &2456812868375256317
 CapsuleCollider:
   m_ObjectHideFlags: 0
