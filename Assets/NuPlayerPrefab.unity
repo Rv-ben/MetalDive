@@ -239,7 +239,7 @@ MonoBehaviour:
   timeToShoot: 0
   grows: 0
   animator: {fileID: 173327863}
-  bullet: {fileID: 5400907408949093505, guid: 163f6b0838fc177418b21309b174b4af, type: 3}
+  bullet: {fileID: 6910468197738857177, guid: d6ee00be2ef1f6e46baf4f28ae54d761, type: 3}
 --- !u!54 &173327861
 Rigidbody:
   m_ObjectHideFlags: 0

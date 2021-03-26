@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingEnums : MonoBehaviour
+public enum ShootingEnums
 {
-    public enum Animations
-    {
-        Unarmed,
-        Pistol,
-        Guitar
-    }
+    Unarmed,
+    Pistol,
+    Guitar
 }
