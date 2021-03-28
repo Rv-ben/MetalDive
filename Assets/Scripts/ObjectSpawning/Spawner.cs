@@ -11,16 +11,16 @@ public class Spawner : MonoBehaviour
 {
 
     GameObject[] mapAssetsPrefabs, characterPrefabs, weaponPrefabs, bulletPrefabs;
-    readonly Dictionary<MapAssetEnum, GameObject> mapAssetsPrefabDict;
-    readonly Dictionary<CharacterEnum, GameObject> characterPrefabDict;
-    readonly Dictionary<WeaponEnum, GameObject> weaponPrefabDict;
-    readonly Dictionary<BulletEnum, GameObject> bulletPrefabDict;
+    Dictionary<MapAssetEnum, GameObject> mapAssetsPrefabDict;
+    Dictionary<CharacterEnum, GameObject> characterPrefabDict;
+    Dictionary<WeaponEnum, GameObject> weaponPrefabDict;
+    Dictionary<BulletEnum, GameObject> bulletPrefabDict;
 
     /// <summary>
     /// Method <c>MapObjectSpawner</c>
     /// Populates prefab dictionary
     /// </summary>
-    public Spawner()
+    public void Start()
     {   
         // SetMapAssetsDict()
 
@@ -128,52 +128,3 @@ public class Spawner : MonoBehaviour
     }
 }
 
-/// <summary>
-/// Enum <c>MapAssetEnum</c>
-/// Reprents all the spawnable map asset objects
-/// </summary>
-public enum MapAssetEnum
-{
-    Healthkit,
-    Barrier,
-    Elevator,
-    Bitcoin
-}
-
-/// <summary>
-/// Enum <c>CharacterEnum</c>
-/// Represents all the spawnable character objects
-/// </summary>
-public enum CharacterEnum
-{
-    Enemy,
-    Player
-}
-
-/// <summary>
-/// Enum <c>WeaponEnum</c>
-/// Represents all the spawnable weapon objects
-/// </summary>
-public enum WeaponEnum
-{
-    ElectricGuitar,
-    Launcher,
-    LightAR,
-    MiniRifle,
-    SciFiHandGun,
-    ShotGun
-}
-
-// <summary>
-/// Enum <c>BulletEnum</c>
-/// Represents all the spawnable bullet objects
-/// </summary>
-public enum BulletEnum
-{
-    AR,
-    Field,
-    MiniGun,
-    Pistol,
-    Rocket,
-    ShotPellet
-}
