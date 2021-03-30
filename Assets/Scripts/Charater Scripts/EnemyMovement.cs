@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
-using System;
+
+
 
 /// <summary>
 /// Enemy behavior
 /// </summary>
 public class EnemyMovement : MonoBehaviour
 {   
-    [Serializable] public class TriggerEvent : UnityEvent<Collider> { }
+    
     public float walkingRange;
     public float walkingSpeed;
 
@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
     private Animator anim;
     private Vector3 positionVector;
     private GameObject targetObject;
-    [SerializeField] private TriggerEvent _stay = new TriggerEvent();
+    
 
     /// <summary>
     /// Initialize all the variables with objects upon game starts.
@@ -111,20 +111,6 @@ public class EnemyMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Event function that triggers by colliding objects.
-    /// If passed collider is tagged as "Player", then enemy will start follow.
-    /// </summary>
-    /// <param name="other">object that touched this collider</param>
-    void OnTriggerStay(Collider other)
-    {
-
-        if (other.CompareTag("Player"))
-        {
-            _stay.Invoke(other);
-        }
-    }
-
-    /// <summary>
     /// Enemy starts following player once player touches trigger collider
     /// </summary>
     /// <param name="collider">object that touched this collider</param>
@@ -146,7 +132,5 @@ public class EnemyMovement : MonoBehaviour
             agent.destination = GetComponent<Collider>().transform.position;
 
         }
-
     }
-
 }
