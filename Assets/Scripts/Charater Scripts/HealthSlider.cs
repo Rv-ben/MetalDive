@@ -1,21 +1,55 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class HealthSlider : MonoBehaviour
 {
+    private GameObject enemyCanvas;
+    private Vector3 rotation;
+
     public Slider slider;
     public Gradient gradient;
     public Image image;
     public int healthValue;
 
-    // ADD LOGIC FOR UPDATING HEALTH VALUE
+    /// <summary>
+    /// Initialize all the variables with objects upon game starts.
+    /// </summary>
+    void Start()
+    {
+        SetMax(healthValue);
 
+        if (gameObject.tag == "Enemy")
+        {
+            enemyCanvas = transform.GetChild(3).gameObject;
+
+            // Getting enemyCanvas's rotation to use in Update().
+            rotation = enemyCanvas.transform.localRotation.eulerAngles;
+        }
+    }
+
+    /// <summary>
+    /// This Update Function will run all code within every frame of the game.
+    /// For Enemy: This function will keep updating the orientation of Enemy health bar to stay horizontal on the screen.
+    /// </summary>
+    void Update()
+    {
+        if (gameObject.tag == "Enemy")
+        {
+            // Get enemy's rotation.
+            Vector3 enemyQuaternion = gameObject.transform.localRotation.eulerAngles;
+
+            // Use localRotation to rotate only the enemyCanvas, not the Enemy(parent). 
+            // Original enemyCanvas's rotation - enemy's rotation will keep the health bar horizontal on the screen.
+            enemyCanvas.transform.localRotation = Quaternion.Euler(rotation - enemyQuaternion);
+        }
+    }
 
     /// <summary>
     /// Setter for health max value and character's starting value.
     /// </summary>
     /// <param name="max">Health max value in integer.</param>
-    public void SetMax(int max) 
+    public void SetMax(int max)
     {
         slider.maxValue = max;
         slider.value = max;
@@ -27,11 +61,44 @@ public class HealthSlider : MonoBehaviour
     /// Setter for character's current health value.
     /// </summary>
     /// <param name="value">Health changing amount in integer. Can be negative or positive.</param>
-    public void SetHealth(int value) 
+    public void SetHealth(int value)
     {
-        slider.value = value;
+        if (this.healthValue + value < 0)
+        {
+            this.healthValue = 0;
+        }
+        else if (this.healthValue + value > 100)
+        {
+            this.healthValue = 100;
+        }
+        else
+            this.healthValue += value;
+
+        slider.value = this.healthValue;
         image.color = gradient.Evaluate(slider.normalizedValue);
-        this.healthValue = value;
+    }
+    /// <summary>
+    /// This function will be called when a GameObject collides.
+    /// </summary>
+    /// <param name="other">Object that touched enemy collider.</param>
+    void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Environment"))
+        {
+            if (Enum.IsDefined(typeof(DamageEnum), other.tag))
+            {
+                DamageEnum enum_ = (DamageEnum)Enum.Parse(typeof(DamageEnum), other.tag);
+                if (enum_.ToString() == "Healthkit" && gameObject.tag == "Enemy")
+                {
+                    // DO NOTHING.
+                }
+                else 
+                {
+                    this.SetHealth((int)enum_);
+                }
+                
+            }
+        }
     }
 }
 
