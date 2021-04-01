@@ -1,11 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PrefabEnums
-{
-
-}
 /// <summary>
 /// Enum <c>MapAssetEnum</c>
 /// Reprents all the spawnable map asset objects

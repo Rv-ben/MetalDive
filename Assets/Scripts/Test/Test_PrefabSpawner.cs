@@ -21,8 +21,8 @@ public class Test_PrefabSpawner : MonoBehaviour
         spawner.SpawnWeapon(new Vector2(1, 2), WeaponEnum.ShotGun);
 
 
-        //spawner.SpawnCharacter(new Vector2(0, 1), CharacterEnum.Enemy);
-        //spawner.SpawnCharacter(new Vector2(1, 1), CharacterEnum.Player);
+        spawner.SpawnCharacter(new Vector2(0, 1), CharacterEnum.Enemy);
+        spawner.SpawnCharacter(new Vector2(1, 1), CharacterEnum.Player);
 
 
         spawner.SpawnMapAsset(new Vector2(2, 0), MapAssetEnum.Bitcoin);
