@@ -11,14 +11,13 @@ public class HealthSlider : MonoBehaviour
     public Gradient gradient;
     public Image image;
     public int healthValue;
+    public int maxHealth;
 
     /// <summary>
     /// Initialize all the variables with objects upon game starts.
     /// </summary>
     void Start()
     {
-        SetMax(healthValue);
-
         if (gameObject.tag == "Enemy")
         {
             enemyCanvas = transform.GetChild(3).gameObject;
@@ -55,6 +54,7 @@ public class HealthSlider : MonoBehaviour
         slider.value = max;
         image.color = gradient.Evaluate(1f);
         this.healthValue = max;
+        this.maxHealth = max;
     }
 
     /// <summary>
@@ -67,9 +67,9 @@ public class HealthSlider : MonoBehaviour
         {
             this.healthValue = 0;
         }
-        else if (this.healthValue + value > 100)
+        else if (this.healthValue + value > maxHealth)
         {
-            this.healthValue = 100;
+            this.healthValue = maxHealth;
         }
         else
             this.healthValue += value;
@@ -85,24 +85,19 @@ public class HealthSlider : MonoBehaviour
     {
         if (!other.CompareTag("Environment"))
         {
-            if (Enum.IsDefined(typeof(DamageEnum), other.tag))
+            if (Enum.IsDefined(typeof(HealthEnum), other.tag))
             {
-                DamageEnum enum_ = (DamageEnum)Enum.Parse(typeof(DamageEnum), other.tag);
-                if (enum_.ToString() == "Healthkit" && gameObject.tag == "Enemy")
-                {
-                    // DO NOTHING.
-                }
-                else 
+                HealthEnum enum_ = (HealthEnum)Enum.Parse(typeof(HealthEnum), other.tag);
+                if (enum_.ToString() == "Healthkit" || gameObject.tag == "Enemy")
                 {
                     this.SetHealth((int)enum_);
                 }
-                
             }
         }
     }
 }
 
-public enum DamageEnum
+public enum HealthEnum
 {
     Pistol = -10,
     AR = -5,
