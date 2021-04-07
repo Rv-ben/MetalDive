@@ -70,12 +70,14 @@ crashlytics-build.properties
 /[Aa]ssets/Resources/Characters/Base/PREFABS
 
 # Unity Editor Settings
-UserSettings/EditorUserSettings.asset
+/UserSettings/EditorUserSettings.asset
 
 # First Weapon Pack Ignore for now
 /[Aa]ssets/MobilityArts
 /[Aa]ssets/SimpleFX
 /[Aa]ssets/Resources/Weapons/Customized Weapons - Low poly
 
+# Unity generated meta file
+/[Aa]ssets/Entities.meta
 /[Pp]rojectSettings/
 /[Uu]serSettings/
