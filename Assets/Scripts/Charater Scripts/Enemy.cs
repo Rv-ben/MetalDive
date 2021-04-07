@@ -5,7 +5,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(CapsuleCollider))]
 public class Enemy : MonoBehaviour
 {
-    public Health health;
+    public HealthSlider health;
     public static Transform targetPoint;
     private CapsuleCollider capsuleCollider;
     private int maxHealth = 100;
