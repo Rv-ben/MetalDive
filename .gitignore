@@ -66,6 +66,9 @@ crashlytics-build.properties
 /[Aa]ssets/Metal textures pack
 /[Aa]ssets/Metal textures pack.meta
 
+# Prefabs gitignore
+/[Aa]ssets/Resources/Characters/Base/PREFABS
+
 # Unity Editor Settings
 /UserSettings/EditorUserSettings.asset
 
@@ -76,3 +79,5 @@ crashlytics-build.properties
 
 # Unity generated meta file
 /[Aa]ssets/Entities.meta
+/[Pp]rojectSettings/
+/[Uu]serSettings/
