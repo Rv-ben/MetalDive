@@ -8,9 +8,6 @@ using UnityEngine;
 /// </summary>
 public class Player : Character
 {
-    public float movementSpeed;
-    public GameObject[] weapons;
-
     /// <summary>
     /// Constructor that inherits the GameObject from the base class with base keyword
     /// </summary>

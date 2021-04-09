@@ -9,9 +9,6 @@ using UnityEngine;
 /// </summary>
 public class Enemy : Character
 {
-    public float moveRange;
-    public int speed;
-
     /// <summary>
     /// Constructor that inherits the GameObject from the base class with base keyword
     /// </summary>
