@@ -19,13 +19,6 @@ public class DungeonCreator : MonoBehaviour
     public int corridorWidth;
     public Material material;
 
-    public Mesh aimLayer;
-
-    public NavMeshSurface surface;
-
-    // Spawns Prefab Entities.
-    [SerializeField] public EntitySpawner spawner;
-
     /// <summary>
     /// method <c>CreateDungeon</c>
     /// Creates mesh for calculated rooms
