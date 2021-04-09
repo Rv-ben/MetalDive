@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 1262486243}
   - component: {fileID: 1262486242}
   - component: {fileID: 1262486241}
+  - component: {fileID: 1262486244}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -160,9 +161,6 @@ MonoBehaviour:
   maxIterations: 10
   corridorWidth: 1
   material: {fileID: 0}
-  aimLayer: {fileID: 0}
-  surface: {fileID: 0}
-  spawner: {fileID: 0}
 --- !u!114 &1262486242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dungeonCreator: {fileID: 1262486241}
+  spawner: {fileID: 1262486244}
 --- !u!4 &1262486243
 Transform:
   m_ObjectHideFlags: 0
@@ -190,6 +189,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1262486244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262486240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4b5941dce337243a2ad1afc1165719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1754579898
 GameObject:
   m_ObjectHideFlags: 0
