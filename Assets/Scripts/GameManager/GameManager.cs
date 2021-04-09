@@ -6,10 +6,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] public DungeonCreator dungeonCreator;
 
+    [SerializeField] public Spawner spawner;
+
     // Start is called before the first frame update
     void Start()
     {
-        dungeonCreator.CreateDungeon();
+        var rooms = dungeonCreator.CreateDungeon();
     }
 
     // Update is called once per frame
