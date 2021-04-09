@@ -1,114 +1,42 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-[RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(CapsuleCollider))]
-public class Enemy : MonoBehaviour
+
+/// <summary>
+/// <c>Enemy</c> 
+/// This class represents an Enemy and inherits the Character base class
+/// </summary>
+public class Enemy : Character
 {
-    public HealthSlider health;
-    public static Transform targetPoint;
-    private CapsuleCollider capsuleCollider;
-    private int maxHealth = 100;
-    private int healthValue;
-    private GameObject enemyCanvas;
-    private Vector3 rotation;
-    public float walkingRange;
+    public float moveRange;
+    public int speed;
 
     /// <summary>
-    /// Initialize all the variables with objects upon game starts.
+    /// Constructor that inherits the GameObject from the base class with base keyword
     /// </summary>
-    void Start()
+    /// <param name="prefab">GameObject used to create the Enemy</param>
+    public Enemy (GameObject prefab) : base(prefab)
     {
-        setEnemyHealthMax(maxHealth);   // ------------------------------ delete after testing
-
-        capsuleCollider = GetComponent<CapsuleCollider>();
-
-        enemyCanvas = GameObject.Find("EnemyCanvas");
-
-        // Getting enemyCanvas's rotation to use in Update().
-        rotation = enemyCanvas.transform.localRotation.eulerAngles;
+        
     }
 
     /// <summary>
-    /// This Update Function will run all code within every frame of the game.
-    /// This function will keep updating the orientation of Enemy health bar to stay horizontal on the screen.
+    /// This function sets the range of which an Enemy can move
     /// </summary>
-    void Update()
+    /// <param name="moveRange">float value</param>
+    public void SetMovementRange(float moveRange)
     {
-        // Get enemy's rotation.
-        Vector3 enemyQuaternion = transform.localRotation.eulerAngles;
-
-        // Use localRotation to rotate only the enemyCanvas, not the Enemy(parent). 
-        // Original enemyCanvas's rotation - enemy's rotation will keep the health bar horizontal on the screen.
-        enemyCanvas.transform.localRotation = Quaternion.Euler(rotation - enemyQuaternion);
+        this.prefab.GetComponent<EnemyMovement>().walkingRange = moveRange;
     }
 
     /// <summary>
-    /// Set the enemy's range of random walking distance.
+    /// This function sets the walking speed for the enemy
     /// </summary>
-    /// <param name="walkingRange">Range of distance </param>
-    public void SetMoveRange(float walkingRange)
+    /// <param name="speed">integer value</param>
+    public void SetWalkingSpeed(int speed)
     {
-        this.walkingRange = walkingRange;
+        this.prefab.GetComponent<EnemyMovement>().walkingSpeed = speed;
     }
-
-    /// <summary>
-    /// This function sets enemy's maximum health value and should be called when enemy's spawned.
-    /// </summary>
-    /// <param name="healthMax">Integer value that is maximum limit of enemy health.</param>
-    public void setEnemyHealthMax(int healthMax) 
-    {
-        health.SetMax(healthMax);
-        this.maxHealth = healthMax;
-        this.healthValue = maxHealth;
-    }
-
-    /// <summary>
-    /// This function is to update enemy's health value every time its changed.
-    /// </summary>
-    /// <param name="changingValue">Integer value that represents pickup-health or damage.</param>
-    public void setEnemyCurrentHealth(int changingValue) 
-    {
-        if (this.healthValue + changingValue < 0)
-        {
-            this.healthValue = 0;
-        }
-        else
-            this.healthValue += changingValue;
-
-        // Update the health value on slider.
-        health.SetHealth(this.healthValue);
-    }
-
-    /// <summary>
-    /// This function will be called when a GameObject collides with enemy.
-    /// </summary>
-    /// <param name="other">Object that touched enemy collider.</param>
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Pistol"))
-        {
-            setEnemyCurrentHealth(-10);
-        }
-        else if (other.CompareTag("AR"))
-        {
-            setEnemyCurrentHealth(-5);
-        }
-        else if (other.CompareTag("Mini"))
-        {
-            setEnemyCurrentHealth(-2);
-        }
-        else if (other.CompareTag("Pellet"))
-        {
-            setEnemyCurrentHealth(-5);
-        }
-        else if (other.CompareTag("Rocket"))
-        {
-            setEnemyCurrentHealth(-30);
-        }
-        else if (other.CompareTag("Sound"))
-        {
-            setEnemyCurrentHealth(-10);
-        }
-    }
+    
 }
