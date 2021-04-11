@@ -18,64 +18,91 @@ public class ObstacleGeneration
     /// <param name="spawner">spawner</param>
     public ObstacleGeneration(List<RoomNode> listOfRooms, Spawner spawner) 
     {
-        Vector2 elevatorPosition = new Vector2(0f, 0f);
-        bool hasElevator = false;
-
         int elevatorRoom = UnityEngine.Random.Range(0, listOfRooms.Count);  // randomly selects a room to spawn elevator.
         
         for (int i = 0; i < listOfRooms.Count; i++)     // spawn objects in each room
         {
-            if (i == elevatorRoom) // spawn Elevator
+            if (i == elevatorRoom)  // spawn Elevator in the Elevator room
             {
-                elevatorPosition = GetRandomPosition(listOfRooms[i]);
-                spawner.SpawnMapAsset(elevatorPosition, MapAssetEnum.Elevator);
-                hasElevator = true;
+                spawner.SpawnMapAsset(GetRandomPosition(listOfRooms[i]), MapAssetEnum.Elevator);
             }
-
-            int objectNum = UnityEngine.Random.Range(1, maximumObjectNumber); // a number of object to spawn in the room.
-
-            Get_Coordinates(listOfRooms[i], objectNum, hasElevator, true, elevatorPosition.x); // updates x_coordinates
-            Get_Coordinates(listOfRooms[i], objectNum, hasElevator, false, elevatorPosition.y); // updates y_coordinates
-
-            GetVector2(this.x_coordinates, this.y_coordinates); // updates objectPositions
-
-            for (int j = 0; j < objectNum; j++)  // spawn objects in the current room
+            else                    // spawn non-Elevator objects in a room
             {
-                // randomly pick object from MapAssetEnum except Elevator
-                MapAssetEnum enum_ = (MapAssetEnum)UnityEngine.Random.Range(1, Enum.GetNames(typeof(MapAssetEnum)).Length);
-                spawner.SpawnMapAsset(this.objectPositions[j], enum_);
-            }
+                // a number of object to spawn in the room.
+                int objectNum = UnityEngine.Random.Range(1, maximumObjectNumber + 1); 
 
+                if (objectNum == 1) // randomly pick an object from MapAssetEnum except Elevator and spawn
+                {
+                    MapAssetEnum enum_ = (MapAssetEnum)UnityEngine.Random.Range(1, Enum.GetNames(typeof(MapAssetEnum)).Length);
+                    spawner.SpawnMapAsset(GetRandomPosition(listOfRooms[i]), enum_);
+                }
+                else                // randomly generate coordinates for objects and spawn
+                {
+                    Get_Coordinates(listOfRooms[i], objectNum); // updates x_coordinates & y_coordinates
+                    GetVector2(this.x_coordinates, this.y_coordinates); // updates objectPositions
+
+                    for (int j = 0; j < objectNum; j++)  // spawn objects in the current room
+                    {
+                        // randomly pick object from MapAssetEnum except Elevator
+                        MapAssetEnum enum_ = (MapAssetEnum)UnityEngine.Random.Range(1, Enum.GetNames(typeof(MapAssetEnum)).Length);
+                        spawner.SpawnMapAsset(this.objectPositions[j], enum_);
+                    }
+                }
+                
+            }
+            this.objectPositions.Clear();
+            this.x_coordinates.Clear();
+            this.y_coordinates.Clear();
         }
     }
 
     /// <summary>
-    /// Get a random coordinate within on the current room
+    /// Call Generate_Coordinates() for x and y.
+    /// </summary>
+    /// <param name="room">roomNode</param>
+    /// <param name="objectNum">a number of object will be spawn in the current roomNode</param>
+    private void Get_Coordinates(RoomNode room, int objectNum) 
+    {
+        Generate_Coordinates(room.topLeft.x, room.width, objectNum, true);  // updates x_coordinates
+        Generate_Coordinates(room.topLeft.y, room.length, objectNum, false);// updates y_coordinates
+    }
+
+    /// <summary>
+    /// Generate coordinates
     /// </summary>
     /// <param name="topLeft">topLeft value of x or y</param>
     /// <param name="widthLength">width or length</param>
-    /// <returns>a random x or y coordinate</returns>
-    private float GetRandom_Coordinate(float topLeft, float widthLength) 
-    { 
-        return topLeft + UnityEngine.Random.Range(0, widthLength);
-    }
-
-    /// <summary>
-    /// Receive a roomNode and boolean for if its x or y.
-    /// Pass a correct coordinate to GetRandom_Coordinate() based on x or y.
-    /// </summary>
-    /// <param name="room">a current roomNode</param>
+    /// <param name="objectNum">a number of object will be spawn in the current roomNode</param>
     /// <param name="isX">boolean for x or y</param>
-    /// <returns>a random x or y coordinate</returns>
-    private float GetCoordinatesXY(RoomNode room, bool isX)
+    private void Generate_Coordinates(float topLeft, float widthLength, int objectNum, bool isX)
     {
-        if (isX)
+        float eachSpace = Math.Abs(widthLength - topLeft) / objectNum;
+
+        for (float i = 1; i <= objectNum; i++)
         {
-            return GetRandom_Coordinate(room.topLeft.x, room.width);
-        }
-        else
-        {
-            return GetRandom_Coordinate(room.topLeft.y, room.length);
+            if(isX) // x coordinate
+            {
+                // example: add 2nd coordinate with
+                //          topLeft = 0 , randomY = 2, eachSpace = 1
+                //          0 + (2 * 1) - (1 / 2) = 2 - 0.5 = 1.5
+                AddCoordinate(topLeft + (i * eachSpace) - (eachSpace / 2f), isX);
+            }
+            else    // y coordinate picks random spot.
+            {
+                float randomY = 0;
+                // to avoide the object spawn right next to each other,
+                // y coordinate should randomly pick even row when i is even, otherwise pick odd row.
+                if ((int)i % 2 == 0)
+                {
+                    randomY = UnityEngine.Random.Range(1, (objectNum / 2) + 1) * 2;
+                }
+                else
+                {
+                    randomY = UnityEngine.Random.Range(1, ((objectNum + 1) / 2) + 1) * 2 - 1;
+                }
+                AddCoordinate(topLeft + (randomY * eachSpace) - (eachSpace / 2f), isX);
+            }
+            
         }
     }
 
@@ -88,87 +115,11 @@ public class ObstacleGeneration
     {
         if (isX)
         {
-            x_coordinates.Add(num);
+            this.x_coordinates.Add(num);
         }
         else
         {
-            y_coordinates.Add(num);
-        }
-    }
-
-    /// <summary>
-    /// Sort coordinates x_coordinates or y_coordinates
-    /// </summary>
-    /// <param name="isX">boolean for x or y</param>
-    private void SortCoordinate(bool isX)
-    {
-        if (isX)
-        {
-            x_coordinates.Sort();
-        }
-        else
-        {
-            y_coordinates.Sort();
-        }
-    }
-
-    /// <summary>
-    /// Get a previous coordinate from x_coordinates or y_coordinates
-    /// </summary>
-    /// <param name="j">index of the list</param>
-    /// <param name="isX">boolean for x or y</param>
-    /// <returns>a previous coordinate</returns>
-    private float GetPreviousCoordinate(int j, bool isX)
-    {
-        if (isX)
-        {
-            return x_coordinates[j - 1];
-        }
-        else
-        {
-            return y_coordinates[j - 1];
-        }
-    }
-
-    /// <summary>
-    /// Generate random coordinates for x and y.
-    /// Each coordinate compared with existing coordinates to make sure there are enough space between those.
-    /// </summary>
-    /// <param name="room">roomNode</param>
-    /// <param name="objectNum">a number of object will be spawn in the current roomNode</param>
-    /// <param name="hasElevator">boolean for Elevator existance</param>
-    /// <param name="isX">boolean for x or y</param>
-    /// <param name="elevatorPosition">x or y coordinate of elevator</param>
-    private void Get_Coordinates(RoomNode room, int objectNum, bool hasElevator, bool isX, float elevatorPosition) 
-    {
-        float num = GetCoordinatesXY(room, isX);
-
-        for (int j = 0; j < objectNum; j++)
-        {
-            if (j == 0)
-            {
-                if (hasElevator == true)
-                {
-                    while (Math.Abs(num - elevatorPosition) < minimumSpace)
-                    {
-                        num = GetCoordinatesXY(room, isX);
-                    }
-                }
-                AddCoordinate(num, isX);
-            }
-            else
-            {
-                if (hasElevator == true)
-                {
-                    float prev = GetPreviousCoordinate(j, isX);
-                    while (Math.Abs(num - prev) < minimumSpace || Math.Abs(num - elevatorPosition) < minimumSpace)
-                    {
-                        num = GetCoordinatesXY(room, isX);
-                    }
-                }
-                AddCoordinate(num, isX);
-            }
-            SortCoordinate(isX);
+            this.y_coordinates.Add(num);
         }
     }
 
