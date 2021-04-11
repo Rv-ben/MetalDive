@@ -50,6 +50,7 @@ public class ObstacleGeneration
                 }
                 
             }
+            // clear the lists before move to the next room
             this.objectPositions.Clear();
             this.x_coordinates.Clear();
             this.y_coordinates.Clear();
