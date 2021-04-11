@@ -75,6 +75,20 @@ public class ObstacleGeneration
     /// <param name="widthLength">width or length</param>
     /// <param name="objectNum">a number of object will be spawn in the current roomNode</param>
     /// <param name="isX">boolean for x or y</param>
+    /// 
+    /// instantiate x coordinate
+    ///  _ _ _ _  
+    /// |1|2|3|4|
+    /// |_|_|_|_|
+    /// |_|_|_|_|
+    /// |_|_|_|_|
+    /// 
+    ///  y coordinate picks random spot.              
+    ///  _ _ _ _  
+    /// |_|_|3|_|
+    /// |_|_|_|4|
+    /// |1|_|_|_|
+    /// |_|2|_|_|
     private void Generate_Coordinates(float topLeft, float widthLength, int objectNum, bool isX)
     {
         float eachSpace = Math.Abs(widthLength - topLeft) / objectNum;
