@@ -4,10 +4,10 @@
 /// </summary>
 public enum MapAssetEnum
 {
-    Elevator = 0, 
-    Healthkit = 1,
-    Barrier = 2,
-    Bitcoin = 3
+    Elevator,
+    Healthkit,
+    Barrier,
+    Bitcoin
 }
 
 /// <summary>
