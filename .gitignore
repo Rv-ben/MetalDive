@@ -88,3 +88,6 @@ UserSettings/EditorUserSettings.asset
 /Packages/packages-lock.json
 /ProjectSettings/ProjectVersion.txt
 /[Uu]serSettings/EditorUserSettings.asset
+Packages/manifest.json
+Packages/packages-lock.json
+ProjectSettings/ProjectVersion.txt
