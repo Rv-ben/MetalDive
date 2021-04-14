@@ -206,6 +206,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64d35c1edd5ea07418f3d06aeca50cab, type: 3}
   m_PrefabInstance: {fileID: 173327855}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &173327858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173327856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e918c0ca49cce48b2e4014169fec36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ejector: {fileID: 253924020}
+  timeToShoot: 0
+  bullet: {fileID: 6910468197738857177, guid: 9ddd06b3a16347a4c8153b91c53d86ff, type: 3}
+  animator: {fileID: 173327863}
+  animEnum: 1
 --- !u!114 &173327859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,23 +240,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   animator: {fileID: 173327863}
---- !u!114 &173327860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173327856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7110aa534413416479cee23346f0d598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ejector: {fileID: 253924020}
-  timeToShoot: 0
-  grows: 0
-  animator: {fileID: 173327863}
-  bullet: {fileID: 6910468197738857177, guid: d6ee00be2ef1f6e46baf4f28ae54d761, type: 3}
 --- !u!54 &173327861
 Rigidbody:
   m_ObjectHideFlags: 0

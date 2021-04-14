@@ -182,7 +182,7 @@ public class EntitySpawner : MonoBehaviour
         // Set the gun to the hand's position.
         equipped.transform.position = hand.transform.position;
         // Fine tune the position of the gun.
-        equipped.transform.localPosition= new Vector3(0.0135016f, 0.01583202f, 0.007588122f);
+        equipped.transform.localPosition = new Vector3(0.0135016f, 0.01583202f, 0.007588122f);
         // Set the gun's rotation equivalent to the hand's rotation.
         equipped.transform.rotation = hand.transform.rotation;
         // Fine tune the rotation of the gun.
@@ -294,7 +294,7 @@ public class EntitySpawner : MonoBehaviour
         // Instantiates an Enemy at the position.
         GameObject ob = Instantiate(enemyPrefab, position, rot);
         // Setting enemy's range of random walking.
-        enemyPrefab.GetComponent<Enemy>().SetMoveRange(walkingRange);
+        // enemyPrefab.GetComponent<EnemyMovement>().SetMoveRange(walkingRange);
         // Setting enemy's health max value.
         enemyPrefab.GetComponent<Enemy>().setEnemyHealthMax(healthMax);
     }

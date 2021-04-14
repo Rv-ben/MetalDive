@@ -6,5 +6,9 @@ public enum ShootingEnums
 {
     Unarmed,
     Pistol,
-    Guitar
+    Shotgun,
+    AssaultRifle,
+    Guitar,
+    Minigun,
+    RocketRifle
 }

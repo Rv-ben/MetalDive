@@ -1,0 +1,9 @@
+
+// Pistol
+{
+    "localPositionX": -0.0021f,
+    "localPositionY": 0.0096f,
+    "localPositionZ": 0.0005f,
+    "lives": 3,
+    "health": 0.8
+}
