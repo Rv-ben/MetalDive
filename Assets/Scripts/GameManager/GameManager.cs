@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
         spawner.LoadPrefabs();
         var rooms = dungeonCreator.CreateDungeon();
         var obstacleGenerator = new ObstacleGeneration(rooms, spawner);
+        var player = new PlayerSpawner(rooms, spawner);
     }
 
     // Update is called once per frame
