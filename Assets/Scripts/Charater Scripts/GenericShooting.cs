@@ -10,7 +10,7 @@ public class GenericShooting : MonoBehaviour
     public float timeToShoot;
     // Checks if the weapon projectiles should grow around the Player like a bubble.
     public bool grows;
-
+    public Animator animator;
     // The stored bullet object.
     public GameObject bullet;
 
@@ -35,12 +35,20 @@ public class GenericShooting : MonoBehaviour
         this.bullet = bullet;
     }
 
+    public void Update()
+    {
+        if (shotReady() && Input.GetMouseButton(0))
+        {
+            Shoot(bullet);
+        }
+    }
+
     /// <summary>
     /// Generic Shoot Function that handles bullet spawning and behavior.
     /// </summary>
     /// <param name="animator"> The passed-in Animator that determines what animations play. </param>
     /// <param name="bullet"> The passed-in Bullet object. </param>
-    public void Shoot(Animator animator, GameObject bullet)
+    public void Shoot(GameObject bullet)
     {
         // Plays a specific animation based on the weapon equipped.
         playAnim(animator);

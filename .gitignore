@@ -66,7 +66,28 @@ crashlytics-build.properties
 /[Aa]ssets/Metal textures pack
 /[Aa]ssets/Metal textures pack.meta
 
+# Prefabs gitignore
+/[Aa]ssets/Resources/Characters/Base/PREFABS
+
+# Unity Editor Settings
+UserSettings/EditorUserSettings.asset
+
 # First Weapon Pack Ignore for now
 /[Aa]ssets/MobilityArts
 /[Aa]ssets/SimpleFX
 /[Aa]ssets/Resources/Weapons/Customized Weapons - Low poly
+
+# Unity generated meta file
+/[Aa]ssets/Entities.meta
+/[Pp]rojectSettings/
+/[Uu]serSettings/
+UserSettings/EditorUserSettings.asset
+
+/Packages/packages-lock.json
+/Packages/manifest.json
+/Packages/packages-lock.json
+/ProjectSettings/ProjectVersion.txt
+/[Uu]serSettings/EditorUserSettings.asset
+Packages/manifest.json
+Packages/packages-lock.json
+ProjectSettings/ProjectVersion.txt
