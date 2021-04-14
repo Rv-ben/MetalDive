@@ -1,9 +1,68 @@
-
-// Pistol
 {
+    "name": "Pistol",
+    "parentObject": GameObject.Find(\"mixamorig:RightHand\"),
     "localPositionX": -0.0021f,
     "localPositionY": 0.0096f,
     "localPositionZ": 0.0005f,
-    "lives": 3,
-    "health": 0.8
+    "rotationX": 270,
+    "rotationZ": 90,
+    "localScale": .9f
+}
+
+{
+    "name": "Shotgun",
+    "parentObject": GameObject.Find(\"mixamorig:RightHand\"),
+    "localPositionX": -0.002f,
+    "localPositionY": 0.0221f,
+    "localPositionZ": 0.0106f,
+    "rotationX": 30,
+    "rotationZ": 80
+}
+
+{
+    "name": "Assault Rifle",
+    "parentObject": GameObject.Find(\"mixamorig:RightHand\"),
+    "localPositionX": 0.0135016f,
+    "localPositionY": 0.01583202f,
+    "localPositionZ": 0.007588122f,
+    "rotationX": -55.913f,
+    "rotationY": 13.854f,
+    "rotationZ": 78.192f,
+    "localScale": .009f
+}
+
+{
+    "name": "Guitar",
+    "parentObject": GameObject.Find(\"mixamorig:LeftHand\"),
+    "localPositionX": -0.02750365f,
+    "localPositionY": 0.006047898f,
+    "localPositionZ": 0.02101708f,
+    "rotationX": -23.13f,
+    "rotationY": 37.067f,
+    "rotationZ": 184.243f,
+    "localScale": 0.06f
+}
+
+{
+    "name": "Mini Rifle",
+    "parentObject": GameObject.Find(\"mixamorig:RightHand\"),
+    "localPositionX": -0.0053f,
+    "localPositionY": 0.0193f,
+    "localPositionZ": 0.009f,
+    "rotationX": 56.573f,
+    "rotationY": 13.36f,
+    "rotationZ": 75.833f,
+    "localScale": 0.06f
+}
+
+{
+    "name": "Rocket Rifle",
+    "parentObject": GameObject.Find(\"mixamorig:RightHand\"),
+    "localPositionX": -0.00361f,
+    "localPositionY": 0.01585f,
+    "localPositionZ": 0.00479f,
+    "rotationX": -56.409f,
+    "rotationY": 15.781f,
+    "rotationZ": 74.286f,
+    "localScale": 0.06f
 }
