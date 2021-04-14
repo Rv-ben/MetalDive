@@ -20,47 +20,48 @@ public class Spawner : MonoBehaviour
     /// Method <c>MapObjectSpawner</c>
     /// Populates prefab dictionary
     /// </summary>
-    public void Start()
+    public void LoadPrefabs ()
     {   
         // SetMapAssetsDict()
 
         // Get all the prefabs from Resources: Map Assets, Characters, Weapons, and Bullets
-        mapAssetsPrefabs = Resources.LoadAll<GameObject>("Map Assets/Prefabs");
-        characterPrefabs = Resources.LoadAll<GameObject>("Characters/Prefabs");
-        weaponPrefabs = Resources.LoadAll<GameObject>("Weapons/Prefabs/WeaponPrefabs");
-        bulletPrefabs = Resources.LoadAll<GameObject>("Weapons/Prefabs/BulletPrefabs");
+        var mapAssetsPrefabs = Resources.LoadAll<GameObject>("Map Assets/Prefabs");
+        var characterPrefabs = Resources.LoadAll<GameObject>("Characters/Prefabs");
+        var weaponPrefabs = Resources.LoadAll<GameObject>("Weapons/Prefabs/WeaponPrefabs");
+        var bulletPrefabs = Resources.LoadAll<GameObject>("Weapons/Prefabs/BulletPrefabs");
 
         // Make empty dictionaries
-        mapAssetsPrefabDict = new Dictionary<MapAssetEnum, GameObject>();
-        characterPrefabDict = new Dictionary<CharacterEnum, GameObject>();
-        weaponPrefabDict = new Dictionary<WeaponEnum, GameObject>();
-        bulletPrefabDict = new Dictionary<BulletEnum, GameObject>();
+        this.mapAssetsPrefabDict = new Dictionary<MapAssetEnum, GameObject>();
+        this.characterPrefabDict = new Dictionary<CharacterEnum, GameObject>();
+        this.weaponPrefabDict = new Dictionary<WeaponEnum, GameObject>();
+        this.bulletPrefabDict = new Dictionary<BulletEnum, GameObject>();
 
         foreach (GameObject spawnableObject in mapAssetsPrefabs)
         {   
             // Parse the prefab name to a enum
             var enumKey = (MapAssetEnum)Enum.Parse(typeof(MapAssetEnum), spawnableObject.name);
             // Add the enum as a key and the prefab to a dictionary
-            mapAssetsPrefabDict.Add(enumKey, spawnableObject);
+            this.mapAssetsPrefabDict.Add(enumKey, spawnableObject);
         }
 
         foreach (GameObject spawnableCharacter in characterPrefabs)
         {
             var enumKey = (CharacterEnum)Enum.Parse(typeof(CharacterEnum), spawnableCharacter.name);
-            characterPrefabDict.Add(enumKey, spawnableCharacter);
+            this.characterPrefabDict.Add(enumKey, spawnableCharacter);
         }
 
         foreach (GameObject spawnableWeapon in weaponPrefabs)
         {
             var enumKey = (WeaponEnum)Enum.Parse(typeof(WeaponEnum), spawnableWeapon.name);
-            weaponPrefabDict.Add(enumKey, spawnableWeapon);
+            this.weaponPrefabDict.Add(enumKey, spawnableWeapon);
         }
 
         foreach (GameObject spawnableBullet in bulletPrefabs)
         {
             var enumKey = (BulletEnum)Enum.Parse(typeof(BulletEnum), spawnableBullet.name);
-            bulletPrefabDict.Add(enumKey, spawnableBullet);
+            this.bulletPrefabDict.Add(enumKey, spawnableBullet);
         }
+        Debug.Log("Fire");
     }
 
     /// <summary>
@@ -73,8 +74,10 @@ public class Spawner : MonoBehaviour
     public GameObject SpawnMapAsset(Vector2 center, MapAssetEnum type)
     {
         // Find in prefab from the dictionary
+        Debug.Log(type);
+        Debug.Log(this.mapAssetsPrefabDict.ToString());
         var prefab = this.mapAssetsPrefabDict[type];
-        
+
         // Return a the correct map asset object
         return Instantiate(prefab, new Vector3(center.x, 0, center.y), new Quaternion());
     }

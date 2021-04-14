@@ -23,7 +23,7 @@ public class DungeonCreator : MonoBehaviour
     /// method <c>CreateDungeon</c>
     /// Creates mesh for calculated rooms
     /// </summary>
-    public List<GameObject> CreateDungeon()
+    public List<RoomNode> CreateDungeon()
     {
         DungeonGenerator generator = new DungeonGenerator(dunWidth, dunLength);
 
@@ -54,7 +54,7 @@ public class DungeonCreator : MonoBehaviour
 
         surfaces[0].BuildNavMesh();
 
-        return rooms;
+        return list;
 
     }
 }
