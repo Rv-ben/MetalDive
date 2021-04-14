@@ -45,4 +45,17 @@ public class RoomNode : Node
         CalcBottomRight();
     }
 
+    /// <summary>
+    /// Get a random position room.
+    /// </summary>
+    /// <param name="room">roomNode</param>
+    /// <returns>a Vector2</returns>
+    public Vector2 GetRandomPosition(RoomNode room)
+    {
+        float x = this.topLeft.x + UnityEngine.Random.Range(0, this.width);
+        float y = this.topLeft.y + UnityEngine.Random.Range(0, this.length);
+
+        return new Vector2(x, y);
+    }
+
 }
