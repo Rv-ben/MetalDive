@@ -91,6 +91,7 @@ public class HealthSlider : MonoBehaviour
                 if (enum_.ToString() == "Healthkit" || gameObject.tag == "Enemy")
                 {
                     this.SetHealth((int)enum_);
+                    Destroy(other);
                 }
             }
         }
