@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    Spawner spawner;
+    public Spawner spawner;
     public List<RoomNode> rooms;
     public int difficulty;
     public List<int> indexes;
-    static int enemyCount;
+    public int enemyCount;
 
     /// <summary>
     /// EnemySpawner constructor
@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
         this.rooms = rooms;
         this.difficulty = difficulty;
         this.indexes = GetRoomIndexes();
-        enemyCount = 0;
+        this.enemyCount = 0;
     }
 
     /// <summary>
