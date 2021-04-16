@@ -79,7 +79,7 @@ public class Spawner : MonoBehaviour
         var prefab = this.mapAssetsPrefabDict[type];
 
         // Return a the correct map asset object
-        return Instantiate(prefab, new Vector3(center.x, 0, center.y), new Quaternion());
+        return Instantiate(prefab, new Vector3(center.x, prefab.transform.position.y, center.y), prefab.transform.rotation);
     }
 
     /// <summary>

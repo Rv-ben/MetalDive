@@ -6,7 +6,8 @@ public class ObstacleGeneration
 {
     public float minimumSpace;
     public int maximumObjectNumber;
-    
+    public float navMeshBoundary = 0.5f;
+
     private List<Vector2> objectPositions;
     private List<float> x_coordinates;
     private List<float> y_coordinates;
@@ -96,16 +97,16 @@ public class ObstacleGeneration
     /// |_|2|_|_|
     private void Generate_Coordinates(float topLeft, float widthLength, int objectNum, bool isX)
     {
-        float eachSpace = Math.Abs(widthLength - topLeft) / objectNum;
+        float eachSpace = (Math.Abs(widthLength - topLeft) - 2 * navMeshBoundary) / objectNum;
 
         for (float i = 1; i <= objectNum; i++)
         {
             if(isX) // x coordinate
             {
                 // example: add 2nd coordinate with
-                //          topLeft = 0 , randomY = 2, eachSpace = 1
-                //          0 + (2 * 1) - (1 / 2) = 2 - 0.5 = 1.5
-                AddCoordinate(topLeft + (i * eachSpace) - (eachSpace / 2f), isX);
+                //          topLeft = 0 , i = 2, navMeshBoundary = 0.5, eachSpace = 1
+                //          0 + (2 * 1) + 0.5 - (1 / 2) = 2.5 - 0.5 = 2.0
+                AddCoordinate(topLeft + (i * eachSpace) + navMeshBoundary - (eachSpace / 2f), isX);
             }
             else    // y coordinate picks random spot.
             {
@@ -120,7 +121,7 @@ public class ObstacleGeneration
                 {
                     randomY = UnityEngine.Random.Range(1, ((objectNum + 1) / 2) + 1) * 2 - 1;
                 }
-                AddCoordinate(topLeft + (randomY * eachSpace) - (eachSpace / 2f), isX);
+                AddCoordinate(topLeft + (randomY * eachSpace) + navMeshBoundary - (eachSpace / 2f), isX);
             }
             
         }
@@ -163,8 +164,8 @@ public class ObstacleGeneration
     /// <returns>a Vector2</returns>
     public Vector2 GetRandomPosition(RoomNode room)
     {
-        float x = room.topLeft.x + UnityEngine.Random.Range(0, room.width);
-        float y = room.topLeft.y + UnityEngine.Random.Range(0, room.length);
+        float x = room.topLeft.x + UnityEngine.Random.Range(navMeshBoundary, room.width - navMeshBoundary);
+        float y = room.topLeft.y + UnityEngine.Random.Range(navMeshBoundary, room.length - navMeshBoundary);
 
         return new Vector2(x, y);
     }
