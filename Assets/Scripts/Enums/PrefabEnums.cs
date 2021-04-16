@@ -4,9 +4,9 @@
 /// </summary>
 public enum MapAssetEnum
 {
+    Elevator,
     Healthkit,
     Barrier,
-    Elevator,
     Bitcoin
 }
 

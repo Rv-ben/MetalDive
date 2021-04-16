@@ -1,0 +1,27 @@
+{
+    "name": "Long Hair",
+    "transform_y": -0.1548229,
+    "transform_z": -0.0007981879,
+    "scale": 0.3333333
+},
+
+{
+    "name": "Short Hair",
+    "transform_y": -0.1548229,
+    "transform_z": 0.002201812,
+    "scale": 0.3333333
+},
+
+{
+    "name": "Spiky Hair",
+    "transform_y": -0.1616895,
+    "transform_z": -0.005131522,
+    "scale": 0.3333333
+},
+
+{
+    "name": "Twintails Hair",
+    "transform_y": -0.1548229,
+    "transform_z": 0.0008018117,
+    "scale": 0.3333333
+}
