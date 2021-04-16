@@ -14,6 +14,10 @@ TagManager:
   - Pistol
   - Rocket
   - Sound
+  - Healthkit
+  - Elevator
+  - Bitcoin
+  - Barrier
   layers:
   - Default
   - TransparentFX
