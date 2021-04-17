@@ -12,7 +12,7 @@ public class Player : Character
     /// Constructor that inherits the GameObject from the base class with base keyword
     /// </summary>
     /// <param name="prefab">GameObject used to create the Player</param>
-    public Player (GameObject prefab) : base(prefab)
+    public Player (RoomNode room, Spawner spawner) : base(spawn(room, spawner))
     {
 
     }
@@ -26,5 +26,10 @@ public class Player : Character
         this.prefab.GetComponent<PlayerMovement>().movementSpeed = movementSpeed;
     }
 
+    public static GameObject spawn (RoomNode room, Spawner spawner) {
+        var randomPosition = room.GetRandomPosition();
+        var prefab =spawner.SpawnCharacter(randomPosition, CharacterEnum.Player);
+        return prefab;
+    }
 
 }

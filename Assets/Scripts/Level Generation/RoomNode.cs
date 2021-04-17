@@ -50,7 +50,7 @@ public class RoomNode : Node
     /// </summary>
     /// <param name="room">roomNode</param>
     /// <returns>a Vector2</returns>
-    public Vector2 GetRandomPosition(RoomNode room)
+    public Vector2 GetRandomPosition()
     {
         float x = this.topLeft.x + UnityEngine.Random.Range(0, this.width);
         float y = this.topLeft.y + UnityEngine.Random.Range(0, this.length);
