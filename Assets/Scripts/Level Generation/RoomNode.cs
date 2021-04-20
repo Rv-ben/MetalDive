@@ -16,11 +16,21 @@ public class RoomNode : Node
     /// <param name="width">width of a room</param>
     /// <param name="length">length of a room</param>
     /// <param name="parentNode">parent of roomnode</param>
-   public RoomNode(Vector2 topLeft, float width, float length, Node parentNode): base(parentNode)
+
+    public List<CorridorNode> topCorridors { get;}
+    public List<CorridorNode> leftCorridors { get;}
+    public List<CorridorNode> bottomCorridors { get; }
+    public List<CorridorNode> rightCorridors { get; }
+
+    public RoomNode(Vector2 topLeft, float width, float length, Node parentNode): base(parentNode)
     {
         this.topLeft = topLeft;
         this.width = width;
         this.length = length;
+        this.topCorridors = new List<CorridorNode>();
+        this.leftCorridors = new List<CorridorNode>();
+        this.bottomCorridors = new List<CorridorNode>();
+        this.rightCorridors = new List<CorridorNode>();
         CalcBottomRight();
     }
 
@@ -48,7 +58,6 @@ public class RoomNode : Node
     /// <summary>
     /// Get a random position room.
     /// </summary>
-    /// <param name="room">roomNode</param>
     /// <returns>a Vector2</returns>
     public Vector2 GetRandomPosition()
     {
@@ -56,6 +65,40 @@ public class RoomNode : Node
         float y = this.topLeft.y + UnityEngine.Random.Range(0, this.length);
 
         return new Vector2(x, y);
+    }
+
+    /// <summary>
+    /// Add a new corridor
+    /// </summary>
+    /// <param name="corridor"></param>
+    public void AddCorridor(CorridorNode corridor) 
+    {
+        Orientation corridorOrientation = corridor.GetOrientation();
+        Vector2 topLeft = corridor.topLeft;
+        
+        if (corridorOrientation == Orientation.Horizontal)
+        {   
+            // Right side
+            if (topLeft.x == this.topLeft.x + this.width) 
+            {
+                this.rightCorridors.Add(corridor);
+            }
+            else
+            {
+                this.leftCorridors.Add(corridor);
+            }
+        }
+        else
+        {
+            if (topLeft.y == this.topLeft.y + this.length)
+            {
+                this.bottomCorridors.Add(corridor);
+            }
+            else
+            {
+                this.topCorridors.Add(corridor);
+            }
+        }
     }
 
 }
