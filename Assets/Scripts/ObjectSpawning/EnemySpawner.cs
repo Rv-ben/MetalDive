@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (this.indexes.Contains(i))
             {
-                spawner.SpawnCharacter(rooms[i].GetRandomPosition(rooms[i]), CharacterEnum.Enemy);
+                spawner.SpawnCharacter(rooms[i].GetRandomPosition(), CharacterEnum.Enemy);
                 ++enemyCount;
             }
         }
