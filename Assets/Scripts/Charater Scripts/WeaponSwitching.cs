@@ -25,13 +25,13 @@ public class WeaponSwitching : MonoBehaviour
         // Ties the Dropkick Animation to the Unarmed state.
         positionData.Add(WeaponEnum.Unarmed, new Vector3(0, 0, 0));
         // Ties the Pistol Firing Animation to the Pistol state.
-        positionData.Add(WeaponEnum.Pistol, new Vector3(-0.0021f, 0.0096f, 0.0005f));
-        positionData.Add(WeaponEnum.Shotgun, new Vector3(-0.002f, 0.0221f, 0.0106f));
-        positionData.Add(WeaponEnum.AssaultRifle, new Vector3(0.0135016f, 0.01583202f, 0.007588122f));
+        positionData.Add(WeaponEnum.SciFiHandGun, new Vector3(-0.0021f, 0.0096f, 0.0005f));
+        positionData.Add(WeaponEnum.ShotGun, new Vector3(-0.002f, 0.0221f, 0.0106f));
+        positionData.Add(WeaponEnum.LightAR, new Vector3(0.0135016f, 0.01583202f, 0.007588122f));
         // Ties the Guitar Playing Animation to the Guitar state.
-        positionData.Add(WeaponEnum.Guitar, new Vector3(-0.02750365f, 0.006047898f, 0.02101708f));
-        positionData.Add(WeaponEnum.Minigun, new Vector3(-0.0053f, 0.0193f, 0.009f));
-        positionData.Add(WeaponEnum.RocketRifle, new Vector3(-0.00361f, 0.01585f, 0.00479f));
+        positionData.Add(WeaponEnum.ElectricGuitar, new Vector3(-0.02750365f, 0.006047898f, 0.02101708f));
+        positionData.Add(WeaponEnum.MiniRifle, new Vector3(-0.0053f, 0.0193f, 0.009f));
+        positionData.Add(WeaponEnum.Launcher, new Vector3(-0.00361f, 0.01585f, 0.00479f));
 
         // weapons = ShootingEnums.Pistol;
     }

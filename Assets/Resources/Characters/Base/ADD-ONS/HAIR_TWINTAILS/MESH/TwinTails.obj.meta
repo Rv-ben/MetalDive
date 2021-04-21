@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Hair
-    second: {fileID: 2100000, guid: 97b9d24d46794d843bb30cc4709b8dd4, type: 2}
+    second: {fileID: 2100000, guid: 459a7edfbfb7d9e4bba9f697f8dabe54, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: HairClip_(L)
-    second: {fileID: 2100000, guid: 308a27e387810fe4a956ca0103cf9eb7, type: 2}
+    second: {fileID: 2100000, guid: 459a7edfbfb7d9e4bba9f697f8dabe54, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: HairClip_(R)
-    second: {fileID: 2100000, guid: 526904cfd0d651a45b5944044bd62450, type: 2}
+    second: {fileID: 2100000, guid: 459a7edfbfb7d9e4bba9f697f8dabe54, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

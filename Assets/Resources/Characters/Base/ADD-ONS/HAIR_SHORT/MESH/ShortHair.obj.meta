@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: acs_m_meka_b_(Instance).002
-    second: {fileID: 2100000, guid: 4f947289e73b47b418b4a7083559f585, type: 2}
+    second: {fileID: 2100000, guid: 459a7edfbfb7d9e4bba9f697f8dabe54, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

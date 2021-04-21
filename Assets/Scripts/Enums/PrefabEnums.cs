@@ -31,7 +31,8 @@ public enum WeaponEnum
     LightAR,
     MiniRifle,
     SciFiHandGun,
-    ShotGun
+    ShotGun,
+    Unarmed
 }
 
 // <summary>
