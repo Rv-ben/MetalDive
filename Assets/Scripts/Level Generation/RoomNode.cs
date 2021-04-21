@@ -90,6 +90,7 @@ public class RoomNode : Node
         }
         else
         {
+            // Bottom side
             if (topLeft.y == this.topLeft.y + this.length)
             {
                 this.bottomCorridors.Add(corridor);
