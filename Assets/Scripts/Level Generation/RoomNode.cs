@@ -22,15 +22,25 @@ public class RoomNode : Node
     public List<CorridorNode> bottomCorridors { get; }
     public List<CorridorNode> rightCorridors { get; }
 
+    public List<List<CorridorNode>> sides { get; }
+
     public RoomNode(Vector2 topLeft, float width, float length, Node parentNode): base(parentNode)
     {
         this.topLeft = topLeft;
         this.width = width;
         this.length = length;
+        this.sides = new List<List<CorridorNode>>();
+
         this.topCorridors = new List<CorridorNode>();
         this.leftCorridors = new List<CorridorNode>();
         this.bottomCorridors = new List<CorridorNode>();
         this.rightCorridors = new List<CorridorNode>();
+
+        sides.Add(topCorridors);
+        sides.Add(bottomCorridors);
+
+        sides.Add(leftCorridors);
+        sides.Add(rightCorridors);
         CalcBottomRight();
     }
 
@@ -74,12 +84,12 @@ public class RoomNode : Node
     public void AddCorridor(CorridorNode corridor) 
     {
         Orientation corridorOrientation = corridor.GetOrientation();
-        Vector2 topLeft = corridor.topLeft;
+        Vector2 corridorTopLeft = corridor.topLeft;
         
         if (corridorOrientation == Orientation.Horizontal)
         {   
             // Right side
-            if (topLeft.x == this.topLeft.x + this.width) 
+            if (corridorTopLeft.x >= this.topLeft.x + this.width) 
             {
                 this.rightCorridors.Add(corridor);
             }
@@ -91,7 +101,7 @@ public class RoomNode : Node
         else
         {
             // Bottom side
-            if (topLeft.y == this.topLeft.y + this.length)
+            if (corridorTopLeft.y >= this.topLeft.y + this.length)
             {
                 this.bottomCorridors.Add(corridor);
             }
@@ -99,6 +109,30 @@ public class RoomNode : Node
             {
                 this.topCorridors.Add(corridor);
             }
+        }
+    }
+
+    public void AddCorridorVerical(CorridorNode corridor, bool top)
+    {
+            if (!top)
+            {
+                this.bottomCorridors.Add(corridor);
+            }
+            else
+            {
+                this.topCorridors.Add(corridor);
+            }
+    }
+
+    public void AddCorridoHorizontal(CorridorNode corridor, bool left)
+    {
+        if (!left) 
+        {
+            this.rightCorridors.Add(corridor);
+        }
+        else
+        {
+            this.leftCorridors.Add(corridor);
         }
     }
 

@@ -9,8 +9,8 @@ public class CorridorNode : Node
     /// init corridorNode
     /// </summary>
     /// <param name="topLeft"></param>
-    /// <param name="width"></param>
-    /// <param name="length"></param>
+    /// <param name="width">X axis</param>
+    /// <param name="length"Y axis></param>
     /// <param name="parentNode"></param>
 
     public Orientation orientation;
