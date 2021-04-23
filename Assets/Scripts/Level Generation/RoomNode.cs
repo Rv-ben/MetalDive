@@ -86,15 +86,18 @@ public class RoomNode : Node
         Orientation corridorOrientation = corridor.GetOrientation();
         Vector2 corridorTopLeft = corridor.topLeft;
         Vector2 cooridorBottomRight = corridor.bottomRight;
+        float tolerence = .02f;
         
         if (corridorOrientation == Orientation.Horizontal)
         {   
             // Right side
-            if (corridorTopLeft.x >= this.topLeft.x + this.width) 
+            if (corridorTopLeft.x <= this.topLeft.x + this.width + tolerence && 
+                corridorTopLeft.x >= this.topLeft.x + this.width - tolerence) 
             {
                 this.rightCorridors.Add(corridor);
             }
-            else if (cooridorBottomRight.x <= this.topLeft.x)
+            else if (cooridorBottomRight.x <= this.topLeft.x + tolerence &&
+                cooridorBottomRight.x >= this.topLeft.x - tolerence)
             {
                 this.leftCorridors.Add(corridor);
             }
@@ -102,11 +105,13 @@ public class RoomNode : Node
         else
         {
             // Bottom side
-            if (corridorTopLeft.y >= this.topLeft.y + this.length)
+            if (corridorTopLeft.y <= this.topLeft.y + this.length + tolerence &&
+                corridorTopLeft.y  >= this.topLeft.y - tolerence)
             {
                 this.bottomCorridors.Add(corridor);
             }
-            else if (cooridorBottomRight.y <= this.topLeft.y)
+            else if (cooridorBottomRight.y <= this.topLeft.y + tolerence &&
+                cooridorBottomRight.y >= this.topLeft.y - tolerence)
             {
                 this.topCorridors.Add(corridor);
             }
