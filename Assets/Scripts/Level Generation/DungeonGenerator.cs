@@ -51,7 +51,7 @@ public class DungeonGenerator
         return this.listOfRooms;
     }
 
-    public List<Wall> GenerateWalls (List<RoomNode> listOfRoomNodes)
+    public List<Wall> GenerateWalls (List<RoomNode> listOfRoomNodes, List<CorridorNode> corridors)
     {
         var walls = new List<Wall>();
         for (int i = 0; i < listOfRoomNodes.Count; i++) 
@@ -60,7 +60,11 @@ public class DungeonGenerator
             walls.AddRange(GetWallsInRoom(room));
         }
 
-        
+        for (int i = 0; i < corridors.Count; i++)
+        {
+            var corridor = corridors[i];
+            walls.AddRange(GetWallsFromCorridor(corridor));
+        }
 
         return walls;
     }
@@ -158,6 +162,34 @@ public class DungeonGenerator
     {
         var walls = new List<Wall>();
 
+        Orientation orientationOfCorridor = corridor.orientation;
+
+        if (orientationOfCorridor == Orientation.Horizontal)
+        {
+            float startingXValue = corridor.topLeft.x;
+            float endingXValue = corridor.bottomRight.x;
+            float lengthOfWall = endingXValue - startingXValue;
+
+            float topYValue = corridor.topLeft.y;
+            float bottomYValue = corridor.bottomRight.y;
+
+            walls.Add(new Wall(new Vector2(startingXValue, topYValue), lengthOfWall, orientationOfCorridor));
+            walls.Add(new Wall(new Vector2(startingXValue, bottomYValue), lengthOfWall, orientationOfCorridor));
+
+        }
+        else
+        {
+            float startingYValue = corridor.topLeft.y;
+            float endingYValue = corridor.bottomRight.y;
+            float lengthOfWall = endingYValue - startingYValue;
+
+            float leftXValue = corridor.topLeft.x;
+            float rightXValue = corridor.bottomRight.x;
+
+            walls.Add(new Wall(new Vector2(leftXValue, startingYValue), lengthOfWall, orientationOfCorridor));
+            walls.Add(new Wall(new Vector2(rightXValue, startingYValue), lengthOfWall, orientationOfCorridor));
+
+        }
 
         return walls;
     }

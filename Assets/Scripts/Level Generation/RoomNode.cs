@@ -85,6 +85,7 @@ public class RoomNode : Node
     {
         Orientation corridorOrientation = corridor.GetOrientation();
         Vector2 corridorTopLeft = corridor.topLeft;
+        Vector2 cooridorBottomRight = corridor.bottomRight;
         
         if (corridorOrientation == Orientation.Horizontal)
         {   
@@ -93,7 +94,7 @@ public class RoomNode : Node
             {
                 this.rightCorridors.Add(corridor);
             }
-            else
+            else if (cooridorBottomRight.x <= this.topLeft.x)
             {
                 this.leftCorridors.Add(corridor);
             }
@@ -105,7 +106,7 @@ public class RoomNode : Node
             {
                 this.bottomCorridors.Add(corridor);
             }
-            else
+            else if (cooridorBottomRight.y <= this.topLeft.y)
             {
                 this.topCorridors.Add(corridor);
             }

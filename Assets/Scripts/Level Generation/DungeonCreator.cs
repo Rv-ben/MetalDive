@@ -29,7 +29,7 @@ public class DungeonCreator : MonoBehaviour
 
         List<RoomNode> list = generator.GetRooms(maxIterations, roomWidthMin, roomLengthMin);
         List<CorridorNode> listOfCooridors = generator.GetCorridors(corridorWidth);
-        List<Wall> listOfWalls = generator.GenerateWalls(list);
+        List<Wall> listOfWalls = generator.GenerateWalls(list, listOfCooridors);
 
         var rooms = new List<GameObject>();
 
@@ -70,7 +70,7 @@ public class DungeonCreator : MonoBehaviour
         GameObject wall = null;
         if (wallToBuild.orientation == Orientation.Horizontal)
         {
-            wall = ProceduralPrimitives.Primitive.CreateBoxGameObject(wallToBuild.length, 0.5f, 0.3f);
+            wall = ProceduralPrimitives.Primitive.CreateBoxGameObject(wallToBuild.length, 1, 0.3f);
             wall.transform.position = new Vector3 (
             wallToBuild.startPoint.x + wallToBuild.length / 2,
             0.5f / 2,
@@ -79,7 +79,7 @@ public class DungeonCreator : MonoBehaviour
         }
         else
         {
-            wall = ProceduralPrimitives.Primitive.CreateBoxGameObject(0.3f, 0.5f, wallToBuild.length);
+            wall = ProceduralPrimitives.Primitive.CreateBoxGameObject(0.3f, 1, wallToBuild.length);
             wall.transform.position = new Vector3 (
             wallToBuild.startPoint.x,
             0.5f / 2,
