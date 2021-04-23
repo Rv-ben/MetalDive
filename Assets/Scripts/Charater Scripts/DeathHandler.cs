@@ -34,7 +34,6 @@ public class DeathHandler : MonoBehaviour
         if (healthSlider.healthValue == 0 && !animator.GetBool("TotallyDead"))
         {
             animator.StopPlayback();
-            Debug.Log("FUCKING DIE DAMN YOU");
             // Triggers the death animation.
             animator.SetTrigger("Dying");
             if (gameObject.tag == "Player")
@@ -46,7 +45,15 @@ public class DeathHandler : MonoBehaviour
             }
             else if (gameObject.tag == "Enemy")
             {
+                enemy.walkingRange = 0;
                 enemy.walkingSpeed = 0;
+                // Disconnect EnemyMovement class.
+                Destroy(GetComponent<EnemyMovement>());
+                Destroy(GetComponent<UnityEngine.AI.NavMeshAgent>());
+                Destroy(GetComponent<GenericShooting>());
+                Destroy(GetComponent<CapsuleCollider>());
+                Destroy(GetComponent<HealthSlider>());
+                Destroy(GetComponent<DeathHandler>());
             }
             // Prevents them from just getting back up.
             animator.SetBool("TotallyDead", true);
