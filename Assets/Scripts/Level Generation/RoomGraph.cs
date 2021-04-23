@@ -179,8 +179,14 @@ public class RoomGraph
         List <CorridorNode> corridors = new List<CorridorNode>();
 
         for(var i = 0; i < path.Count - 1; i++)
-        {
-            corridors.Add(GetCorridorNode(path[i], path[i + 1]));
+        {   
+            CorridorNode corridor = GetCorridorNode(path[i], path[i + 1]);
+            RoomNode room1 = roomNodes[path[i]];
+            RoomNode room2 = roomNodes[path[i+1]];
+            room1.AddCorridor(corridor);
+            room2.AddCorridor(corridor);
+
+            corridors.Add(corridor);
         }
 
         return corridors;
@@ -196,8 +202,11 @@ public class RoomGraph
         Vector2 corridorTopLeft = new Vector2(0,0);
         Vector2 corridorBottomRight = new Vector2(0, 0);
 
+        Orientation direction = Orientation.null_;
+
         if (neighborType.xNeighbor == neighborTypeN1N2)
         {
+            direction = Orientation.Horizontal;
             var nodes = graphHelper.GetXOrientation(roomNodes[node1Key], roomNodes[node2Key]);
             var node1 = nodes.Item1;
             var node2 = nodes.Item2;
@@ -210,6 +219,7 @@ public class RoomGraph
         }
         else if(neighborType.yNeighbor == neighborTypeN1N2)
         {
+            direction = Orientation.Vertical;
             var nodes = graphHelper.GetYOrientation(roomNodes[node1Key], roomNodes[node2Key]);
             var node1 = nodes.Item1;
             var node2 = nodes.Item2;
@@ -221,7 +231,7 @@ public class RoomGraph
             corridorBottomRight = new Vector2( corridorTopLeft.x + this.minCorridorLength, node2.topLeft.y);
         }
 
-        return new CorridorNode(corridorTopLeft, corridorBottomRight);
+        return new CorridorNode(corridorTopLeft, corridorBottomRight, direction);
     }
 
 }
