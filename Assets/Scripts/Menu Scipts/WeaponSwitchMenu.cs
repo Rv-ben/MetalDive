@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 
@@ -9,18 +10,21 @@ using UnityEngine;
 public class WeaponSwitchMenu : MonoBehaviour
 {
     [NonSerialized]
-    private readonly List<GameObject> weapons;
-
-    [NonSerialized]
-    public int weaponIndex = 0;
-
     public GameObject weapon;
 
     public GameObject weaponView;
 
+    private static bool isPaused = false;
+
+    private int weaponIndex = 0;
+
     private GameObject menuCanvas;
 
-    public static bool isPaused = false;
+    private Image currentImage;
+
+    private int weaponLength = Enum.GetNames(typeof(WeaponEnum)).Length;
+
+    
 
     private void Start()
     {
@@ -58,11 +62,10 @@ public class WeaponSwitchMenu : MonoBehaviour
 
     private void ResumeGame()
     {
-        
+        LoadWeapon();
         menuCanvas.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
-
     }
 
     /// <summary>
@@ -73,13 +76,14 @@ public class WeaponSwitchMenu : MonoBehaviour
     public void NextItem(GameObject button)
     {
         string buttonName = button.name;
-        switch(buttonName)
+        
+        switch (buttonName)
         {
             case "LeftButton":
                 Debug.Log("left item");
                 if (weaponIndex == 0)
                 {
-                    weaponIndex = weapons.Count - 1;
+                    weaponIndex = weaponLength - 1;
                 }
                 else
                 {
@@ -91,7 +95,7 @@ public class WeaponSwitchMenu : MonoBehaviour
 
             case "RightButton":
                 Debug.Log("right item");
-                if (weaponIndex == weapons.Count - 1)
+                if (weaponIndex == weaponLength - 1)
                 {
                     weaponIndex = 0;
                 }
@@ -103,23 +107,20 @@ public class WeaponSwitchMenu : MonoBehaviour
                 break;
         }
 
-       // return currentWeaponIndex;
     } 
 
     public void SwitchWeapon(int index)
     {
-        foreach (Transform weapon in transform)
+        var weaponImages = Resources.LoadAll<Image>("Images/Weapons/Icons");
+        var enum_ = ((WeaponEnum)index);
+        Debug.Log(enum_);
+        foreach (var image in weaponImages)
         {
-            int i = 0;
-            if (i == index)
+            if (image.ToString().Equals(enum_.ToString()))
             {
-                weapon.gameObject.SetActive(true);
+                Instantiate(image);
+                currentImage = image;
             }
-            else
-            {
-                weapon.gameObject.SetActive(false);
-            }
-            i++;
         }
     }
 
@@ -129,6 +130,7 @@ public class WeaponSwitchMenu : MonoBehaviour
     /// <param name="index"></param>
     public void LoadWeapon()
     {
+        Instantiate(this.currentImage);
         //weaponView.SendMessage("SwitchWeapon", weapons[weaponIndex]);
     }
 
