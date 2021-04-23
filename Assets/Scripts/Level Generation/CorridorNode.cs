@@ -9,13 +9,16 @@ public class CorridorNode : Node
     /// init corridorNode
     /// </summary>
     /// <param name="topLeft"></param>
-    /// <param name="width"></param>
-    /// <param name="length"></param>
+    /// <param name="width">X axis</param>
+    /// <param name="length"Y axis></param>
     /// <param name="parentNode"></param>
-    public CorridorNode(Vector2 topLeft, Vector2 bottomRight) : base(null)
+
+    public Orientation orientation;
+    public CorridorNode(Vector2 topLeft, Vector2 bottomRight, Orientation orientation) : base(null)
     {
         this.topLeft = topLeft;
         this.bottomRight = bottomRight;
+        this.orientation = orientation;
     }
 
 
@@ -28,5 +31,10 @@ public class CorridorNode : Node
     {
         this.width = bottomRight.x - topLeft.x;
     }
+
+    public Orientation GetOrientation()
+    {
+        return this.orientation;
+    } 
 
 }

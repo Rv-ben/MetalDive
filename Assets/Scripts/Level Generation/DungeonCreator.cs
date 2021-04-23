@@ -29,6 +29,7 @@ public class DungeonCreator : MonoBehaviour
 
         List<RoomNode> list = generator.GetRooms(maxIterations, roomWidthMin, roomLengthMin);
         List<CorridorNode> listOfCooridors = generator.GetCorridors(corridorWidth);
+        List<Wall> listOfWalls = generator.GenerateWalls(list, listOfCooridors);
 
         var rooms = new List<GameObject>();
 
@@ -54,7 +55,38 @@ public class DungeonCreator : MonoBehaviour
 
         surfaces[0].BuildNavMesh();
 
+        foreach(Wall wall in listOfWalls)
+        {
+            BuildWall(wall);
+        }
+        
+
         return list;
 
+    }
+
+    public void BuildWall(Wall wallToBuild)
+    {   
+        GameObject wall = null;
+        if (wallToBuild.orientation == Orientation.Horizontal)
+        {
+            wall = ProceduralPrimitives.Primitive.CreateBoxGameObject(wallToBuild.length, 1, 0.3f);
+            wall.transform.position = new Vector3 (
+            wallToBuild.startPoint.x + wallToBuild.length / 2,
+            0.5f / 2,
+            wallToBuild.startPoint.y
+            );
+        }
+        else
+        {
+            wall = ProceduralPrimitives.Primitive.CreateBoxGameObject(0.3f, 1, wallToBuild.length);
+            wall.transform.position = new Vector3 (
+            wallToBuild.startPoint.x,
+            0.5f / 2,
+            wallToBuild.startPoint.y + wallToBuild.length / 2
+            );
+        }
+
+        wall.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
     }
 }
