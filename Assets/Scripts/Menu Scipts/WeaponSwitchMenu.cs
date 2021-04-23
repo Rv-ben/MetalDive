@@ -16,24 +16,34 @@ public class WeaponSwitchMenu : MonoBehaviour
 
     public GameObject weapon;
 
-    public GameObject WeaponView;
+    public GameObject weaponView;
 
-    public GameObject MenuCanvas;
+    private GameObject menuCanvas;
+
+    public static bool isPaused = false;
 
     private void Start()
     {
-        MenuCanvas.SetActive(false);
+        this.menuCanvas = GameObject.Find("Panel");
+        menuCanvas.SetActive(isPaused);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            PauseGame();
-            DisplayMenu();
+            if (isPaused) 
+            {
+                Debug.Log("Tab key entered should resume");
+                ResumeGame();
+            }
+            else
+            {
+                Debug.Log("Tab key entered should be paused");
+                PauseGame();
+            }
         }
-
     }
 
     /// <summary>
@@ -41,21 +51,18 @@ public class WeaponSwitchMenu : MonoBehaviour
     /// </summary>
     private void PauseGame()
     {
+        menuCanvas.SetActive(true);
         Time.timeScale = 0f;
+        isPaused = true;
     }
 
     private void ResumeGame()
     {
-        MenuCanvas.SetActive(false);
+        
+        menuCanvas.SetActive(false);
         Time.timeScale = 1f;
-    }
+        isPaused = false;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    private void DisplayMenu()
-    {
-        MenuCanvas.SetActive(true);
     }
 
     /// <summary>
@@ -122,7 +129,7 @@ public class WeaponSwitchMenu : MonoBehaviour
     /// <param name="index"></param>
     public void LoadWeapon()
     {
-        WeaponView.SendMessage("SwitchWeapon", weapons[weaponIndex]);
+        //weaponView.SendMessage("SwitchWeapon", weapons[weaponIndex]);
     }
 
 
