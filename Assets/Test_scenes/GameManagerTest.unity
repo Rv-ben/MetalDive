@@ -154,12 +154,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0f8307bfd48f244a4f41ee79ca78d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dunWidth: 20
-  dunLength: 20
-  roomWidthMin: 3
-  roomLengthMin: 3
+  dunWidth: 30
+  dunLength: 30
+  roomWidthMin: 8
+  roomLengthMin: 8
   maxIterations: 10
-  corridorWidth: 1
+  corridorWidth: 2
   material: {fileID: 0}
 --- !u!114 &1262486242
 MonoBehaviour:
