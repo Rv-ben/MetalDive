@@ -12,15 +12,8 @@ public class CameraInfo
 
     public Vector3 GetCameraOffset()
     {
-        Debug.Log(this.x + " " + this.y + " " + this.z);
         var wtf = new Vector3(this.x, this.y, this.z);
-        Debug.Log(wtf);
         return wtf;
-    }
-
-    public string ToString()
-    {
-        return this.x + " " + this.y + " " + this.z;
     }
 
     // Given JSON input:

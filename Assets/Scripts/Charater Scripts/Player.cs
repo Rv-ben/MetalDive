@@ -29,6 +29,7 @@ public class Player : Character
     public static GameObject spawn (RoomNode room, Spawner spawner) {
         var randomPosition = room.GetRandomPosition();
         var prefab =spawner.SpawnCharacter(randomPosition, CharacterEnum.Player);
+        prefab.name = "Player";
         return prefab;
     }
 

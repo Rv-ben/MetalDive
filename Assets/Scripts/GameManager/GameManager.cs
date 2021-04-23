@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public ObstacleGeneration obstacleGenerator;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         spawner.LoadPrefabs();
         var rooms = dungeonCreator.CreateDungeon();
