@@ -54,7 +54,7 @@ public class Shooting : MonoBehaviour
     public void Update()
     {
         // Checks if LClick is pushed.
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !GameObject.Find("WeaponSwitchMenu").GetComponent<WeaponSwitchMenu>().accessIsPaused())
         {
             // Shooting logic.  Passes in whatever state it's at, as well as the bullet to be fired.
             Shoot(animEnum, bullet);

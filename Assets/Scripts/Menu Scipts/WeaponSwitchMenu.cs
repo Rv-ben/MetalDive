@@ -24,12 +24,13 @@ public class WeaponSwitchMenu : MonoBehaviour
 
     private int weaponLength = Enum.GetNames(typeof(WeaponEnum)).Length;
 
-    
+    private Image[] weaponImages;
 
     private void Start()
     {
         this.menuCanvas = GameObject.Find("Panel");
         menuCanvas.SetActive(isPaused);
+        weaponImages = Resources.LoadAll<Image>("Weapons/Icons");
     }
 
     // Update is called once per frame
@@ -37,6 +38,7 @@ public class WeaponSwitchMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            Screen.lockCursor = false;
             if (isPaused) 
             {
                 Debug.Log("Tab key entered should resume");
@@ -48,6 +50,7 @@ public class WeaponSwitchMenu : MonoBehaviour
                 PauseGame();
             }
         }
+        
     }
 
     /// <summary>
@@ -76,7 +79,6 @@ public class WeaponSwitchMenu : MonoBehaviour
     public void NextItem(GameObject button)
     {
         string buttonName = button.name;
-        
         switch (buttonName)
         {
             case "LeftButton":
@@ -111,13 +113,16 @@ public class WeaponSwitchMenu : MonoBehaviour
 
     public void SwitchWeapon(int index)
     {
-        var weaponImages = Resources.LoadAll<Image>("Images/Weapons/Icons");
+        
         var enum_ = ((WeaponEnum)index);
         Debug.Log(enum_);
+        Debug.Log(weaponImages.Length);
         foreach (var image in weaponImages)
         {
+            Debug.Log("BEFORE IF " + image.ToString());
             if (image.ToString().Equals(enum_.ToString()))
             {
+                
                 Instantiate(image);
                 currentImage = image;
             }
@@ -133,6 +138,11 @@ public class WeaponSwitchMenu : MonoBehaviour
         Instantiate(this.currentImage);
         //weaponView.SendMessage("SwitchWeapon", weapons[weaponIndex]);
     }
+
+    public bool accessIsPaused() 
+    {
+        return isPaused;
+     }
 
 
 }

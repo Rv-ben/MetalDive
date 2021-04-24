@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
-
-
+using UnityEngine.Events;
 
 /// <summary>
 /// Enemy behavior
@@ -21,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
     private Animator anim;
     private Vector3 positionVector;
     private GameObject targetObject;
-    
+
 
     /// <summary>
     /// Initialize all the variables with objects upon game starts.
