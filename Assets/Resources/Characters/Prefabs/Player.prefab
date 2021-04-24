@@ -2350,6 +2350,7 @@ GameObject:
   - component: {fileID: 8401008680357231223}
   - component: {fileID: 8401008680357231220}
   - component: {fileID: 7455530076799520471}
+  - component: {fileID: -3225801990367357007}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2447,7 +2448,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8401008680357231222}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7110aa534413416479cee23346f0d598, type: 3}
   m_Name: 
@@ -2542,6 +2543,23 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.01
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!114 &-3225801990367357007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8401008680357231222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e918c0ca49cce48b2e4014169fec36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ejector: {fileID: 8401008679336355171}
+  timeToShoot: 0
+  bullet: {fileID: 6910468197738857177, guid: d6ee00be2ef1f6e46baf4f28ae54d761, type: 3}
+  animator: {fileID: 8401008680357231219}
+  animEnum: 1
 --- !u!1 &8401008680459905063
 GameObject:
   m_ObjectHideFlags: 0

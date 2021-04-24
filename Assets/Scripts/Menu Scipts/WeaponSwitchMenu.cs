@@ -10,65 +10,25 @@ using UnityEngine.UI;
 public class WeaponSwitchMenu : MonoBehaviour
 {
     [NonSerialized]
-    public GameObject weapon;
-
-    public GameObject weaponView;
-
-    private static bool isPaused = false;
 
     private int weaponIndex = 0;
 
-    private GameObject menuCanvas;
+    [SerializeField] public GameObject menuCanvas;
 
-    private Image currentImage;
+    private Texture2D currentImage;
 
     private int weaponLength = Enum.GetNames(typeof(WeaponEnum)).Length;
 
-    private Image[] weaponImages;
+    private Texture2D[] weaponImages;
 
     private void Start()
     {
-        this.menuCanvas = GameObject.Find("Panel");
-        menuCanvas.SetActive(isPaused);
-        weaponImages = Resources.LoadAll<Image>("Weapons/Icons");
+        weaponImages = Resources.LoadAll<Texture2D>("Weapons/Icons");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            Screen.lockCursor = false;
-            if (isPaused) 
-            {
-                Debug.Log("Tab key entered should resume");
-                ResumeGame();
-            }
-            else
-            {
-                Debug.Log("Tab key entered should be paused");
-                PauseGame();
-            }
-        }
-        
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private void PauseGame()
-    {
-        menuCanvas.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
-    }
-
-    private void ResumeGame()
-    {
-        LoadWeapon();
-        menuCanvas.SetActive(false);
-        Time.timeScale = 1f;
-        isPaused = false;
     }
 
     /// <summary>
@@ -78,8 +38,7 @@ public class WeaponSwitchMenu : MonoBehaviour
     /// <returns></returns>
     public void NextItem(GameObject button)
     {
-        string buttonName = button.name;
-        switch (buttonName)
+        switch (button.name)
         {
             case "LeftButton":
                 Debug.Log("left item");
@@ -139,10 +98,6 @@ public class WeaponSwitchMenu : MonoBehaviour
         //weaponView.SendMessage("SwitchWeapon", weapons[weaponIndex]);
     }
 
-    public bool accessIsPaused() 
-    {
-        return isPaused;
-     }
 
 
 }
