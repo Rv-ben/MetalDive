@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1080564879 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6855458955057312070, guid: 89ae1a2c6a2c4a04a89eecd365880c80, type: 3}
-  m_PrefabInstance: {fileID: 6855458956125285833}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1128122974
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +257,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dungeonCreator: {fileID: 1262486241}
   spawner: {fileID: 1262486244}
-  weaponSwitchMenu: {fileID: 1262486245}
   isPaused: 0
 --- !u!4 &1262486243
 Transform:
@@ -302,7 +296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93742a9041e96c34e94c8477cfc60d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuCanvas: {fileID: 1080564879}
 --- !u!1 &1322943474
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,5 +786,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponSwitchMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 6855458955061219617, guid: 89ae1a2c6a2c4a04a89eecd365880c80, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6855458955061219617, guid: 89ae1a2c6a2c4a04a89eecd365880c80, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 6855458955987376580, guid: 89ae1a2c6a2c4a04a89eecd365880c80, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6855458955987376580, guid: 89ae1a2c6a2c4a04a89eecd365880c80, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89ae1a2c6a2c4a04a89eecd365880c80, type: 3}

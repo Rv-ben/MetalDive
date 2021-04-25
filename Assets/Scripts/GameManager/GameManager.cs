@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public Spawner spawner;
 
-    [SerializeField] public WeaponSwitchMenu weaponSwitchMenu;
+    // [SerializeField] public WeaponSwitchMenu weaponSwitchMenu;
+
+    private GameObject weaponSwitchMenu;
 
     public bool isPaused = false;
 
@@ -18,7 +20,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         spawner.LoadPrefabs();
-        weaponSwitchMenu.menuCanvas.SetActive(isPaused);
+        weaponSwitchMenu = GameObject.Find("Panel");
+        weaponSwitchMenu.SetActive(isPaused);
         var rooms = dungeonCreator.CreateDungeon();
         var obstacleGenerator = new ObstacleGeneration(rooms, spawner);
         var player = new Player(rooms[0], spawner);
@@ -31,7 +34,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             Screen.lockCursor = false;
-            weaponSwitchMenu.menuCanvas.SetActive(!isPaused);
+            weaponSwitchMenu.SetActive(!isPaused);
             if (isPaused)
             {
                 ResumeGame();
@@ -57,12 +60,6 @@ public class GameManager : MonoBehaviour
 
     public void ButtonHander(GameObject button)
     {
-        switch(button.name)
-        {
-            case "LeftButton":
-                weaponSwitchMenu.NextItem(button);
-                break;
-
-        }
+        weaponSwitchMenu.GetComponent<WeaponSwitchMenu>().NextItem(button);
     }
 }
