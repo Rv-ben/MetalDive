@@ -57,9 +57,4 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
     }
-
-    public void ButtonHander(GameObject button)
-    {
-        weaponSwitchMenu.GetComponent<WeaponSwitchMenu>().NextItem(button);
-    }
 }
