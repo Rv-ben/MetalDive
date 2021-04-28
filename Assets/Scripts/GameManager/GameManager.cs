@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public Spawner spawner;
 
+    [SerializeField] public GameObject weaponView;
+
     // [SerializeField] public WeaponSwitchMenu weaponSwitchMenu;
 
     private GameObject weaponSwitchMenu;
@@ -15,6 +17,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused = false;
 
     public ObstacleGeneration obstacleGenerator;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -35,6 +38,8 @@ public class GameManager : MonoBehaviour
         {
             Screen.lockCursor = false;
             weaponSwitchMenu.SetActive(!isPaused);
+            weaponView.SetActive(!isPaused);
+
             if (isPaused)
             {
                 ResumeGame();
@@ -56,5 +61,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         isPaused = false;
+        
     }
 }

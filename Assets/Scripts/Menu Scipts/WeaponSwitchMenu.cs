@@ -17,7 +17,7 @@ public class WeaponSwitchMenu : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
-    private GameObject weaponView;
+    [SerializeField] GameObject weaponView;
 
     private GameManager gameManager;
 
@@ -27,18 +27,21 @@ public class WeaponSwitchMenu : MonoBehaviour
 
     private Sprite[] weaponImages;
 
+    
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         // weaponView = GameObject.Find("WeaponView");
         weaponImages = Resources.LoadAll<Sprite>("Weapons/Icons");
         // spriteRenderer = this.GetComponent<SpriteRenderer>();
-        weaponView = this.transform.GetChild(0).GetChild(1).gameObject;
+        //weaponView = this.transform.GetChild(0).GetChild(1).gameObject;
         spriteRenderer = weaponView.GetComponent<SpriteRenderer>();
         // weaponView.GetComponent<SpriteRenderer>();
         // start with unarmed.
         currentWeaponIndex = weaponLength - 1;
         spriteRenderer.sprite = weaponImages[currentWeaponIndex];
+        
     }
 
     /// <summary>
