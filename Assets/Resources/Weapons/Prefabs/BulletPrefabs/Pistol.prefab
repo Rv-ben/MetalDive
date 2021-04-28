@@ -110,10 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spread: 0
-  shotDelay: 1
+  shotDelay: 0.1
   spreadNumber: 1
-  bulletSpeed: 10
-  lifeTime: 5
+  bulletSpeed: 10000
+  lifeTime: 1
 --- !u!54 &-6378152690711693947
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -113,10 +113,10 @@ public enum HealthEnum
 {
     Pistol = -10,
     AR = -5,
-    Minigun = -2,
-    ShotPellet = -5,
+    Mini = -2,
+    Pellet = -5,
     Rocket = -30,
-    Field = -10,
+    Sound = -10,
     Healthkit = 10
 }
 
