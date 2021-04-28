@@ -18,9 +18,9 @@ public class Shooting : MonoBehaviour
     public Animator animator;
 
     // Enum that holds the various animation triggers.
-    public ShootingEnums animEnum;
+    public WeaponEnum animEnum;
     // Dictionary tying an Enum to a String, which is used to determine an animation to play.
-    public Dictionary<ShootingEnums, string> animationDictionary;
+    public Dictionary<WeaponEnum, string> animationDictionary;
 
     /// <summary>
     /// Checks if the Player is able to shoot their weapon yet.
@@ -31,19 +31,19 @@ public class Shooting : MonoBehaviour
     public void Start()
     {
         // Instantiate the Animation Dictionary, which will hold the state we want and the string name of the animation trigger we want.
-        animationDictionary = new Dictionary<ShootingEnums, string>();
+        animationDictionary = new Dictionary<WeaponEnum, string>();
         // Ties the Dropkick Animation to the Unarmed state.
-        animationDictionary.Add(ShootingEnums.Unarmed, "DropKick");
+        animationDictionary.Add(WeaponEnum.Unarmed, "DropKick");
         // Ties the Pistol Firing Animation to the Pistol state.
-        animationDictionary.Add(ShootingEnums.Pistol, "FiringPistol");
+        animationDictionary.Add(WeaponEnum.SciFiHandGun, "FiringPistol");
         // Ties the Guitar Playing Animation to the Guitar state.
-        animationDictionary.Add(ShootingEnums.Guitar, "PlayingGuitar");
+        animationDictionary.Add(WeaponEnum.ElectricGuitar, "PlayingGuitar");
 
         // BELOW IS TEMPORARY.
         // Player is not armed.
         animator.SetBool("Unarmed", false);
         // Player's state is Pistol.
-        animEnum = ShootingEnums.Pistol;
+        animEnum = WeaponEnum.SciFiHandGun;
         // Player's Animation set should be pistol.
         animator.SetBool("PistolEquipped", true);
     }
@@ -66,7 +66,7 @@ public class Shooting : MonoBehaviour
     /// </summary>
     /// <param name="anim">The Enum that's currently equipped.  Should refer to the weapon that's equipped, used to play the appropriate firing animation.</param>
     /// <param name="bullet">The bullet to be fired.  Has a ton of inherent variables that must be read.</param>
-    public void Shoot(ShootingEnums anim, GameObject bullet)
+    public void Shoot(WeaponEnum anim, GameObject bullet)
     {
         // Plays a specific animation based on the weapon equipped.
         animator.SetTrigger(animationDictionary[animEnum]);
