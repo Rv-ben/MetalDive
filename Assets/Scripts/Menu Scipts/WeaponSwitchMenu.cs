@@ -23,7 +23,7 @@ public class WeaponSwitchMenu : MonoBehaviour
 
     private int weaponLength = Enum.GetNames(typeof(WeaponEnum)).Length;
 
-    private int currentWeaponIndex;
+    public int currentWeaponIndex;
 
     private Sprite[] weaponImages;
 
@@ -97,7 +97,9 @@ public class WeaponSwitchMenu : MonoBehaviour
 
     public WeaponEnum currentWeapon()
     {
+        Debug.Log("here");
         var enum_ = ((WeaponEnum)currentWeaponIndex);
+        Debug.Log(enum_.ToString());
         return enum_;
     }
 
