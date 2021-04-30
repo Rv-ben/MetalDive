@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 
@@ -9,53 +10,38 @@ using UnityEngine;
 public class WeaponSwitchMenu : MonoBehaviour
 {
     [NonSerialized]
-    private readonly List<GameObject> weapons;
 
-    [NonSerialized]
-    public int weaponIndex = 0;
+    //[SerializeField] public GameObject menuCanvas;
 
-    public GameObject weapon;
+    //private Sprite currentImage;
 
-    public GameObject WeaponView;
+    private SpriteRenderer spriteRenderer;
 
-    public GameObject MenuCanvas;
+    [SerializeField] GameObject weaponView;
+
+    private GameManager gameManager;
+
+    private int weaponLength = Enum.GetNames(typeof(WeaponEnum)).Length;
+
+    public int currentWeaponIndex;
+
+    private Sprite[] weaponImages;
+
+    
 
     private void Start()
     {
-        MenuCanvas.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Tab))
-        {
-            PauseGame();
-            DisplayMenu();
-        }
-
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private void PauseGame()
-    {
-        Time.timeScale = 0f;
-    }
-
-    private void ResumeGame()
-    {
-        MenuCanvas.SetActive(false);
-        Time.timeScale = 1f;
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private void DisplayMenu()
-    {
-        MenuCanvas.SetActive(true);
+        gameManager = FindObjectOfType<GameManager>();
+        // weaponView = GameObject.Find("WeaponView");
+        weaponImages = Resources.LoadAll<Sprite>("Weapons/Icons");
+        // spriteRenderer = this.GetComponent<SpriteRenderer>();
+        //weaponView = this.transform.GetChild(0).GetChild(1).gameObject;
+        spriteRenderer = weaponView.GetComponent<SpriteRenderer>();
+        // weaponView.GetComponent<SpriteRenderer>();
+        // start with unarmed.
+        currentWeaponIndex = weaponLength - 1;
+        spriteRenderer.sprite = weaponImages[currentWeaponIndex];
+        
     }
 
     /// <summary>
@@ -65,65 +51,56 @@ public class WeaponSwitchMenu : MonoBehaviour
     /// <returns></returns>
     public void NextItem(GameObject button)
     {
-        string buttonName = button.name;
-        switch(buttonName)
+        switch (button.name)
         {
             case "LeftButton":
                 Debug.Log("left item");
-                if (weaponIndex == 0)
+                if (currentWeaponIndex == 0)
                 {
-                    weaponIndex = weapons.Count - 1;
+                    currentWeaponIndex = weaponLength - 1;
                 }
                 else
                 {
-                    weaponIndex--;
+                    currentWeaponIndex--;
                 }
-                SwitchWeapon(weaponIndex);
+                SwitchWeapon(currentWeaponIndex);
                 break;
 
 
             case "RightButton":
                 Debug.Log("right item");
-                if (weaponIndex == weapons.Count - 1)
+                if (currentWeaponIndex == weaponLength - 1)
                 {
-                    weaponIndex = 0;
+                    currentWeaponIndex = 0;
                 }
                 else
                 {
-                    weaponIndex++;
+                    currentWeaponIndex++;
                 }
-                SwitchWeapon(weaponIndex);
+                SwitchWeapon(currentWeaponIndex);
                 break;
         }
 
-       // return currentWeaponIndex;
     } 
 
     public void SwitchWeapon(int index)
     {
-        foreach (Transform weapon in transform)
-        {
-            int i = 0;
-            if (i == index)
-            {
-                weapon.gameObject.SetActive(true);
-            }
-            else
-            {
-                weapon.gameObject.SetActive(false);
-            }
-            i++;
-        }
+        var enum_ = ((WeaponEnum)index);
+        Debug.Log("index is now " + index);
+        Debug.Log(enum_);
+        Debug.Log("weaponImages size " + weaponImages.Length);
+        Debug.Log("enum size is " + weaponLength);
+
+        spriteRenderer.sprite = weaponImages[currentWeaponIndex];
+
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="index"></param>
-    public void LoadWeapon()
+    public WeaponEnum currentWeapon()
     {
-        WeaponView.SendMessage("SwitchWeapon", weapons[weaponIndex]);
+        Debug.Log("here");
+        var enum_ = ((WeaponEnum)currentWeaponIndex);
+        Debug.Log(enum_.ToString());
+        return enum_;
     }
-
 
 }

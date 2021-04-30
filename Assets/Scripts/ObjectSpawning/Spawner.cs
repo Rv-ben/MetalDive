@@ -61,7 +61,6 @@ public class Spawner : MonoBehaviour
             var enumKey = (BulletEnum)Enum.Parse(typeof(BulletEnum), spawnableBullet.name);
             this.bulletPrefabDict.Add(enumKey, spawnableBullet);
         }
-        Debug.Log("Fire");
     }
 
     /// <summary>
@@ -74,8 +73,6 @@ public class Spawner : MonoBehaviour
     public GameObject SpawnMapAsset(Vector2 center, MapAssetEnum type)
     {
         // Find in prefab from the dictionary
-        Debug.Log(type);
-        Debug.Log(this.mapAssetsPrefabDict.ToString());
         var prefab = this.mapAssetsPrefabDict[type];
 
         // Return a the correct map asset object

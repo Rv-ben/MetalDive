@@ -8,13 +8,14 @@ using UnityEngine;
 /// </summary>
 public class Player : Character
 {
+    Spawner spawner;
     /// <summary>
     /// Constructor that inherits the GameObject from the base class with base keyword
     /// </summary>
     /// <param name="prefab">GameObject used to create the Player</param>
     public Player (RoomNode room, Spawner spawner) : base(spawn(room, spawner))
     {
-
+        this.spawner = spawner;
     }
 
     /// <summary>
@@ -31,6 +32,11 @@ public class Player : Character
         var prefab =spawner.SpawnCharacter(randomPosition, CharacterEnum.Player);
         prefab.name = "Player";
         return prefab;
+    }
+
+    public void SwitchWeapon (WeaponEnum weaponEnum) {
+        var weaponToSwitch = this.spawner.SpawnWeapon(new Vector3(0,0,0), weaponEnum);
+        this.prefab.GetComponent<WeaponSwitching>().WeaponSwitch(weaponEnum, weaponToSwitch);
     }
 
 }

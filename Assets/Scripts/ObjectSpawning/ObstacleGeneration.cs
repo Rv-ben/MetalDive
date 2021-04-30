@@ -39,7 +39,6 @@ public class ObstacleGeneration
                 if (objectNum == 1) // randomly pick an object from MapAssetEnum except Elevator and spawn
                 {
                     MapAssetEnum enum_ = (MapAssetEnum)UnityEngine.Random.Range(1, Enum.GetNames(typeof(MapAssetEnum)).Length);
-                    Debug.Log(enum_);
                     spawner.SpawnMapAsset(GetRandomPosition(listOfRooms[i]), enum_);
                 }
                 else                // randomly generate coordinates for objects and spawn
