@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ElevatorSwitch : MonoBehaviour
 {
-    private bool playerEnter = false;
+    public bool playerEnter = false;
 
     private void OnTriggerEnter(Collider other)
     {
