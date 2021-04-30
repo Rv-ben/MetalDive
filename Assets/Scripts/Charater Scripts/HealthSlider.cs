@@ -7,6 +7,8 @@ public class HealthSlider : MonoBehaviour
     private GameObject enemyCanvas;
     private Vector3 rotation;
 
+    // private Animator animator;
+
     public Slider slider;
     public Gradient gradient;
     public Image image;
@@ -18,6 +20,7 @@ public class HealthSlider : MonoBehaviour
     /// </summary>
     void Start()
     {
+        // animator = GetComponent<Animator>();
         if (gameObject.tag == "Enemy")
         {
             enemyCanvas = transform.GetChild(3).gameObject;
@@ -42,6 +45,14 @@ public class HealthSlider : MonoBehaviour
             // Original enemyCanvas's rotation - enemy's rotation will keep the health bar horizontal on the screen.
             enemyCanvas.transform.localRotation = Quaternion.Euler(rotation - enemyQuaternion);
         }
+        /**
+        if (healthValue == 0 && animator.GetBool("TotallyDead") == false)
+        {
+            Debug.Log("DIE DAMMIT");
+            animator.SetTrigger("Dying");
+            animator.SetBool("TotallyDead", true);
+        }
+        **/
     }
 
     /// <summary>

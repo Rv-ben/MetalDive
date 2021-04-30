@@ -2681,11 +2681,11 @@ GameObject:
   - component: {fileID: 621745639481295899}
   - component: {fileID: 473618046134858198}
   - component: {fileID: 9636518379657769}
-  - component: {fileID: 9185912574180435603}
   - component: {fileID: 9185912574180435606}
   - component: {fileID: 9185912574180435600}
   - component: {fileID: 9185912574180435601}
-  - component: {fileID: -4565545198562971826}
+  - component: {fileID: 1243232399}
+  - component: {fileID: 1243232406}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -2767,23 +2767,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &9185912574180435603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9185912574180435602}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7110aa534413416479cee23346f0d598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ejector: {fileID: 2912912216674310558}
-  timeToShoot: 0
-  grows: 0
-  animator: {fileID: 0}
-  bullet: {fileID: 6910468197738857177, guid: 9ddd06b3a16347a4c8153b91c53d86ff, type: 3}
 --- !u!136 &9185912574180435606
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2859,7 +2842,7 @@ MonoBehaviour:
   image: {fileID: 290854745494572400}
   healthValue: 100
   maxHealth: 100
---- !u!114 &-4565545198562971826
+--- !u!114 &1243232399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2871,8 +2854,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e918c0ca49cce48b2e4014169fec36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ejector: {fileID: 0}
+  ejector: {fileID: 2912912216674310558}
   timeToShoot: 0
-  bullet: {fileID: 0}
-  animator: {fileID: 0}
-  animEnum: 0
+  bullet: {fileID: 1324474603367395274, guid: e8564024e23453e418d57b452d356bae, type: 3}
+  animator: {fileID: 621745639481295899}
+  animEnum: 3
+--- !u!114 &1243232406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185912574180435602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02e5833b9f4c044b8cf48abe3497a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 9185912574180435601}
+  animator: {fileID: 621745639481295899}
+  player: {fileID: 0}
+  enemy: {fileID: 0}

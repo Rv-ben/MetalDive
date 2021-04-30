@@ -21,12 +21,14 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 positionVector;
     private GameObject targetObject;
 
+    public bool dead;
 
     /// <summary>
     /// Initialize all the variables with objects upon game starts.
     /// </summary>
     void Start()
     {
+        dead = false;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         targetObject = GameObject.Find("Target");
@@ -44,12 +46,15 @@ public class EnemyMovement : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (agent.remainingDistance < idlingDistanceFollowing)
+        if (!dead)
         {
-            IdlePoint();
+            if (agent.remainingDistance < idlingDistanceFollowing)
+            {
+                IdlePoint();
+            }
+            // Blend Idle and Walk animation 
+            anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
         }
-        // Blend Idle and Walk animation 
-        anim.SetFloat("Blend", agent.velocity.sqrMagnitude);
     }
 
     /// <summary>
@@ -117,7 +122,7 @@ public class EnemyMovement : MonoBehaviour
     {
         agent.isStopped = false;
 
-        if (collider.tag.Equals("Player"))
+        if (collider.tag.Equals("Player") && !dead)
         {
 
             anim.Play("Pistol Walk");

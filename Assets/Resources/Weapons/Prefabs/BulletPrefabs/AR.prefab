@@ -128,5 +128,5 @@ MonoBehaviour:
   spread: 0
   shotDelay: 0.2
   spreadNumber: 1
-  bulletSpeed: 10
+  bulletSpeed: 1e+21
   lifeTime: 3
