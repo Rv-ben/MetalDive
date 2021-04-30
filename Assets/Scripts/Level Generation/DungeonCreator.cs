@@ -39,6 +39,7 @@ public class DungeonCreator : MonoBehaviour
             room.transform.position = new Vector3(roomNode.topLeft.x + roomNode.width/2, 0, roomNode.topLeft.y + roomNode.length/2);
             room.AddComponent<NavMeshSurface>();
             rooms.Add(room);
+            room.name = "Floor";
         }
 
         foreach(CorridorNode corridorNode in listOfCooridors)
@@ -49,6 +50,7 @@ public class DungeonCreator : MonoBehaviour
             var corridor = ProceduralPrimitives.Primitive.CreatePlaneGameObject(corridorNode.width, corridorNode.length, 1, 1);
             corridor.transform.position = new Vector3(corridorNode.topLeft.x + corridorNode.width / 2, 0, corridorNode.topLeft.y + corridorNode.length / 2);
             corridor.AddComponent<NavMeshSurface>();
+            corridor.name = "Floor";
         }
 
         var surfaces = (NavMeshSurface[])FindObjectsOfType(typeof(NavMeshSurface));
@@ -88,5 +90,6 @@ public class DungeonCreator : MonoBehaviour
         }
 
         wall.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
+        wall.name = "Wall";
     }
 }
