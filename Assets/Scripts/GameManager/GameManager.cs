@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log(weaponSwitchMenuScript.currentWeaponIndex);
                 var weaponEnum = weaponSwitchMenuScript.currentWeapon();
+                Debug.Log(weaponEnum);
                 SwitchPlayerWeapon(weaponEnum);
                 ResumeGame();
             }

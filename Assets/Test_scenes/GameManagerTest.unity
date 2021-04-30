@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponView: {fileID: 1952580764}
+  currentWeaponIndex: 0
 --- !u!114 &1080564881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,6 +614,7 @@ MonoBehaviour:
   dungeonCreator: {fileID: 1262486241}
   spawner: {fileID: 1262486244}
   weaponView: {fileID: 1952580764}
+  weaponSwitchMenu: {fileID: 1080564879}
   isPaused: 0
 --- !u!4 &1262486243
 Transform:
@@ -853,7 +855,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322943474}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1322943477
 Camera:
   m_ObjectHideFlags: 0
