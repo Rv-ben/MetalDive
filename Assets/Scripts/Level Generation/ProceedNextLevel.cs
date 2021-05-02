@@ -10,13 +10,13 @@ public class ProceedNextLevel : MonoBehaviour
     /// </summary>
     void Start()
     {
-        FloorObjects = new List<string>(){"Barrier(Clone)", "Bitcoin(Clone)", "Healthkit(Clone)", "Elevator(Clone)", "Wall", "Floor"};
+        FloorObjects = new List<string>(){"Barrier(Clone)", "Bitcoin(Clone)", "Healthkit(Clone)", "Elevator(Clone)", "Wall", "Floor", "Player", "Enemy", "Enemy(Clone)"};
     }
 
     /// <summary>
     /// Destroys all the object that have the same name as saved in FloorObjects.
     /// </summary>
-    public void destroyEnvironment()
+    public void DestroyEnvironment()
     {
         foreach (GameObject obj in Object.FindObjectsOfType(typeof(GameObject)))
         {
