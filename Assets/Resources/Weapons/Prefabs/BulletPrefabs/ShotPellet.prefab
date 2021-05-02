@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 4735587788188024379}
   - component: {fileID: 1899698762709587595}
   - component: {fileID: 4377982094583136739}
+  - component: {fileID: 4481899931974140354}
   m_Layer: 0
   m_Name: ShotPellet
   m_TagString: Pellet
@@ -147,3 +148,16 @@ MonoBehaviour:
   spreadNumber: 9
   bulletSpeed: 7
   lifeTime: 3
+--- !u!135 &4481899931974140354
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5400907408949093505}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

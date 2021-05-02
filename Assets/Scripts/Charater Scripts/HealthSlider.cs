@@ -7,8 +7,6 @@ public class HealthSlider : MonoBehaviour
     private GameObject enemyCanvas;
     private Vector3 rotation;
 
-    // private Animator animator;
-
     public Slider slider;
     public Gradient gradient;
     public Image image;
@@ -91,19 +89,16 @@ public class HealthSlider : MonoBehaviour
     /// <summary>
     /// This function will be called when a GameObject collides.
     /// </summary>
-    /// <param name="other">Object that touched enemy collider.</param>
+    /// <param name="other">Object that touched a GameObject collider.</param>
     void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Environment"))
+        if (Enum.IsDefined(typeof(HealthEnum), other.tag))
         {
-            if (Enum.IsDefined(typeof(HealthEnum), other.tag))
+            HealthEnum enum_ = (HealthEnum)Enum.Parse(typeof(HealthEnum), other.tag);
+            if (enum_.ToString() == "Healthkit" || gameObject.tag == "Enemy")
             {
-                HealthEnum enum_ = (HealthEnum)Enum.Parse(typeof(HealthEnum), other.tag);
-                if (enum_.ToString() == "Healthkit" || gameObject.tag == "Enemy")
-                {
-                    this.SetHealth((int)enum_);
-                    Destroy(other);
-                }
+                this.SetHealth((int)enum_);
+                Destroy(other);
             }
         }
     }
