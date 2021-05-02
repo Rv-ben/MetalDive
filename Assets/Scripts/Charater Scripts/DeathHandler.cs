@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DeathHandler : MonoBehaviour
@@ -55,6 +53,7 @@ public class DeathHandler : MonoBehaviour
                 GetComponent<CapsuleCollider>().enabled = !GetComponent<CapsuleCollider>().enabled;
                 // GetComponent<HealthSlider>().enabled = !GetComponent<HealthSlider>().enabled;
                 // GetComponent<DeathHandler>().enabled = !GetComponent<DeathHandler>().enabled;
+                player.isDead = true;
             }
             else if (gameObject.tag == "Enemy")
             {
