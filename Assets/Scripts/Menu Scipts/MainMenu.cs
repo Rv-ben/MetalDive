@@ -58,7 +58,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void UpdateSlider()
     {
-        Debug.Log("i: " + i);
+        //Debug.Log("i: " + i);
         // calculate progress 
         float progress = 10 / (Mathf.Pow(10, 2) / (i + 1));
 
@@ -68,7 +68,7 @@ public class MainMenu : MonoBehaviour
         // update slider text to new progress value as a percentage
         progressText.text = progress * 100f + "%";        
         
-        Debug.Log("progressBar: " + progressBar.value + ":" + progressText.text);
+        //Debug.Log("progressBar: " + progressBar.value + ":" + progressText.text);
         i++;
     }
 
