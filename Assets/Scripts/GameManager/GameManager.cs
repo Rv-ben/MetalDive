@@ -16,6 +16,14 @@ public class GameManager : MonoBehaviour
 
     private GameObject panel;
 
+    private ProceedNextLevel proceedNextLevel;
+
+    private ElevatorSwitch elevatorSwitch;
+
+    private bool completeLevel;
+
+    private PlayerMovement playerMovement;
+
     public bool isPaused = false;
 
     public ObstacleGeneration obstacleGenerator;
@@ -30,13 +38,13 @@ public class GameManager : MonoBehaviour
 
         panel = GameObject.Find("Panel");
         panel.SetActive(isPaused);
-    
+
         weaponSwitchMenuScript = weaponSwitchMenu.GetComponent<WeaponSwitchMenu>();
         Debug.Log(weaponSwitchMenuScript);
-        var rooms = dungeonCreator.CreateDungeon();
-        var obstacleGenerator = new ObstacleGeneration(rooms, spawner);
-        player1 = new Player(rooms[0], spawner);
 
+        proceedNextLevel = this.GetComponent<ProceedNextLevel>();
+
+        GenerateLevel();
     }
 
     // Update is called once per frame
@@ -50,9 +58,7 @@ public class GameManager : MonoBehaviour
 
             if (isPaused)
             {
-                Debug.Log(weaponSwitchMenuScript.currentWeaponIndex);
                 var weaponEnum = weaponSwitchMenuScript.currentWeapon();
-                Debug.Log(weaponEnum);
                 SwitchPlayerWeapon(weaponEnum);
                 ResumeGame();
             }
@@ -60,6 +66,22 @@ public class GameManager : MonoBehaviour
             {
                 PauseGame();
             }
+        }
+        if (elevatorSwitch.playerEnter) // complete level - clear the scene
+        {
+            proceedNextLevel.DestroyEnvironment();
+            elevatorSwitch.playerEnter = false;
+            completeLevel = true;
+        }
+        else if (completeLevel) // complete level - generate the next level
+        {
+            GenerateLevel();
+        }
+        else if (playerMovement.isDead) // player dead
+        {
+            Debug.Log("END GAME");
+            proceedNextLevel.DestroyEnvironment();
+            playerMovement.isDead = false;
         }
     }
 
@@ -79,5 +101,15 @@ public class GameManager : MonoBehaviour
     public void SwitchPlayerWeapon (WeaponEnum weaponEnum)
     {
         this.player1.SwitchWeapon(weaponEnum);
+    }
+
+    private void GenerateLevel() 
+    {
+        completeLevel = false;
+        var rooms = dungeonCreator.CreateDungeon();
+        var obstacleGenerator = new ObstacleGeneration(rooms, spawner);
+        player1 = new Player(rooms[0], spawner);
+        elevatorSwitch = FindObjectOfType<ElevatorSwitch>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 }
