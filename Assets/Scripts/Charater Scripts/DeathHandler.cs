@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DeathHandler : MonoBehaviour
@@ -9,11 +7,13 @@ public class DeathHandler : MonoBehaviour
     public PlayerMovement player;
     public EnemyMovement enemy;
     public bool dead;
+    public bool gameOver;
 
     // Start is called before the first frame update
     void Start()
     {
         dead = false;
+        gameOver = false;
         // Gets all the components we need.
         healthSlider = GetComponent<HealthSlider>();
         animator = GetComponent<Animator>();
@@ -53,6 +53,7 @@ public class DeathHandler : MonoBehaviour
                 GetComponent<CapsuleCollider>().enabled = !GetComponent<CapsuleCollider>().enabled;
                 // GetComponent<HealthSlider>().enabled = !GetComponent<HealthSlider>().enabled;
                 // GetComponent<DeathHandler>().enabled = !GetComponent<DeathHandler>().enabled;
+                player.isDead = true;
             }
             else if (gameObject.tag == "Enemy")
             {
@@ -74,6 +75,7 @@ public class DeathHandler : MonoBehaviour
         {
             animator.Play("Dead");
             animator.speed = 0;
+            gameOver = true;
         }
     }
 }

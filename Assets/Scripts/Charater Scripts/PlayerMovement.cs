@@ -12,11 +12,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator animator;
 
     public CharacterController characterController;
+
+    public bool isDead;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
 
         Cursor.lockState = CursorLockMode.Locked;
+
+        isDead = false;
     }
 
     /// <summary>
