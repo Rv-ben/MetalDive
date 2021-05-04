@@ -24,7 +24,7 @@ public class DeathHandler : MonoBehaviour
         }
         else if (gameObject.tag == "Enemy")
         {
-            enemy.GetComponent<EnemyMovement>();
+            enemy = GetComponent<EnemyMovement>();
             player = null;
         }
     }

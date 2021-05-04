@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public GameObject weaponSwitchMenu;
 
+    public EnemySpawner enemySpawner;
+
     private WeaponSwitchMenu weaponSwitchMenuScript;
 
     private GameObject panel;
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
         var rooms = dungeonCreator.CreateDungeon();
         var obstacleGenerator = new ObstacleGeneration(rooms, spawner);
         player1 = new Player(rooms[0], spawner);
+        enemySpawner = new EnemySpawner(spawner, rooms, 1);
+        enemySpawner.SpawnEnemies();
 
     }
 
