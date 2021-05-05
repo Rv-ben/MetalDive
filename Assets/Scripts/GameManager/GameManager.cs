@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
         levelComplete = 0;
         spawner.LoadPrefabs();
-
+        completeLevel = false;
         weaponPanel = GameObject.Find("WSPanel");
         weaponPanel.SetActive(isPaused);
         weaponView.SetActive(isPaused);
@@ -56,14 +56,7 @@ public class GameManager : MonoBehaviour
         weaponSwitchMenuScript = weaponSwitchMenu.GetComponent<WeaponSwitchMenu>();
         Debug.Log(weaponSwitchMenuScript);
 
-        var rooms = dungeonCreator.CreateDungeon();
-        var obstacleGenerator = new ObstacleGeneration(rooms, spawner);
-        player1 = new Player(rooms[0], spawner);
-        panel = GameObject.Find("Panel");
-        panel.SetActive(isPaused);
-
-        weaponSwitchMenuScript = weaponSwitchMenu.GetComponent<WeaponSwitchMenu>();
-        Debug.Log(weaponSwitchMenuScript);
+        
 
         proceedNextLevel = this.GetComponent<ProceedNextLevel>();
 
@@ -119,6 +112,7 @@ public class GameManager : MonoBehaviour
         }
         else if (completeLevel) // complete level - generate the next level
         {
+            Debug.Log("called here");
             GenerateLevel();
         }
         else if (playerMovement.isDead) // player dead
