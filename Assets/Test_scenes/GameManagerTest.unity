@@ -573,6 +573,7 @@ GameObject:
   - component: {fileID: 1262486242}
   - component: {fileID: 1262486241}
   - component: {fileID: 1262486244}
+  - component: {fileID: 1262486245}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -616,6 +617,7 @@ MonoBehaviour:
   weaponView: {fileID: 1952580764}
   weaponSwitchMenu: {fileID: 1080564879}
   isPaused: 0
+  levelComplete: 0
 --- !u!4 &1262486243
 Transform:
   m_ObjectHideFlags: 0
@@ -640,6 +642,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d4b5941dce337243a2ad1afc1165719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1262486245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262486240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38fc19c083474874db531098d1571fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1280427587
