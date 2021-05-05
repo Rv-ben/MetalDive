@@ -32,10 +32,13 @@ public class GameManager : MonoBehaviour
 
     public Player player1;
 
+    public int levelComplete;
+
 
     // Start is called before the first frame update
     void Awake()
     {
+        levelComplete = 0;
         spawner.LoadPrefabs();
 
         panel = GameObject.Find("Panel");
@@ -111,7 +114,10 @@ public class GameManager : MonoBehaviour
         var rooms = dungeonCreator.CreateDungeon();
         var obstacleGenerator = new ObstacleGeneration(rooms, spawner);
         player1 = new Player(rooms[0], spawner);
+        enemySpawner = new EnemySpawner(spawner, rooms, this.levelComplete + 1);
+        enemySpawner.SpawnEnemies();
         elevatorSwitch = FindObjectOfType<ElevatorSwitch>();
         playerMovement = FindObjectOfType<PlayerMovement>();
+        levelComplete++;
     }
 }
