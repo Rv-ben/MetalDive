@@ -326,6 +326,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1769389375}
   confirmationUI: {fileID: 547830763}
   isPaused: 0
+  levelComplete: 0
 --- !u!4 &221977809
 Transform:
   m_ObjectHideFlags: 0
@@ -1170,7 +1171,6 @@ GameObject:
   m_Component:
   - component: {fileID: 730803905}
   - component: {fileID: 730803904}
-  - component: {fileID: 730803903}
   - component: {fileID: 730803902}
   m_Layer: 0
   m_Name: Main Camera
@@ -1213,14 +1213,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!81 &730803903
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730803901}
-  m_Enabled: 0
 --- !u!20 &730803904
 Camera:
   m_ObjectHideFlags: 0
