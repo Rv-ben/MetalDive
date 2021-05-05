@@ -49,7 +49,7 @@ public class Spawner : MonoBehaviour
             var enumKey = (CharacterEnum)Enum.Parse(typeof(CharacterEnum), spawnableCharacter.name);
             this.characterPrefabDict.Add(enumKey, spawnableCharacter);
         }
-
+        
         foreach (GameObject spawnableWeapon in weaponPrefabs)
         {
             var enumKey = (WeaponEnum)Enum.Parse(typeof(WeaponEnum), spawnableWeapon.name);

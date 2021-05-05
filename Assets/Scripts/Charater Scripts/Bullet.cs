@@ -91,7 +91,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.tag == "Environment" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy")
         {
             // This destroys the object the script is attached to; thus, the Bullet.
-            Destroy(gameObject);
+            this.gameObject.SetActive(false);
         }
 
     }
@@ -102,6 +102,9 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         // Destroys the bullet after lifetime seconds.
-        Destroy(gameObject, lifeTime);
+        if (lifeTime == 0) 
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
