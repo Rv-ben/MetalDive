@@ -16,22 +16,28 @@ public class WeaponSwitching : MonoBehaviour
         this.model = model;
     }
 
-    public Dictionary<WeaponEnum, Vector3> positionData;
+    public Dictionary<WeaponEnum, (Vector3, Quaternion)> dictionary;
+    public (Vector3, Quaternion) positionData;
 
     public void Start()
     {
         // Instantiate the Animation Dictionary, which will hold the state we want and the string name of the animation trigger we want.
-        positionData = new Dictionary<WeaponEnum, Vector3>();
+        dictionary = new Dictionary<WeaponEnum, (Vector3, Quaternion)>();
         // Ties the Dropkick Animation to the Unarmed state.
-        positionData.Add(WeaponEnum.Unarmed, new Vector3(0, 0, 0));
+        dictionary.Add(WeaponEnum.Unarmed, (new Vector3(0, 0, 0), new Quaternion()));
         // Ties the Pistol Firing Animation to the Pistol state.
-        positionData.Add(WeaponEnum.SciFiHandGun, new Vector3(-0.0021f, 0.0096f, 0.0005f));
-        positionData.Add(WeaponEnum.ShotGun, new Vector3(-0.002f, 0.0221f, 0.0106f));
-        positionData.Add(WeaponEnum.LightAR, new Vector3(0.0135016f, 0.01583202f, 0.007588122f));
+        Vector3 pistolRotation = new Vector3(-180, 180, 180);
+        dictionary.Add(WeaponEnum.SciFiHandGun, (new Vector3(-0.00201f, 0.01224f, 0.00013f), Quaternion.Euler(pistolRotation)));
+        Vector3 shotgunRotation = new Vector3(-180, 180, 180);
+        dictionary.Add(WeaponEnum.ShotGun, (new Vector3(-0.0019f, 0.0219f, -0.0001f), Quaternion.Euler(shotgunRotation)));
+        Vector3 arRotation = new Vector3(-180, 180, 180);
+        dictionary.Add(WeaponEnum.LightAR, (new Vector3(0.0095f, 0.0097f, 0.0031f), Quaternion.Euler(arRotation)));
         // Ties the Guitar Playing Animation to the Guitar state.
-        positionData.Add(WeaponEnum.ElectricGuitar, new Vector3(-0.02750365f, 0.006047898f, 0.02101708f));
-        positionData.Add(WeaponEnum.MiniRifle, new Vector3(-0.0053f, 0.0193f, 0.009f));
-        positionData.Add(WeaponEnum.Launcher, new Vector3(-0.00361f, 0.01585f, 0.00479f));
+        dictionary.Add(WeaponEnum.ElectricGuitar, (new Vector3(0.0311f, 0.0047f, -0.0014f), new Quaternion()));
+        Vector3 miniRotation = new Vector3(-180, 180, 180);
+        dictionary.Add(WeaponEnum.MiniRifle, (new Vector3(-0.0053f, 0.0193f, 0.009f), Quaternion.Euler(miniRotation)));
+        Vector3 launcherRotation = new Vector3(-180, 180, 180);
+        dictionary.Add(WeaponEnum.Launcher, (new Vector3(-0.006F, 0.014f, 0f), Quaternion.Euler(launcherRotation)));
 
         // weapons = ShootingEnums.Pistol;
     }
@@ -64,8 +70,10 @@ public class WeaponSwitching : MonoBehaviour
         // Set the gun to the hand's position.
         this.model.transform.position = hand.transform.position;
         // Fine tune the position of the gun.
-        this.model.transform.localPosition = positionData[position];
+        this.model.transform.localPosition = dictionary[position].Item1;
         // Set the gun's rotation equivalent to the hand's rotation.
         this.model.transform.rotation = hand.transform.rotation;
+        // Fine tune the model's rotation.
+        this.model.transform.rotation = dictionary[position].Item2;
     }
 }
