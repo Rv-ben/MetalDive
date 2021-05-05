@@ -1251,6 +1251,36 @@ Transform:
   m_Father: {fileID: 161524012336353667}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3671457198348611698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6538021812991286005}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6538021812991286005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3671457198348611698}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.00000003973643, z: -0.00000007947286}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+  m_Children: []
+  m_Father: {fileID: 9156804146143038660}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3783391122378507333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2709,6 +2739,7 @@ Transform:
   - {fileID: 2912912216674310558}
   - {fileID: 290854746521050605}
   - {fileID: 6729134961986467840}
+  - {fileID: 6538021812991286005}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2745,6 +2776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingRange: 5
   walkingSpeed: 2
+  dead: 0
 --- !u!195 &9636518379657769
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2875,3 +2907,5 @@ MonoBehaviour:
   animator: {fileID: 621745639481295899}
   player: {fileID: 0}
   enemy: {fileID: 0}
+  dead: 0
+  gameOver: 0
