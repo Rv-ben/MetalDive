@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         enemySpawner = new EnemySpawner(spawner, rooms, this.levelComplete + 1);
         enemySpawner.SpawnEnemies();
         elevatorSwitch = FindObjectOfType<ElevatorSwitch>();
-        playerMovement = FindObjectOfType<PlayerMovement>();
+        playerMovement = player1.prefab.GetComponent<PlayerMovement>();
         levelComplete++;
     }
 }

@@ -100,6 +100,10 @@ public class HealthSlider : MonoBehaviour
                 this.SetHealth((int)enum_);
                 Destroy(other);
             }
+            else
+            {
+                this.SetHealth((int)enum_);
+            }
         }
     }
 }
