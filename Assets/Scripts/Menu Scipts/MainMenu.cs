@@ -26,6 +26,12 @@ public class MainMenu : MonoBehaviour
 
     public TMP_Text progressText;
 
+    public void Start()
+    {
+        loadingCanvas = GameObject.Find("LoadingScreen");
+        loadingCanvas.SetActive(false);
+    }
+
     /// <summary>
     /// Method called from on click event, waits for specified time
     /// to show loading canvas, then loads new scene
