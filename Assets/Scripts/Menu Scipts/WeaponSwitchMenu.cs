@@ -84,10 +84,6 @@ public class WeaponSwitchMenu : MonoBehaviour
     public void SwitchWeapon(int index)
     {
         var enum_ = ((WeaponEnum)index);
-        /*Debug.Log("index is now " + index);
-        Debug.Log(enum_);
-        Debug.Log("weaponImages size " + weaponImages.Length);
-        Debug.Log("enum size is " + weaponLength);*/
 
         spriteRenderer.sprite = weaponImages[currentWeaponIndex];
 
@@ -95,9 +91,7 @@ public class WeaponSwitchMenu : MonoBehaviour
 
     public WeaponEnum currentWeapon()
     {
-        //Debug.Log("here");
         var enum_ = ((WeaponEnum)currentWeaponIndex);
-        //Debug.Log(enum_.ToString());
         return enum_;
     }
 

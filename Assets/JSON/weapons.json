@@ -32,7 +32,7 @@
 }
 
 {
-    "name": "Guitar",
+    "name": "ElectricGuitar",
     "parentObject": GameObject.Find(\"mixamorig:LeftHand\"),
     "localPositionX": -0.02750365f,
     "localPositionY": 0.006047898f,
@@ -56,7 +56,7 @@
 }
 
 {
-    "name": "Rocket Rifle",
+    "name": "Launcher",
     "parentObject": GameObject.Find(\"mixamorig:RightHand\"),
     "localPositionX": -0.00361f,
     "localPositionY": 0.01585f,
