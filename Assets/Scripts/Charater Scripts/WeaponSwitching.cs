@@ -26,17 +26,18 @@ public class WeaponSwitching : MonoBehaviour
         // Ties the Dropkick Animation to the Unarmed state.
         dictionary.Add(WeaponEnum.Unarmed, (new Vector3(0, 0, 0), new Quaternion()));
         // Ties the Pistol Firing Animation to the Pistol state.
-        Vector3 pistolRotation = new Vector3(-180, 180, 180);
+        Vector3 pistolRotation = new Vector3(-90, 45, 0);
         dictionary.Add(WeaponEnum.SciFiHandGun, (new Vector3(-0.00201f, 0.01224f, 0.00013f), Quaternion.Euler(pistolRotation)));
-        Vector3 shotgunRotation = new Vector3(-180, 180, 180);
+        //Vector3 shotgunRotation = new Vector3(-180, 180, 180);
+        Vector3 shotgunRotation = new Vector3(0, 0, 90);
         dictionary.Add(WeaponEnum.ShotGun, (new Vector3(-0.0019f, 0.0219f, -0.0001f), Quaternion.Euler(shotgunRotation)));
-        Vector3 arRotation = new Vector3(-180, 180, 180);
+        Vector3 arRotation = new Vector3(-90, 90, 0);
         dictionary.Add(WeaponEnum.LightAR, (new Vector3(0.0095f, 0.0097f, 0.0031f), Quaternion.Euler(arRotation)));
         // Ties the Guitar Playing Animation to the Guitar state.
         dictionary.Add(WeaponEnum.ElectricGuitar, (new Vector3(0.0311f, 0.0047f, -0.0014f), new Quaternion()));
-        Vector3 miniRotation = new Vector3(-180, 180, 180);
+        Vector3 miniRotation = new Vector3(270, 90, 0);
         dictionary.Add(WeaponEnum.MiniRifle, (new Vector3(-0.0053f, 0.0193f, 0.009f), Quaternion.Euler(miniRotation)));
-        Vector3 launcherRotation = new Vector3(-180, 180, 180);
+        Vector3 launcherRotation = new Vector3(270, 90, 0);
         dictionary.Add(WeaponEnum.Launcher, (new Vector3(-0.006F, 0.014f, 0f), Quaternion.Euler(launcherRotation)));
 
         // weapons = ShootingEnums.Pistol;
@@ -72,8 +73,8 @@ public class WeaponSwitching : MonoBehaviour
         // Fine tune the position of the gun.
         this.model.transform.localPosition = dictionary[position].Item1;
         // Set the gun's rotation equivalent to the hand's rotation.
-        this.model.transform.rotation = hand.transform.rotation;
+        //this.model.transform.rotation = hand.transform.rotation;
         // Fine tune the model's rotation.
-        this.model.transform.rotation = dictionary[position].Item2;
+        this.model.transform.rotation = hand.transform.rotation * dictionary[position].Item2 ;
     }
 }
