@@ -17,8 +17,7 @@ public class MainMenu : MonoBehaviour
 
     private readonly string UpdateSliderFunc = nameof(UpdateSlider);
 
-    // specified time from Unity
-    [SerializeField] private float waitTime;
+    private float waitTime = 10;
 
     public GameObject loadingCanvas;
 
@@ -105,21 +104,13 @@ public class MainMenu : MonoBehaviour
         Invoke(UpdateSliderFunc, 8.5f);
 
         Invoke(UpdateSliderFunc, 9.5f);
-
-
-        /*for (int j = 0; j < 10; ++j)
-        {
-            float time = (i+1)*0.5f;
-            Invoke(UpdateSliderFunc, time);
-        }*/
     }
 
     /// <summary>
-    /// Function invoked from PlayGame function after <waitTime> seconds 
+    /// This function loads the next scene in the build settings queue
     /// </summary>
     public void LoadNextScene()
     {
-        // Scene manager loads the following scene in queue (from Unity build settings)
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

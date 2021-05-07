@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
         }
         else if (playerMovement.isDead) // player dead
         {
+            SceneManager.LoadScene("GameOver");
             Debug.Log("END GAME");
             playerMovement.isDead = false;
         }
