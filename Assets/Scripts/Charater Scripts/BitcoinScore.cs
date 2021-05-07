@@ -5,11 +5,16 @@ public class BitcoinScore : MonoBehaviour
 {
     public Text bitcoinScore;
     private int score;
+    private GameObject gameManagerObject;
+    private GameManager gameManager;
 
     // Use this for initialization
     void Start()
     {
-        score = 0;
+        gameManagerObject = GameObject.Find("GameManager");
+        gameManager = gameManagerObject.GetComponent<GameManager>();
+        
+        score = gameManager.currentBitcoin;
     }
 
     // Update is called once per frame
@@ -21,6 +26,7 @@ public class BitcoinScore : MonoBehaviour
     public void incrementBitcoinScore() 
     {
         score++;
+        gameManager.currentBitcoin = score;
     }
 
 }

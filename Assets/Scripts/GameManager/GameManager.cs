@@ -39,10 +39,13 @@ public class GameManager : MonoBehaviour
 
     public int levelComplete;
 
+    public int currentBitcoin;
+
 
     // Start is called before the first frame update
     void Awake()
     {
+        currentBitcoin = 0;
         levelComplete = 0;
         spawner.LoadPrefabs();
         completeLevel = false;
