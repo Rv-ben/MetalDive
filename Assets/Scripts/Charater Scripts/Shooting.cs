@@ -75,7 +75,6 @@ public class Shooting : MonoBehaviour
             else
             {
                 var trigger = this.gameObject.transform.GetChild(4).gameObject;
-                Debug.Log(trigger);
                 if (trigger.GetComponent<TriggerEnemy>().isFollowing)
                 {
                     fireTime = Time.time + shotDelay;
