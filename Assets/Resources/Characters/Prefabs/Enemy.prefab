@@ -2155,7 +2155,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6729134961986467847
 MonoBehaviour:
@@ -2184,6 +2184,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  isFollowing: 0
 --- !u!54 &6729134961986467845
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2786,7 +2787,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 9185912574180435602}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.1
+  m_Radius: 0.6
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
@@ -2872,8 +2873,8 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   image: {fileID: 290854745494572400}
-  healthValue: 100
-  maxHealth: 100
+  healthValue: 30
+  maxHealth: 30
 --- !u!114 &1243232399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2887,10 +2888,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ejector: {fileID: 2912912216674310558}
-  timeToShoot: 0
+  timeToShoot: 100
   bullet: {fileID: 1324474603367395274, guid: e8564024e23453e418d57b452d356bae, type: 3}
   animator: {fileID: 621745639481295899}
   animEnum: 3
+  shotDelay: 0
+  fireTime: 0
 --- !u!114 &1243232406
 MonoBehaviour:
   m_ObjectHideFlags: 0

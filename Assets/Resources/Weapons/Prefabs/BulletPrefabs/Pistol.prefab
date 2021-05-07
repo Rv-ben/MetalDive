@@ -112,7 +112,7 @@ MonoBehaviour:
   spread: 0
   shotDelay: 0.1
   spreadNumber: 1
-  bulletSpeed: 10000
+  bulletSpeed: 100000
   lifeTime: 1
 --- !u!54 &-6378152690711693947
 Rigidbody:

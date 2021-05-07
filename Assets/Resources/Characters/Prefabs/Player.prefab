@@ -2592,8 +2592,8 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   image: {fileID: 8401008679393733640}
-  healthValue: 100
-  maxHealth: 100
+  healthValue: 150
+  maxHealth: 150
 --- !u!143 &7455530076799520471
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2629,6 +2629,8 @@ MonoBehaviour:
   bullet: {fileID: 1324474603367395274, guid: e8564024e23453e418d57b452d356bae, type: 3}
   animator: {fileID: 8401008680357231219}
   animEnum: 3
+  shotDelay: 0
+  fireTime: 0
 --- !u!114 &8401008680593092890
 MonoBehaviour:
   m_ObjectHideFlags: 0

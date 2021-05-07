@@ -300,8 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0f8307bfd48f244a4f41ee79ca78d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dunWidth: 80
-  dunLength: 80
+  dunWidth: 30
+  dunLength: 30
   roomWidthMin: 8
   roomLengthMin: 8
   maxIterations: 10
