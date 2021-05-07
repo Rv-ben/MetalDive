@@ -39,10 +39,13 @@ public class GameManager : MonoBehaviour
 
     public int levelComplete;
 
+    public int currentBitcoin;
+
 
     // Start is called before the first frame update
     void Awake()
     {
+        currentBitcoin = 0;
         levelComplete = 0;
         spawner.LoadPrefabs();
         completeLevel = false;
@@ -54,9 +57,6 @@ public class GameManager : MonoBehaviour
         confirmationUI.gameObject.SetActive(isPaused);
 
         weaponSwitchMenuScript = weaponSwitchMenu.GetComponent<WeaponSwitchMenu>();
-        Debug.Log(weaponSwitchMenuScript);
-
-        
 
         proceedNextLevel = this.GetComponent<ProceedNextLevel>();
 
@@ -112,13 +112,11 @@ public class GameManager : MonoBehaviour
         }
         else if (completeLevel) // complete level - generate the next level
         {
-            Debug.Log("called here");
             GenerateLevel();
         }
         else if (playerMovement.isDead) // player dead
         {
             Debug.Log("END GAME");
-            proceedNextLevel.DestroyEnvironment();
             playerMovement.isDead = false;
         }
     }

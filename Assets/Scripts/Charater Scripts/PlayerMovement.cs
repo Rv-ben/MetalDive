@@ -13,11 +13,17 @@ public class PlayerMovement : MonoBehaviour
 
     public CharacterController characterController;
 
+    private GameObject bitcoinScoreObject;
+    private BitcoinScore bitcoinScore;
+
     public bool isDead;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+
+        bitcoinScoreObject = transform.GetChild(3).GetChild(1).gameObject;
+        bitcoinScore = bitcoinScoreObject.GetComponent<BitcoinScore>();
 
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -54,6 +60,14 @@ public class PlayerMovement : MonoBehaviour
         if (side != 0)
         {
             characterController.Move(transform.right * movementSpeed * side);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bitcoin")
+        {
+            bitcoinScore.incrementBitcoinScore();
         }
     }
 }
