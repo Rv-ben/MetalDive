@@ -144,9 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spread: 1
-  shotDelay: 1.5
+  shotDelay: 2
   spreadNumber: 9
-  bulletSpeed: 7
+  bulletSpeed: 7000
   lifeTime: 3
 --- !u!135 &4481899931974140354
 SphereCollider:

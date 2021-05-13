@@ -114,7 +114,7 @@ public enum HealthEnum
     AR = -5,
     Mini = -2,
     Pellet = -5,
-    Rocket = -30,
+    Rocket = -100,
     Sound = -10,
     Healthkit = 10
 }

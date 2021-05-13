@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spread: 0
-  shotDelay: 2.5
+  shotDelay: 10000000
   spreadNumber: 1
   bulletSpeed: 7
   lifeTime: 3

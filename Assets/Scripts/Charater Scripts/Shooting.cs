@@ -22,7 +22,7 @@ public class Shooting : MonoBehaviour
     // Dictionary tying an Enum to a String, which is used to determine an animation to play.
     public Dictionary<WeaponEnum, string> animationDictionary;
 
-    public float shotDelay = 0f;
+    public float shotDelay;
     public float fireTime = 0f;
 
     /// <summary>
