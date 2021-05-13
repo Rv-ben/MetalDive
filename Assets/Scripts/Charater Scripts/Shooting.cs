@@ -66,7 +66,7 @@ public class Shooting : MonoBehaviour
                 // Checks if LClick is pushed.
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log(this.gameObject);
+                    //Debug.Log(this.gameObject);
                     fireTime = Time.time + shotDelay;
                     // Shooting logic.  Passes in whatever state it's at, as well as the bullet to be fired.
                     Shoot(animEnum, bullet);

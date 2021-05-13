@@ -8,28 +8,33 @@ using UnityEngine;
 /// </summary>
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] public GameObject PauseMenuUI;
 
-    [SerializeField] public GameObject ConfirmationUI;
+    public GameObject PauseMenuUI;
 
-    public static bool isPaused = false;
+    public GameObject ConfirmationUI;
+
+    //public static bool isPaused = false;
+
+    public bool pauseStatus;
+
+
 
     // Update is called once per frame
     void Update()
     {
         // if ESC is pressed
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Escape key pressed");
+            //Debug.Log("Escape key pressed");
 
-            Debug.Log("isPaused: " + isPaused.ToString());
-            isPaused = true;
+            //Debug.Log("pauseStatus: " + pauseStatus.ToString());
+            pauseStatus = true;
 
-            if (isPaused)
+            if (pauseStatus)
             {
                 PauseGame();
             }
-        }
+        }*/
     }
 
     /// <summary>
@@ -38,7 +43,7 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         Debug.Log("game is currently paused");
-        PauseMenuUI.SetActive(true);
+        //PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }
 
@@ -48,7 +53,7 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         Debug.Log("resuming");
-        isPaused = false;
+        pauseStatus = false;
         Time.timeScale = 1f;
         PauseMenuUI.SetActive(false);
         ConfirmationUI.SetActive(false);
