@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        SceneManager.GetSceneAt(0);
+        SceneManager.LoadScene("MainMenu");
     }
     
     private void GenerateLevel() 
