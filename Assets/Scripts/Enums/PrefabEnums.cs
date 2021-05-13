@@ -48,3 +48,12 @@ public enum BulletEnum
     Rocket,
     ShotPellet
 }
+
+public enum TransferEnum
+{
+    Launcher = BulletEnum.Rocket,
+    LightAR = BulletEnum.AR,
+    MiniRifle = BulletEnum.MiniGun,
+    SciFiHandGun = BulletEnum.Pistol,
+    ShotGun = BulletEnum.ShotPellet,
+}

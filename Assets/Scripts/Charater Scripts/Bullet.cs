@@ -91,7 +91,7 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Environment")
         {
-            Destroy(this.transform.gameObject);
+            this.gameObject.SetActive(false);
         }
 
     }
@@ -101,7 +101,5 @@ public class Bullet : MonoBehaviour
     /// </summary>
     void Update()
     {
-        // Destroys the bullet after lifetime seconds.
-        Destroy(gameObject, lifeTime);
     }
 }

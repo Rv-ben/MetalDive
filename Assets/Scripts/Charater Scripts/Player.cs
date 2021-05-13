@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// <c>Player</c>
@@ -34,9 +35,23 @@ public class Player : Character
         return prefab;
     }
 
-    public void SwitchWeapon (WeaponEnum weaponEnum) {
-        var weaponToSwitch = this.spawner.SpawnWeapon(new Vector3(0,0,0), weaponEnum);
-        this.prefab.GetComponent<WeaponSwitching>().WeaponSwitch(weaponEnum, weaponToSwitch);
+    public void SwitchWeapon (WeaponEnum weaponEnum)
+    {
+        try
+        {
+            var weaponToSwitch = this.spawner.SpawnWeapon(new Vector3(0, 0, 0), weaponEnum);
+            this.prefab.GetComponent<WeaponSwitching>().WeaponSwitch(weaponEnum, weaponToSwitch);
+            var bulletEnum = (BulletEnum)(System.Enum.Parse(typeof(TransferEnum), weaponEnum.ToString()));
+            var bullet = this.spawner.SpawnBullet(new Vector3(0, 0, 0), bulletEnum);
+            Debug.Log(bullet);
+            bullet.SetActive(true);
+            this.prefab.GetComponent<Shooting>().bullet = bullet;
+            Debug.Log(this.prefab.GetComponent<Shooting>().bullet);
+        }
+        catch
+        {
+
+        }
     }
 
 }

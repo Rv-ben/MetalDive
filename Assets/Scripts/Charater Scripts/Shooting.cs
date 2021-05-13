@@ -93,6 +93,7 @@ public class Shooting : MonoBehaviour
     {
         // Plays a specific animation based on the weapon equipped.
         animator.SetTrigger(animationDictionary[animEnum]);
+        bullet.SetActive(true);
         // Determines the next time you're able to shoot off the equipped bullet's shot delay.
         timeToShoot = Time.time + bullet.GetComponent<Bullet>().getShotDelay();
         // Basically spawns multiple bullets, up to the bullet's inherent spread number.
