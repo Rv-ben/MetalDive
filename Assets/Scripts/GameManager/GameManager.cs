@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
 
     private ElevatorSwitch elevatorSwitch;
 
+    private GameObject transitionCanvas;
+
+    private ElevatorTransition elevatorTransition;
+
     private bool completeLevel;
 
     private PlayerMovement playerMovement;
@@ -55,6 +59,12 @@ public class GameManager : MonoBehaviour
         weaponSwitchMenu.SetActive(isPaused);
         pauseMenu.gameObject.SetActive(isPaused);
         confirmationUI.gameObject.SetActive(isPaused);
+        transitionCanvas = GameObject.Find("ElevatorCanvas");
+        transitionCanvas.SetActive(false);
+        elevatorTransition = transitionCanvas.GetComponent<ElevatorTransition>();
+
+        Debug.Log(transitionCanvas);
+        Debug.Log(elevatorTransition);
 
         weaponSwitchMenuScript = weaponSwitchMenu.GetComponent<WeaponSwitchMenu>();
 
@@ -106,19 +116,27 @@ public class GameManager : MonoBehaviour
         }
         if (elevatorSwitch.playerEnter) // complete level - clear the scene
         {
+            PauseGame();
+            transitionCanvas.SetActive(true);
             proceedNextLevel.DestroyEnvironment();
             elevatorSwitch.playerEnter = false;
             completeLevel = true;
+            ResumeGame();
         }
         else if (completeLevel) // complete level - generate the next level
         {
+            PauseGame();
+            elevatorTransition.DeactivateCanvas();
             GenerateLevel();
+            ResumeGame();
+            
         }
         else if (playerMovement.isDead) // player dead
         {
             SceneManager.LoadScene("GameOver");
             Debug.Log("END GAME");
             playerMovement.isDead = false;
+            SceneManager.LoadScene("GameOver");
         }
     }
 
@@ -142,7 +160,6 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        Debug.Log("return to mainmenu from gamemanager!!!!!!!");
         SceneManager.GetSceneAt(0);
     }
     
