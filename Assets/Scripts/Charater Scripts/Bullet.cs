@@ -79,18 +79,19 @@ public class Bullet : MonoBehaviour
     /// If the Bullet hits something, it'll be deleted.
     /// </summary>
     /// <param name="collision">A "collision" object implicitly tied to the GameObject that records when two Rigidbody Colliders collide.  </param>
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
         Debug.Log("Hit");
+        Debug.Log(collision.gameObject.tag);
         // If the bullet hits itself (surprisingly necessary)
         if (collision.gameObject.tag == this.gameObject.tag)
         {
             // Do nothing.
-            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
+            Physics.IgnoreCollision(collision.GetComponent<Collider>(), GetComponent<Collider>());
         }
-        else
+        else if (collision.gameObject.tag == "Environment")
         {
-            Destroy(gameObject);
+            Destroy(this.transform.gameObject);
         }
 
     }

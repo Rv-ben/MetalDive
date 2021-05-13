@@ -91,5 +91,6 @@ public class DungeonCreator : MonoBehaviour
 
         wall.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
         wall.name = "Wall";
+        wall.tag = "Environment";
     }
 }
